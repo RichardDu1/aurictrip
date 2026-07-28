@@ -8,7 +8,7 @@ import Footer from "@components/Footer.astro";
 const journeys = await getCollection("journeys");
 const sorted = journeys
   .map((j: CollectionEntry<"journeys">) => j)
-  .sort((a, b) => {
+  .sort((a: CollectionEntry<"journeys">, b: CollectionEntry<"journeys">) => {
     if (a.data.featured && !b.data.featured) return -1;
     if (!a.data.featured && b.data.featured) return 1;
     return a.data.price - b.data.price;
@@ -28,7 +28,7 @@ const sorted = journeys
     <section class="listing">
       <div class="listing-inner">
         <div class="listing-grid">
-          {sorted.map((j) => (
+          {sorted.map((j: CollectionEntry<"journeys">) => (
             <a href={`/journeys/${j.id}`} class="listing-card card">
               <div class="listing-card-img"></div>
               <div class="listing-card-body">
