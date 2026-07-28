@@ -1,37 +1,256 @@
-<section class="hero">
-  <div class="hero-bg"></div>
-  <div class="hero-content">
+---
+interface Slide {
+  image: string;
+  destination: string;
+  subtitle: string;
+  price: number;
+  priceLevel: string;
+  slug: string;
+}
+
+// Featured slides for hero carousel
+const heroSlides: Slide[] = [
+  {
+    image:
+      "https://images.unsplash.com/photo-1530053969600-caed2596d242?w=1920&q=85&auto=format&fit=crop",
+    destination: "南极半岛",
+    subtitle: "白色大陆的终极远征",
+    price: 158000,
+    priceLevel: "鎏光远征",
+    slug: "antarctica-expedition",
+  },
+  {
+    image:
+      "https://images.unsplash.com/photo-1504214208698-ea1916a2195a?w=1920&q=85&auto=format&fit=crop",
+    destination: "纳米比亚",
+    subtitle: "星空穹顶下的奢华露营",
+    price: 86000,
+    priceLevel: "鎏光臻选",
+    slug: "namibia-desert",
+  },
+  {
+    image:
+      "https://images.unsplash.com/photo-1523531294919-4bcd7c65e216?w=1920&q=85&auto=format&fit=crop",
+    destination: "意大利·托斯卡纳",
+    subtitle: "白松露季的米其林朝圣",
+    price: 62000,
+    priceLevel: "鎏光臻选",
+    slug: "tuscany-truffle",
+  },
+  {
+    image:
+      "https://images.unsplash.com/photo-1531303435785-3853ba43ceea?w=1920&q=85&auto=format&fit=crop",
+    destination: "巴塔哥尼亚",
+    subtitle: "在世界尽头徒步",
+    price: 128000,
+    priceLevel: "鎏光远征",
+    slug: "patagonia-hiking",
+  },
+  {
+    image:
+      "https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?w=1920&q=85&auto=format&fit=crop",
+    destination: "日本·京都",
+    subtitle: "茶道源流与千年古寺巡礼",
+    price: 48000,
+    priceLevel: "鎏光臻选",
+    slug: "kyoto-nara",
+  },
+];
+---
+
+<section class="hero" id="hero-carousel">
+  {heroSlides.map((slide, i) => (
+    <a
+      href={`/journeys/${slide.slug}`}
+      class={`hero-slide ${i === 0 ? "active" : ""}`}
+      data-index={i}
+    >
+      <div
+        class="hero-bg"
+        style={`background-image: url(${slide.image});`}
+      ></div>
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <p class="hero-level">{slide.priceLevel}</p>
+        <h2 class="hero-destination">{slide.destination}</h2>
+        <p class="hero-subtitle">{slide.subtitle}</p>
+        <p class="hero-price">
+          &yen;{slide.price.toLocaleString()}<span class="hero-price-note">起/人</span>
+        </p>
+      </div>
+    </a>
+  ))}
+
+  <!-- Brand overlay: always visible -->
+  <div class="hero-brand-overlay">
     <h1 class="hero-brand">鎏光旅行</h1>
     <p class="hero-en">AURICTRIP</p>
     <p class="hero-tagline">鎏光所至，皆为风景</p>
-    <p class="hero-subtitle">Travel in a golden light.</p>
+  </div>
+
+  <!-- Navigation dots -->
+  <div class="hero-dots">
+    {heroSlides.map((_, i) => (
+      <button
+        class={`hero-dot ${i === 0 ? "active" : ""}`}
+        data-index={i}
+        aria-label={`第 ${i + 1} 张`}
+      ></button>
+    ))}
+  </div>
+
+  <!-- Progress bar -->
+  <div class="hero-progress">
+    <div class="hero-progress-bar" id="hero-progress-bar"></div>
   </div>
 </section>
 
+<script>
+  const slides = document.querySelectorAll(".hero-slide");
+  const dots = document.querySelectorAll(".hero-dot");
+  const progressBar = document.getElementById("hero-progress-bar");
+  let current = 0;
+  const total = slides.length;
+  const INTERVAL = 5000;
+  let timer: ReturnType<typeof setInterval>;
+  let progressTimer = 0;
+
+  function goTo(index: number) {
+    slides[current].classList.remove("active");
+    dots[current].classList.remove("active");
+    current = ((index % total) + total) % total;
+    slides[current].classList.add("active");
+    dots[current].classList.add("active");
+    resetProgress();
+  }
+
+  function next() {
+    goTo(current + 1);
+  }
+
+  function resetProgress() {
+    if (progressBar) {
+      progressBar.style.transition = "none";
+      progressBar.style.width = "0%";
+      cancelAnimationFrame(progressTimer);
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          progressBar.style.transition = `width ${INTERVAL}ms linear`;
+          progressBar.style.width = "100%";
+        });
+      });
+    }
+  }
+
+  dots.forEach((dot) => {
+    dot.addEventListener("click", () => {
+      const idx = parseInt(dot.getAttribute("data-index") || "0");
+      goTo(idx);
+      resetTimer();
+    });
+  });
+
+  function resetTimer() {
+    clearInterval(timer);
+    timer = setInterval(next, INTERVAL);
+  }
+
+  resetProgress();
+  timer = setInterval(next, INTERVAL);
+</script>
+
 <style>
   .hero {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
     position: relative;
+    min-height: 100vh;
     overflow: hidden;
+  }
+  .hero-slide {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 1.2s ease;
+    z-index: 0;
+    text-decoration: none;
+  }
+  .hero-slide.active {
+    opacity: 1;
+    z-index: 1;
   }
   .hero-bg {
     position: absolute;
     inset: 0;
-    background:
-      linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.55)),
-      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 800'%3E%3Cdefs%3E%3ClinearGradient id='a' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23c9a96e' stop-opacity='0.08'/%3E%3Cstop offset='100%25' style='stop-color:%23f5f0eb' stop-opacity='0.15'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect fill='url(%23a)' width='1200' height='800'/%3E%3Ccircle cx='200' cy='150' r='300' fill='none' stroke='%23c9a96e' stroke-opacity='0.06' stroke-width='0.5'/%3E%3Ccircle cx='1000' cy='650' r='400' fill='none' stroke='%23c9a96e' stroke-opacity='0.04' stroke-width='0.5'/%3E%3Cline x1='0' y1='400' x2='1200' y2='400' stroke='%23c9a96e' stroke-opacity='0.08' stroke-width='0.5'/%3E%3C/svg%3E");
     background-size: cover;
     background-position: center;
+    background-repeat: no-repeat;
+    transform: scale(1);
+    transition: transform 6s ease;
+  }
+  .hero-slide.active .hero-bg {
+    transform: scale(1.05);
+  }
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      rgba(0, 0, 0, 0.5) 0%,
+      rgba(0, 0, 0, 0.25) 40%,
+      rgba(0, 0, 0, 0.6) 100%
+    );
   }
   .hero-content {
-    position: relative;
-    z-index: 1;
-    max-width: 680px;
-    padding: 2rem;
+    position: absolute;
+    bottom: 18%;
+    left: 0;
+    right: 0;
+    text-align: center;
+    padding: 0 2rem;
+    z-index: 2;
+  }
+  .hero-level {
+    font-size: 0.6rem;
+    letter-spacing: 0.25em;
+    color: var(--color-brand);
+    margin-bottom: 0.75rem;
+    text-transform: uppercase;
+  }
+  .hero-destination {
+    font-family: var(--font-heading);
+    font-size: clamp(2rem, 5vw, 3.25rem);
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.5rem;
+    line-height: 1.2;
+  }
+  .hero-subtitle {
+    font-family: var(--font-body);
+    font-size: clamp(0.85rem, 1.5vw, 1rem);
+    color: rgba(255, 255, 255, 0.75);
+    letter-spacing: 0.04em;
+    margin-bottom: 1.25rem;
+  }
+  .hero-price {
+    font-family: var(--font-price);
+    font-size: 1.25rem;
+    color: var(--color-brand);
+  }
+  .hero-price-note {
+    font-family: var(--font-body);
+    font-size: 0.65rem;
+    color: rgba(255, 255, 255, 0.5);
+    margin-left: 0.25rem;
+  }
+
+  /* Brand overlay — always visible on top */
+  .hero-brand-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -55%);
+    text-align: center;
+    z-index: 3;
+    pointer-events: none;
   }
   .hero-brand {
     font-family: var(--font-display);
@@ -40,29 +259,76 @@
     color: var(--color-text-on-dark);
     letter-spacing: 0.12em;
     margin-bottom: 0.25rem;
+    text-shadow: 0 2px 40px rgba(0, 0, 0, 0.5);
   }
   .hero-en {
     font-family: var(--font-body);
     font-size: 0.65rem;
     letter-spacing: 0.4em;
     color: var(--color-text-on-dark-muted);
-    margin-bottom: 3rem;
+    margin-bottom: 0.75rem;
     text-transform: uppercase;
   }
   .hero-tagline {
     font-family: var(--font-display);
-    font-size: 1.5rem;
+    font-size: 1.25rem;
     font-weight: 400;
     color: var(--color-brand);
     letter-spacing: 0.08em;
-    margin-bottom: 0.75rem;
+    text-shadow: 0 2px 20px rgba(0, 0, 0, 0.4);
   }
-  .hero-subtitle {
-    font-family: var(--font-body);
-    font-size: 0.95rem;
-    color: var(--color-text-on-dark-muted);
-    letter-spacing: 0.06em;
-    line-height: 1.6;
-    font-style: italic;
+
+  /* Navigation dots */
+  .hero-dots {
+    position: absolute;
+    bottom: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 0.75rem;
+    z-index: 4;
+  }
+  .hero-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    background: transparent;
+    cursor: pointer;
+    transition: background 0.3s, border-color 0.3s;
+    padding: 0;
+  }
+  .hero-dot.active,
+  .hero-dot:hover {
+    background: var(--color-brand);
+    border-color: var(--color-brand);
+  }
+
+  /* Progress bar */
+  .hero-progress {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: rgba(255, 255, 255, 0.1);
+    z-index: 4;
+  }
+  .hero-progress-bar {
+    height: 100%;
+    width: 0%;
+    background: var(--color-brand);
+  }
+
+  @media (max-width: 768px) {
+    .hero-content {
+      bottom: 22%;
+    }
+    .hero-brand {
+      font-size: clamp(2rem, 10vw, 3.5rem);
+    }
+    .hero-destination {
+      font-size: clamp(1.5rem, 6vw, 2rem);
+    }
   }
 </style>
