@@ -12,50 +12,161 @@ export async function getStaticPaths() {
 
 const { type } = Astro.params;
 const journeys = await getCollection("journeys");
-const filtered = journeys.filter((j: CollectionEntry<"journeys">) => j.data.priceLevel === type || type === "travel-styles");
+const filtered = journeys.filter(
+  (j: CollectionEntry<"journeys">) =>
+    j.data.priceLevel === type || type === "travel-styles",
+);
 
-const typeMeta: Record<string, { title: string; desc: string }> = {
-  "travel-styles": { title: "旅行方式", desc: "每一种旅行方式，都是一种生活态度" },
-  "鎏光臻选": { title: "鎏光臻选", desc: "精选顶级目的地，以成熟线路呈现极致体验" },
-  "鎏光定制": { title: "鎏光定制", desc: "完全按你设想定制，从零开始设计专属旅程" },
-  "鎏光远征": { title: "鎏光远征", desc: "深入地球最偏远的角落，探索真正的未知" },
+interface TypeMeta {
+  title: string;
+  subtitle: string;
+  desc: string;
+  heroImage: string;
+  whoFor: string;
+}
+
+const typeMeta: Record<string, TypeMeta> = {
+  "travel-styles": {
+    title: "旅行方式",
+    subtitle: "每一种旅行，都是一种生活态度",
+    desc: "从私人定制到臻选小团，从极地远征到亲子时光——找到最适合你的旅行形态。无论你想要什么样的旅行，我们都能为你实现。",
+    heroImage:
+      "https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=1920&q=85&auto=format&fit=crop",
+    whoFor: "所有旅行者",
+  },
+  "鎏光臻选": {
+    title: "鎏光臻选",
+    subtitle: "精选顶级目的地，成熟线路呈现极致体验",
+    desc: "每一条线路都经过实地勘察与反复打磨。行程、酒店、体验均已优化到极致——你只需出发，其余交给我们。适合追求确定性、不愿妥协的品味旅行者。",
+    heroImage:
+      "https://images.unsplash.com/photo-1523531294919-4bcd7c65e216?w=1920&q=85&auto=format&fit=crop",
+    whoFor: "追求极致体验、不愿妥协的品味旅行者",
+  },
+  "鎏光定制": {
+    title: "鎏光定制",
+    subtitle: "完全按你的设想，从零开始设计专属旅程",
+    desc: "没有固定模板，没有现成路线。你的兴趣、节奏、预算——每一条线路都是唯一的。从灵感初现到行程定稿，我们的旅行设计师全程陪伴。适合知道自己想要什么的人。",
+    heroImage:
+      "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=1920&q=85&auto=format&fit=crop",
+    whoFor: "有明确旅行偏好、需要完全定制化的独立旅行者",
+  },
+  "鎏光远征": {
+    title: "鎏光远征",
+    subtitle: "深入地球最偏远的角落，探索真正的未知",
+    desc: "为真正的探索者设计——南极大陆、巴塔哥尼亚荒野、撒哈拉深处。不是每个人都能到达的地方，正因如此才值得去。专业的极地/高海拔后勤保障，让你安全地走出舒适区。",
+    heroImage:
+      "https://images.unsplash.com/photo-1530053969600-caed2596d242?w=1920&q=85&auto=format&fit=crop",
+    whoFor: "敢于挑战极限、渴望真正探险精神的硬核旅行者",
+  },
 };
 
-const meta = typeMeta[type] || { title: type, desc: "" };
+const meta = typeMeta[type] || {
+  title: type,
+  subtitle: "",
+  desc: "",
+  heroImage: "",
+  whoFor: "",
+};
+
+// Image map for journey cards — same Unsplash photos used across site
+const journeyImages: Record<string, string> = {
+  "kyoto-nara":
+    "https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?w=800&q=80&auto=format&fit=crop",
+  "namibia-desert":
+    "https://images.unsplash.com/photo-1504214208698-ea1916a2195a?w=800&q=80&auto=format&fit=crop",
+  "tuscany-truffle":
+    "https://images.unsplash.com/photo-1523531294919-4bcd7c65e216?w=800&q=80&auto=format&fit=crop",
+  "bhutan-kingdom":
+    "https://images.unsplash.com/photo-1570789210967-2cac24afeb00?w=800&q=80&auto=format&fit=crop",
+  "antarctica-expedition":
+    "https://images.unsplash.com/photo-1530053969600-caed2596d242?w=800&q=80&auto=format&fit=crop",
+  "peru-inca":
+    "https://images.unsplash.com/photo-1466133633688-187f0b492390?w=800&q=80&auto=format&fit=crop",
+  "tanzania-family":
+    "https://images.unsplash.com/photo-1516426122078-c23e76319801?w=800&q=80&auto=format&fit=crop",
+  "patagonia-hiking":
+    "https://images.unsplash.com/photo-1466133633688-187f0b492390?w=800&q=80&auto=format&fit=crop",
+  "maldives-honeymoon":
+    "https://images.unsplash.com/photo-1573843981267-be1999ff37cd?w=800&q=80&auto=format&fit=crop",
+  "silk-road-heritage":
+    "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=800&q=80&auto=format&fit=crop",
+};
 ---
 
 <BaseLayout title={meta.title} description={meta.desc}>
   <Navigation />
   <main>
-    <section class="page-hero">
-      <div class="page-hero-inner">
-        <h1 class="page-hero-title">{meta.title}</h1>
-        <p class="page-hero-sub">{meta.desc}</p>
+    <!-- Hero -->
+    <section class="type-hero">
+      <div
+        class="type-hero-bg"
+        style={`background-image: url(${meta.heroImage});`}
+      ></div>
+      <div class="type-hero-overlay"></div>
+      <div class="type-hero-content">
+        <p class="type-hero-label">
+          {type === "travel-styles" ? "TRAVEL STYLES" : type}
+        </p>
+        <h1 class="type-hero-title">{meta.title}</h1>
+        <p class="type-hero-subtitle">{meta.subtitle}</p>
       </div>
     </section>
 
-    <section class="listing">
-      <div class="listing-inner">
-        {filtered.length === 0 ? (
-          <p class="listing-empty">该分类下暂无旅程，敬请期待。</p>
-        ) : (
-          <div class="listing-grid">
-            {filtered.map((j: CollectionEntry<"journeys">) => (
-              <a href={`/journeys/${j.id}`} class="listing-card card">
-                <div class="listing-card-img"></div>
-                <div class="listing-card-body">
-                  <span class="listing-card-tag">{j.data.priceLevel}</span>
-                  <h2 class="listing-card-title">{j.data.destination}</h2>
-                  <p class="listing-card-meta">{j.data.days}天{j.data.nights}晚 · {j.data.season}</p>
-                  <p class="listing-card-price">
-                    ¥{j.data.price.toLocaleString()}<span class="listing-card-price-suffix">起/人 · 指导价</span>
-                  </p>
-                  <span class="listing-card-action">了解详情 &rarr;</span>
-                </div>
-              </a>
-            ))}
-          </div>
-        )}
+    <!-- Intro -->
+    <section class="type-intro">
+      <div class="type-intro-inner">
+        <p class="type-intro-text">{meta.desc}</p>
+        {
+          meta.whoFor && (
+            <p class="type-intro-who">
+              适合<span class="type-intro-who-highlight">{meta.whoFor}</span>
+            </p>
+          )
+        }
+      </div>
+    </section>
+
+    <!-- Journey list -->
+    <section class="type-listing">
+      <div class="type-listing-inner">
+        {
+          filtered.length === 0 ? (
+            <p class="type-listing-empty">该分类下暂无旅程，敬请期待。</p>
+          ) : (
+            <div class="type-listing-grid">
+              {filtered.map((j: CollectionEntry<"journeys">) => (
+                <a href={`/journeys/${j.id}`} class="type-card card">
+                  <div
+                    class="type-card-img"
+                    style={`background-image: url(${journeyImages[j.id] || ""});`}
+                  ></div>
+                  <div class="type-card-body">
+                    <span class="type-card-tag">{j.data.priceLevel}</span>
+                    <h2 class="type-card-title">{j.data.destination}</h2>
+                    <p class="type-card-meta">
+                      {j.data.days}天{j.data.nights}晚 &middot; {j.data.season}
+                    </p>
+                    <p class="type-card-price">
+                      &yen;{j.data.price.toLocaleString()}<span class="type-card-price-suffix">起/人 &middot; 指导价</span>
+                    </p>
+                    <span class="type-card-action">了解详情 &rarr;</span>
+                  </div>
+                </a>
+              ))}
+            </div>
+          )
+        }
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="type-cta">
+      <div class="type-cta-inner">
+        <h2 class="type-cta-heading">准备好出发了吗？</h2>
+        <p class="type-cta-text">
+          与我们的旅行顾问聊聊你的想法。没有费用，没有义务——只是一次关于旅行的对话。
+        </p>
+        <a href="/contact" class="type-cta-link">与顾问对话 &rarr;</a>
       </div>
     </section>
   </main>
@@ -63,103 +174,194 @@ const meta = typeMeta[type] || { title: type, desc: "" };
 </BaseLayout>
 
 <style>
-  .page-hero {
-    padding: 8rem 2rem 3rem;
-    background: var(--color-bg-page);
-    text-align: center;
+  /* Hero */
+  .type-hero {
+    position: relative;
+    height: 60vh;
+    min-height: 380px;
+    display: flex;
+    align-items: flex-end;
+    overflow: hidden;
   }
-  .page-hero-inner {
+  .type-hero-bg {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+  }
+  .type-hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      rgba(0, 0, 0, 0.25) 0%,
+      rgba(0, 0, 0, 0.55) 100%
+    );
+  }
+  .type-hero-content {
+    position: relative;
+    z-index: 1;
+    padding: 3rem 2rem;
     max-width: 680px;
-    margin: 0 auto;
   }
-  .page-hero-title {
-    font-family: var(--font-heading);
-    font-size: clamp(2rem, 4vw, 2.75rem);
-    font-weight: 700;
-    color: var(--color-text-primary);
+  .type-hero-label {
+    font-size: 0.6rem;
+    letter-spacing: 0.25em;
+    color: var(--color-brand);
     margin-bottom: 0.75rem;
   }
-  .page-hero-sub {
-    font-size: 0.95rem;
-    color: var(--color-text-secondary);
-    line-height: 1.6;
+  .type-hero-title {
+    font-family: var(--font-heading);
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: 0.04em;
+    margin-bottom: 0.5rem;
   }
-  .listing {
-    padding: 3rem 2rem;
+  .type-hero-subtitle {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.8);
+    letter-spacing: 0.04em;
+  }
+
+  /* Intro */
+  .type-intro {
+    padding: 4rem 2rem 2rem;
     background: var(--color-bg-page);
   }
-  .listing-inner {
+  .type-intro-inner {
+    max-width: var(--spacing-content-max);
+    margin: 0 auto;
+  }
+  .type-intro-text {
+    font-size: 1rem;
+    color: var(--color-text-secondary);
+    line-height: 1.85;
+    margin-bottom: 1.5rem;
+  }
+  .type-intro-who {
+    font-size: 0.8rem;
+    color: var(--color-text-muted);
+    letter-spacing: 0.03em;
+  }
+  .type-intro-who-highlight {
+    color: var(--color-brand);
+    margin-left: 0.25rem;
+  }
+
+  /* Listing */
+  .type-listing {
+    padding: 2rem 2rem 4rem;
+    background: var(--color-bg-page);
+  }
+  .type-listing-inner {
     max-width: 1200px;
     margin: 0 auto;
   }
-  .listing-empty {
+  .type-listing-empty {
     text-align: center;
     font-size: 0.9rem;
     color: var(--color-text-muted);
     padding: 3rem 0;
   }
-  .listing-grid {
+  .type-listing-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 2rem;
   }
-  .listing-card {
+  .type-card {
     display: flex;
     flex-direction: column;
     text-decoration: none;
     background: var(--color-bg-card);
     transition: opacity 0.2s;
   }
-  .listing-card:hover {
+  .type-card:hover {
     opacity: 0.7;
   }
-  .listing-card-img {
+  .type-card-img {
     height: 200px;
-    background: var(--color-bg-warm);
+    background-size: cover;
+    background-position: center;
+    background-color: var(--color-bg-warm);
   }
-  .listing-card-body {
+  .type-card-body {
     padding: 1.5rem;
     display: flex;
     flex-direction: column;
     flex: 1;
   }
-  .listing-card-tag {
+  .type-card-tag {
     font-size: 0.6rem;
     letter-spacing: 0.18em;
     color: var(--color-brand);
     margin-bottom: 0.5rem;
   }
-  .listing-card-title {
+  .type-card-title {
     font-family: var(--font-heading);
     font-size: 1.1rem;
     font-weight: 600;
     color: var(--color-text-primary);
     margin-bottom: 0.5rem;
   }
-  .listing-card-meta {
+  .type-card-meta {
     font-size: 0.75rem;
     color: var(--color-text-muted);
     margin-bottom: 0.75rem;
   }
-  .listing-card-price {
+  .type-card-price {
     font-family: var(--font-price);
     font-size: 1.05rem;
     color: var(--color-text-secondary);
     margin-bottom: 0.15rem;
   }
-  .listing-card-price-suffix {
+  .type-card-price-suffix {
     font-family: var(--font-body);
     font-size: 0.65rem;
     color: var(--color-text-muted);
   }
-  .listing-card-action {
+  .type-card-action {
     font-size: 0.8rem;
     color: var(--color-brand);
     margin-top: auto;
     padding-top: 1rem;
   }
+
+  /* CTA */
+  .type-cta {
+    padding: 5rem 2rem;
+    background: var(--color-bg-page);
+    text-align: center;
+  }
+  .type-cta-inner {
+    max-width: 480px;
+    margin: 0 auto;
+  }
+  .type-cta-heading {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    margin-bottom: 0.75rem;
+  }
+  .type-cta-text {
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
+    line-height: 1.7;
+    margin-bottom: 2rem;
+  }
+  .type-cta-link {
+    text-decoration: none;
+    color: var(--color-brand);
+    font-size: 1rem;
+    letter-spacing: 0.04em;
+  }
+
   @media (max-width: 768px) {
-    .listing-grid {
+    .type-hero {
+      height: 50vh;
+      min-height: 300px;
+    }
+    .type-listing-grid {
       grid-template-columns: 1fr;
     }
   }
