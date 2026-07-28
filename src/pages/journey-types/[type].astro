@@ -10,6 +10,8 @@ export async function getStaticPaths() {
   return types.map((type) => ({ params: { type } }));
 }
 
+export const prerender = true;
+
 const { type } = Astro.params;
 const journeys = await getCollection("journeys");
 const filtered = journeys.filter(
