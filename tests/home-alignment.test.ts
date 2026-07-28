@@ -19,7 +19,7 @@ describe("Home page — aligns with product design strategy", () => {
     expect(html).toContain("关于");
   });
 
-  // 2. Hero: 100vh, deep navy
+  // 2. Hero: 100vh, dark overlay over full-screen image
   it("has hero with brand name and tagline", async () => {
     const html = await fixture("/");
     expect(html).toContain("鎏光旅行");
