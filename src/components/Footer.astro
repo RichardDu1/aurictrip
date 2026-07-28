@@ -1,4 +1,4 @@
-<footer class="footer" style="background: var(--color-bg-footer);">
+<footer class="footer">
   <div class="footer-inner">
     <div class="footer-brand">
       <p class="footer-logo">鎏光旅行 <span class="footer-logo-en">AURICTRIP</span></p>
@@ -34,7 +34,8 @@
 <style>
   .footer {
     padding: 4rem 2rem 2rem;
-    color: var(--color-text-on-dark);
+    background: var(--color-bg-footer);
+    border-top: 1px solid color-mix(in srgb, var(--color-text-muted) 15%, transparent);
   }
   .footer-inner {
     max-width: 1200px;
@@ -48,11 +49,12 @@
     font-size: 1.5rem;
     font-weight: 700;
     margin-bottom: 0.25rem;
+    color: var(--color-text-primary);
   }
   .footer-logo-en {
     font-size: 0.55rem;
     letter-spacing: 0.3em;
-    color: var(--color-text-on-dark-muted);
+    color: var(--color-text-muted);
   }
   .footer-tagline {
     color: var(--color-brand);
@@ -64,7 +66,7 @@
     gap: 2rem;
     margin-bottom: 3rem;
     padding-bottom: 2rem;
-    border-bottom: 1px solid color-mix(in srgb, var(--color-text-on-dark-muted) 20%, transparent);
+    border-bottom: 1px solid color-mix(in srgb, var(--color-text-muted) 15%, transparent);
   }
   .footer-col {
     display: flex;
@@ -79,17 +81,17 @@
     margin-bottom: 0.5rem;
   }
   .footer-col a {
-    color: var(--color-text-on-dark-muted);
+    color: var(--color-text-muted);
     text-decoration: none;
     font-size: 0.85rem;
     transition: color 0.2s;
   }
   .footer-col a:hover {
-    color: var(--color-text-on-dark);
+    color: var(--color-text-primary);
   }
   .footer-bottom {
     font-size: 0.75rem;
-    color: var(--color-text-on-dark-muted);
+    color: var(--color-text-muted);
     line-height: 1.8;
   }
   .footer-copy {

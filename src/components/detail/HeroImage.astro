@@ -2,13 +2,12 @@
 interface Props {
   src?: string;
   alt: string;
-  fallbackColor?: "navy" | "warm" | "cream";
+  fallbackColor?: "warm" | "cream";
 }
 
-const { src, alt, fallbackColor = "navy" } = Astro.props;
+const { src, alt, fallbackColor = "warm" } = Astro.props;
 
 const bgMap: Record<string, string> = {
-  navy: "var(--color-navy)",
   warm: "var(--color-bg-warm)",
   cream: "var(--color-cream)",
 };

@@ -19,9 +19,9 @@ describe("Design tokens", () => {
     expect(css).toMatch(/--color-white\s*:\s*#[Ff]{6}/);
   });
 
-  it("defines color-navy as #0A1628 (bg-hero alias)", async () => {
+  it("does NOT define color-navy (removed — no competitor basis)", async () => {
     const css = await getSourceCSS();
-    expect(css).toMatch(/--color-navy\s*:\s*#0[Aa]1628/);
+    expect(css).not.toMatch(/--color-navy/);
   });
 
   it("defines color-brand as Auric Gold via CSS variable", async () => {

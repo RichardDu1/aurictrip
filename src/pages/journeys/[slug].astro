@@ -67,7 +67,7 @@ const subtitle = data.subtitle || (rawBody.match(/^##\s*(.+)/m)?.[1]?.replace(/^
     <HeroImage
       src={data.heroImage}
       alt={data.destination}
-      fallbackColor={data.priceLevel === "鎏光远征" ? "navy" : "warm"}
+      fallbackColor={data.priceLevel === "鎏光远征" ? "warm" : "warm"}
     />
     <TitlePrice
       destination={data.destination}
