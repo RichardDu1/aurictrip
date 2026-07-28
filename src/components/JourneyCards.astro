@@ -1,0 +1,151 @@
+---
+interface Journey {
+  label: string;
+  title: string;
+  days: string;
+  href: string;
+  imageFallback: string;
+}
+
+const journeys: Journey[] = [
+  {
+    label: "至臻精选",
+    title: "京都奈良 7天6晚 茶道源流与千年古寺巡礼",
+    days: "7天6晚",
+    href: "/journeys/kyoto-nara",
+    imageFallback: "bg-warm",
+  },
+  {
+    label: "暗夜星辰",
+    title: "纳米布沙漠 9天8晚 星空穹顶下的奢华露营",
+    days: "9天8晚",
+    href: "/journeys/namibia-desert",
+    imageFallback: "bg-hero",
+  },
+  {
+    label: "味觉漫游",
+    title: "托斯卡纳 6天5晚 白松露季的米其林朝圣",
+    days: "6天5晚",
+    href: "/journeys/tuscany-truffle",
+    imageFallback: "bg-warm",
+  },
+  {
+    label: "秘境迷踪",
+    title: "不丹 8天7晚 雷龙之国的幸福哲学",
+    days: "8天7晚",
+    href: "/journeys/bhutan-kingdom",
+    imageFallback: "bg-hero",
+  },
+];
+---
+
+<section class="journeys">
+  <div class="journeys-inner">
+    <h2 class="journeys-heading">精选旅程</h2>
+    <p class="journeys-sub">每一段旅程，皆为私人定制。价格详询旅行顾问。</p>
+    <div class="journeys-grid">
+      {journeys.map((j) => (
+        <a href={j.href} class="journey-card card">
+          <div class={`journey-card-img ${j.imageFallback}`}></div>
+          <div class="journey-card-body">
+            <span class="journey-card-label">{j.label}</span>
+            <h3 class="journey-card-title">{j.title}</h3>
+            <span class="journey-card-days">{j.days}</span>
+            <span class="journey-card-action">了解详情 &rarr;</span>
+          </div>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .journeys {
+    padding: var(--spacing-section) 2rem;
+    background: var(--color-bg-page);
+  }
+  .journeys-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .journeys-heading {
+    font-family: var(--font-display);
+    font-size: 1.75rem;
+    font-weight: 700;
+    text-align: center;
+    color: var(--color-text-primary);
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.04em;
+  }
+  .journeys-sub {
+    text-align: center;
+    color: var(--color-text-muted);
+    font-size: 0.9rem;
+    margin-bottom: 3rem;
+  }
+  .journeys-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-card-gap);
+  }
+  .journey-card {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    min-height: 280px;
+    text-decoration: none;
+    background: var(--color-bg-card);
+    transition: opacity 0.2s;
+  }
+  .journey-card:hover {
+    opacity: 0.7;
+  }
+  .journey-card-img {
+    min-height: 280px;
+    background: var(--color-bg-hero);
+  }
+  .journey-card-img.bg-warm {
+    background: var(--color-bg-warm);
+  }
+  .journey-card-body {
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .journey-card-label {
+    font-size: 0.65rem;
+    letter-spacing: 0.18em;
+    color: var(--color-brand);
+    margin-bottom: 0.75rem;
+  }
+  .journey-card-title {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    line-height: 1.5;
+    margin-bottom: 1.25rem;
+  }
+  .journey-card-days {
+    font-size: 0.8rem;
+    color: var(--color-text-muted);
+    margin-bottom: 1rem;
+  }
+  .journey-card-action {
+    font-size: 0.8rem;
+    color: var(--color-brand);
+  }
+
+  @media (max-width: 768px) {
+    .journeys-grid {
+      grid-template-columns: 1fr;
+    }
+    .journey-card {
+      grid-template-columns: 1fr;
+    }
+    .journey-card-img {
+      min-height: 200px;
+    }
+  }
+</style>

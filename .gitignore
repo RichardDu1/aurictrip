@@ -1,0 +1,32 @@
+# build output
+dist/
+.astro/
+
+# dependencies
+node_modules/
+
+# environment variables
+.env
+.env.*
+!.env.example
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# editor
+.vscode/
+.idea/
+
+# logs
+*.log
+
+# cloudflare
+.wrangler/
+
+# playwright
+.playwright-mcp/
+
+# screenshots and temp files
+*.png
+kuoni-homepage-snapshot-1.yml

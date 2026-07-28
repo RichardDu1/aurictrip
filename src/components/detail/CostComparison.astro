@@ -1,0 +1,103 @@
+---
+interface Props {
+  included: string[];
+  excluded: string[];
+}
+
+const { included, excluded } = Astro.props;
+---
+
+<section class="cost">
+  <h2 class="cost-heading">费用说明</h2>
+  <div class="cost-grid">
+    <div class="cost-col">
+      <h3 class="cost-col-title cost-include-title">费用包含</h3>
+      <ul class="cost-list">
+        {included.map((item) => (
+          <li class="cost-item">
+            <span class="cost-icon cost-icon-yes">&#10003;</span>
+            <span>{item}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+    <div class="cost-col">
+      <h3 class="cost-col-title cost-exclude-title">费用不含</h3>
+      <ul class="cost-list">
+        {excluded.map((item) => (
+          <li class="cost-item">
+            <span class="cost-icon cost-icon-no">&times;</span>
+            <span>{item}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </div>
+</section>
+
+<style>
+  .cost {
+    max-width: var(--spacing-content-max);
+    margin: 0 auto;
+    padding: 3rem 2rem 0;
+  }
+  .cost-heading {
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.03em;
+  }
+  .cost-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+  .cost-col-title {
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+  .cost-include-title {
+    color: #2d6a4f;
+  }
+  .cost-exclude-title {
+    color: #9b2226;
+  }
+  .cost-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  .cost-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+    font-size: 0.85rem;
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+  }
+  .cost-icon {
+    flex-shrink: 0;
+    font-weight: 700;
+    font-size: 1rem;
+    margin-top: 0.05rem;
+  }
+  .cost-icon-yes {
+    color: #2d6a4f;
+  }
+  .cost-icon-no {
+    color: #9b2226;
+  }
+  @media (max-width: 768px) {
+    .cost-grid {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+  }
+</style>

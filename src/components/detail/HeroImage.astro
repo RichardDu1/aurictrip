@@ -1,0 +1,45 @@
+---
+interface Props {
+  src?: string;
+  alt: string;
+  fallbackColor?: "navy" | "warm" | "cream";
+}
+
+const { src, alt, fallbackColor = "navy" } = Astro.props;
+
+const bgMap: Record<string, string> = {
+  navy: "var(--color-navy)",
+  warm: "var(--color-bg-warm)",
+  cream: "var(--color-cream)",
+};
+---
+
+<div class="hero-img" style={`background: ${bgMap[fallbackColor]}`}>
+  {src && <img src={src} alt={alt} loading="eager" decoding="async" />}
+</div>
+
+<style>
+  .hero-img {
+    width: 100%;
+    height: 70vh;
+    min-height: 420px;
+    overflow: hidden;
+    position: relative;
+  }
+  .hero-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    animation: fadeIn 0.6s ease;
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  @media (max-width: 768px) {
+    .hero-img {
+      height: 50vh;
+      min-height: 280px;
+    }
+  }
+</style>

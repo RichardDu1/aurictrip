@@ -1,0 +1,139 @@
+---
+interface IPLine {
+  tag: string;
+  title: string;
+  subtitle: string;
+  href: string;
+}
+
+const lines: IPLine[] = [
+  {
+    tag: "暗夜星辰",
+    title: "在地球最美的夜空下",
+    subtitle: "从纳米布沙漠到北极圈，追逐极致星空体验",
+    href: "/journey-types/stargazing",
+  },
+  {
+    tag: "味觉漫游",
+    title: "以味蕾丈量世界",
+    subtitle: "米其林后厨探访、松露狩猎、酒庄私宴",
+    href: "/journey-types/culinary",
+  },
+  {
+    tag: "故事之地",
+    title: "每一寸土地都有故事",
+    subtitle: "历史学家同行，在文明现场重读人类史诗",
+    href: "/journey-types/storytelling",
+  },
+  {
+    tag: "秘境迷踪",
+    title: "只有风声知道的地方",
+    subtitle: "直升机进山、私人岛屿、未对游客开放的古道",
+    href: "/journey-types/hidden",
+  },
+  {
+    tag: "微缩世界",
+    title: "为小探险家打开世界",
+    subtitle: "5段年龄分层的亲子教育旅行设计",
+    href: "/journey-types/family",
+  },
+  {
+    tag: "岁月回响",
+    title: "慢下来，与时光对坐",
+    subtitle: "舒适节奏、文化深度、全程医疗护航",
+    href: "/journey-types/senior",
+  },
+];
+---
+
+<section class="ip-lines">
+  <div class="ip-inner">
+    <h2 class="ip-heading">六大原创产品线</h2>
+    <p class="ip-sub">每条线路经过实地勘察、反复打磨，只为无可替代的旅行体验</p>
+    <div class="ip-grid">
+      {lines.map((line) => (
+        <a href={line.href} class="ip-card">
+          <span class="ip-tag">{line.tag}</span>
+          <h3 class="ip-title">{line.title}</h3>
+          <p class="ip-subtitle">{line.subtitle}</p>
+          <span class="ip-link">探索 &rarr;</span>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .ip-lines {
+    padding: var(--spacing-section) 2rem;
+    background: var(--color-bg-page);
+  }
+  .ip-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .ip-heading {
+    font-family: var(--font-display);
+    font-size: 1.75rem;
+    font-weight: 700;
+    text-align: center;
+    color: var(--color-text-primary);
+    margin-bottom: 0.75rem;
+    letter-spacing: 0.04em;
+  }
+  .ip-sub {
+    text-align: center;
+    color: var(--color-text-muted);
+    font-size: 0.9rem;
+    margin-bottom: 3rem;
+  }
+  .ip-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+  .ip-card {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    padding: 2rem;
+    background: var(--color-bg-card);
+    transition: opacity 0.2s;
+    min-height: 220px;
+  }
+  .ip-card:hover {
+    opacity: 0.7;
+  }
+  .ip-tag {
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    color: var(--color-brand);
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+  }
+  .ip-title {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    margin-bottom: 0.5rem;
+    line-height: 1.4;
+  }
+  .ip-subtitle {
+    font-size: 0.8rem;
+    color: var(--color-text-muted);
+    line-height: 1.6;
+    flex: 1;
+  }
+  .ip-link {
+    font-size: 0.8rem;
+    color: var(--color-brand);
+    margin-top: 1.25rem;
+  }
+
+  @media (max-width: 768px) {
+    .ip-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

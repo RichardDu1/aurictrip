@@ -1,0 +1,99 @@
+---
+interface Hotel {
+  name: string;
+  location: string;
+  description: string;
+}
+
+interface Props {
+  hotels: Hotel[];
+}
+
+const { hotels } = Astro.props;
+if (!hotels || hotels.length === 0) return;
+---
+
+<section class="hotels">
+  <h2 class="ht-heading">酒店精选</h2>
+  <p class="ht-sub">每一间酒店都经过实地考察，确保品质与格调</p>
+  <div class="ht-grid">
+    {hotels.map((h) => (
+      <div class="ht-card card">
+        <div class="ht-card-img"></div>
+        <div class="ht-card-body">
+          <h3 class="ht-name">{h.name}</h3>
+          <p class="ht-location">{h.location}</p>
+          <p class="ht-desc">{h.description}</p>
+        </div>
+      </div>
+    ))}
+  </div>
+</section>
+
+<style>
+  .hotels {
+    max-width: var(--spacing-content-max);
+    margin: 0 auto;
+    padding: 3rem 2rem 0;
+  }
+  .ht-heading {
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.03em;
+  }
+  .ht-sub {
+    font-size: 0.8rem;
+    color: var(--color-text-muted);
+    margin-bottom: 1.5rem;
+  }
+  .ht-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  .ht-card {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 1.5rem;
+    background: var(--color-bg-card);
+  }
+  .ht-card-img {
+    min-height: 140px;
+    background: var(--color-bg-warm);
+  }
+  .ht-card-body {
+    padding: 1rem 1rem 1rem 0;
+  }
+  .ht-name {
+    font-family: var(--font-heading);
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    margin-bottom: 0.25rem;
+  }
+  .ht-location {
+    font-size: 0.75rem;
+    color: var(--color-brand);
+    margin-bottom: 0.5rem;
+  }
+  .ht-desc {
+    font-size: 0.85rem;
+    color: var(--color-text-secondary);
+    line-height: 1.7;
+    margin: 0;
+  }
+  @media (max-width: 768px) {
+    .ht-card {
+      grid-template-columns: 1fr;
+    }
+    .ht-card-img {
+      min-height: 180px;
+    }
+    .ht-card-body {
+      padding: 0 1.25rem 1.25rem;
+    }
+  }
+</style>

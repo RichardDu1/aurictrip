@@ -1,0 +1,75 @@
+---
+interface Section {
+  id: string;
+  label: string;
+}
+
+const sections: Section[] = [
+  { id: "itinerary", label: "行程安排" },
+  { id: "cost", label: "费用说明" },
+  { id: "hotels", label: "酒店信息" },
+  { id: "booking", label: "预订须知" },
+];
+---
+
+<nav class="sticky-tabs" id="sticky-tabs" aria-label="详情页导航">
+  <div class="sticky-tabs-inner">
+    {sections.map((s) => (
+      <a href={`#${s.id}`} class="sticky-tab" data-tab={s.id}>{s.label}</a>
+    ))}
+  </div>
+</nav>
+
+<script>
+  const tabs = document.querySelectorAll<HTMLAnchorElement>(".sticky-tab");
+  const observer = new IntersectionObserver(
+    (entries) => {
+      for (const entry of entries) {
+        if (entry.isIntersecting) {
+          tabs.forEach((t) => t.classList.remove("active"));
+          const active = document.querySelector<HTMLAnchorElement>(`[data-tab="${entry.target.id}"]`);
+          if (active) active.classList.add("active");
+        }
+      }
+    },
+    { rootMargin: "-80px 0px -70% 0px" }
+  );
+  document.querySelectorAll("section[id]").forEach((s) => observer.observe(s));
+</script>
+
+<style>
+  .sticky-tabs {
+    position: sticky;
+    top: 60px;
+    z-index: 40;
+    background: rgba(250, 250, 250, 0.95);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid color-mix(in srgb, var(--color-text-muted) 15%, transparent);
+  }
+  .sticky-tabs-inner {
+    max-width: var(--spacing-content-max);
+    margin: 0 auto;
+    display: flex;
+    gap: 0;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .sticky-tabs-inner::-webkit-scrollbar {
+    display: none;
+  }
+  .sticky-tab {
+    flex-shrink: 0;
+    padding: 1rem 1.5rem;
+    text-decoration: none;
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+    border-bottom: 2px solid transparent;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .sticky-tab:hover,
+  .sticky-tab.active {
+    color: var(--color-text-primary);
+    border-bottom-color: var(--color-brand);
+  }
+</style>

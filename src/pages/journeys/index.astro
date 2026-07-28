@@ -1,0 +1,147 @@
+---
+import { getCollection } from "astro:content";
+import type { CollectionEntry } from "astro:content";
+import BaseLayout from "@layouts/BaseLayout.astro";
+import Navigation from "@components/Navigation.astro";
+import Footer from "@components/Footer.astro";
+
+const journeys = await getCollection("journeys");
+const sorted = journeys
+  .map((j: CollectionEntry<"journeys">) => j)
+  .sort((a, b) => {
+    if (a.data.featured && !b.data.featured) return -1;
+    if (!a.data.featured && b.data.featured) return 1;
+    return a.data.price - b.data.price;
+  });
+---
+
+<BaseLayout title="全部旅程" description="浏览鎏光旅行精心打磨的全球高端定制旅程">
+  <Navigation />
+  <main>
+    <section class="page-hero">
+      <div class="page-hero-inner">
+        <h1 class="page-hero-title">全部旅程</h1>
+        <p class="page-hero-sub">每一段旅程，皆为私人定制。价格为指导价，详询旅行顾问。</p>
+      </div>
+    </section>
+
+    <section class="listing">
+      <div class="listing-inner">
+        <div class="listing-grid">
+          {sorted.map((j) => (
+            <a href={`/journeys/${j.id}`} class="listing-card card">
+              <div class="listing-card-img"></div>
+              <div class="listing-card-body">
+                <span class="listing-card-tag">{j.data.priceLevel}</span>
+                <h2 class="listing-card-title">{j.data.destination}</h2>
+                <p class="listing-card-meta">{j.data.days}天{j.data.nights}晚 · {j.data.season}</p>
+                <p class="listing-card-price">
+                  ¥{j.data.price.toLocaleString()}<span class="listing-card-price-suffix">起/人 · 指导价</span>
+                </p>
+                <span class="listing-card-action">了解详情 &rarr;</span>
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</BaseLayout>
+
+<style>
+  .page-hero {
+    padding: 8rem 2rem 3rem;
+    background: var(--color-navy);
+    text-align: center;
+  }
+  .page-hero-inner {
+    max-width: 680px;
+    margin: 0 auto;
+  }
+  .page-hero-title {
+    font-family: var(--font-heading);
+    font-size: clamp(2rem, 4vw, 2.75rem);
+    font-weight: 700;
+    color: var(--color-text-on-dark);
+    margin-bottom: 0.75rem;
+  }
+  .page-hero-sub {
+    font-size: 0.95rem;
+    color: var(--color-text-on-dark-muted);
+    line-height: 1.6;
+  }
+  .listing {
+    padding: 3rem 2rem;
+    background: var(--color-bg-page);
+  }
+  .listing-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .listing-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+  .listing-card {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    background: var(--color-bg-card);
+    transition: opacity 0.2s;
+  }
+  .listing-card:hover {
+    opacity: 0.7;
+  }
+  .listing-card-img {
+    height: 200px;
+    background: var(--color-bg-warm);
+  }
+  .listing-card-body {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+  .listing-card-tag {
+    font-size: 0.6rem;
+    letter-spacing: 0.18em;
+    color: var(--color-brand);
+    margin-bottom: 0.5rem;
+  }
+  .listing-card-title {
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    margin-bottom: 0.5rem;
+  }
+  .listing-card-meta {
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+    margin-bottom: 0.75rem;
+  }
+  .listing-card-price {
+    font-family: var(--font-price);
+    font-size: 1.05rem;
+    color: var(--color-text-secondary);
+    margin-bottom: 0.15rem;
+  }
+  .listing-card-price-suffix {
+    font-family: var(--font-body);
+    font-size: 0.65rem;
+    color: var(--color-text-muted);
+  }
+  .listing-card-action {
+    font-size: 0.8rem;
+    color: var(--color-brand);
+    margin-top: auto;
+    padding-top: 1rem;
+  }
+  @media (max-width: 768px) {
+    .listing-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

@@ -1,0 +1,91 @@
+<section class="emotion">
+  <div class="emotion-inner">
+    <h2 class="emotion-heading">此刻，你想要怎样的情绪？</h2>
+    <div class="emotion-grid">
+      <a href="/inspiration/wonder" class="emotion-card">
+        <span class="emotion-icon">&#9733;</span>
+        <span class="emotion-label">惊叹</span>
+        <span class="emotion-desc">被自然奇观震撼的瞬间</span>
+      </a>
+      <a href="/inspiration/calm" class="emotion-card">
+        <span class="emotion-icon">~</span>
+        <span class="emotion-label">宁静</span>
+        <span class="emotion-desc">在秘境中找回内心的节奏</span>
+      </a>
+      <a href="/inspiration/warmth" class="emotion-card">
+        <span class="emotion-icon">&#9829;</span>
+        <span class="emotion-label">温暖</span>
+        <span class="emotion-desc">与至亲共享的私密时光</span>
+      </a>
+      <a href="/inspiration/curiosity" class="emotion-card">
+        <span class="emotion-icon">?</span>
+        <span class="emotion-label">好奇</span>
+        <span class="emotion-desc">走进从未想象过的世界</span>
+      </a>
+      <a href="/inspiration/awe" class="emotion-card">
+        <span class="emotion-icon">&uarr;</span>
+        <span class="emotion-label">敬畏</span>
+        <span class="emotion-desc">与古老文明和天地对话</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .emotion {
+    padding: var(--spacing-section) 2rem;
+    background: var(--color-bg-warm);
+  }
+  .emotion-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .emotion-heading {
+    font-family: var(--font-display);
+    font-size: 1.75rem;
+    font-weight: 700;
+    text-align: center;
+    color: var(--color-text-primary);
+    margin-bottom: 3rem;
+    letter-spacing: 0.04em;
+  }
+  .emotion-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1.5rem;
+  }
+  .emotion-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    padding: 2rem 1rem;
+    transition: opacity 0.2s;
+  }
+  .emotion-card:hover {
+    opacity: 0.7;
+  }
+  .emotion-icon {
+    font-size: 1.5rem;
+    color: var(--color-brand);
+    margin-bottom: 0.75rem;
+  }
+  .emotion-label {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    margin-bottom: 0.35rem;
+  }
+  .emotion-desc {
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+    text-align: center;
+  }
+
+  @media (max-width: 768px) {
+    .emotion-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+</style>

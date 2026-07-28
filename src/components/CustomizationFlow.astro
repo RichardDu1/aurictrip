@@ -1,0 +1,101 @@
+---
+interface Step {
+  number: string;
+  title: string;
+  desc: string;
+}
+
+const steps: Step[] = [
+  { number: "01", title: "需求沟通", desc: "30分钟深度对话，了解你的旅行偏好、节奏与期待" },
+  { number: "02", title: "方案设计", desc: "目的地专家 48 小时内提交专属行程初案" },
+  { number: "03", title: "细节打磨", desc: "不限次数修改，直到你满意为止" },
+  { number: "04", title: "全程护航", desc: "出发前精细准备，旅途中中文管家 24/7 响应" },
+];
+---
+
+<section class="flow">
+  <div class="flow-inner">
+    <h2 class="flow-heading">如何定制你的旅程</h2>
+    <p class="flow-sub">从第一次对话到踏上旅途，我们承诺每一步都透明、用心</p>
+    <div class="flow-steps">
+      {steps.map((s) => (
+        <div class="flow-step">
+          <span class="flow-num">{s.number}</span>
+          <h3 class="flow-step-title">{s.title}</h3>
+          <p class="flow-step-desc">{s.desc}</p>
+        </div>
+      ))}
+    </div>
+    <p class="flow-commit">从首次咨询到方案交付，<strong>不超过 48 小时</strong></p>
+  </div>
+</section>
+
+<style>
+  .flow {
+    padding: var(--spacing-section) 2rem;
+    background: var(--color-bg-page);
+  }
+  .flow-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .flow-heading {
+    font-family: var(--font-display);
+    font-size: 1.75rem;
+    font-weight: 700;
+    text-align: center;
+    color: var(--color-text-primary);
+    margin-bottom: 0.75rem;
+    letter-spacing: 0.04em;
+  }
+  .flow-sub {
+    text-align: center;
+    color: var(--color-text-muted);
+    font-size: 0.9rem;
+    margin-bottom: 3rem;
+  }
+  .flow-steps {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 2.5rem;
+  }
+  .flow-step {
+    text-align: center;
+  }
+  .flow-num {
+    display: block;
+    font-family: var(--font-display);
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--color-brand);
+    margin-bottom: 0.75rem;
+    opacity: 0.5;
+  }
+  .flow-step-title {
+    font-family: var(--font-display);
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    margin-bottom: 0.5rem;
+  }
+  .flow-step-desc {
+    font-size: 0.8rem;
+    color: var(--color-text-muted);
+    line-height: 1.6;
+  }
+  .flow-commit {
+    text-align: center;
+    font-size: 0.85rem;
+    color: var(--color-text-secondary);
+  }
+  .flow-commit strong {
+    color: var(--color-brand);
+  }
+
+  @media (max-width: 768px) {
+    .flow-steps {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+</style>

@@ -1,0 +1,78 @@
+<section class="audience">
+  <div class="audience-inner">
+    <h2 class="audience-heading">你想怎样出发？</h2>
+    <div class="audience-grid">
+      <a href="/family" class="audience-card">
+        <span class="audience-label">亲子</span>
+        <span class="audience-sub">5段年龄分层，专属成长体验</span>
+      </a>
+      <a href="/honeymoon" class="audience-card">
+        <span class="audience-label">情侣</span>
+        <span class="audience-sub">只属于两个人的秘境</span>
+      </a>
+      <a href="/solo" class="audience-card">
+        <span class="audience-label">独行</span>
+        <span class="audience-sub">一个人的深度发现之旅</span>
+      </a>
+      <a href="/senior" class="audience-card">
+        <span class="audience-label">银发</span>
+        <span class="audience-sub">慢节奏的优雅探索</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .audience {
+    padding: var(--spacing-section) 2rem;
+    background: var(--color-bg-page);
+  }
+  .audience-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .audience-heading {
+    font-family: var(--font-display);
+    font-size: 1.75rem;
+    font-weight: 700;
+    text-align: center;
+    color: var(--color-text-primary);
+    margin-bottom: 3rem;
+    letter-spacing: 0.04em;
+  }
+  .audience-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+  }
+  .audience-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    padding: 2.5rem 1.5rem;
+    background: var(--color-bg-card);
+    transition: opacity 0.2s;
+  }
+  .audience-card:hover {
+    opacity: 0.7;
+  }
+  .audience-label {
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--color-text-primary);
+    letter-spacing: 0.06em;
+    margin-bottom: 0.5rem;
+  }
+  .audience-sub {
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+  }
+
+  @media (max-width: 768px) {
+    .audience-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+</style>

@@ -1,0 +1,85 @@
+<div class="wechat-share" id="wechat-share">
+  <button class="wechat-btn" id="wechat-btn" aria-label="分享到微信">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+      <path d="M8 10.9c1.7 0 4.1 1.2 4.1 3.4S9.7 17.7 8 17.7c-.6 0-1.1-.1-1.6-.3L4 18l.5-2.1c-.4-.6-.6-1.2-.6-1.9 0-2.3 2.4-3.1 4.1-3.1z"/>
+      <path d="M14.5 13.5c.8-.7 1.3-1.7 1.3-2.7 0-2.3-2.2-4-5-4.3M17 14c2.3 0 5 1.1 5 3.3 0 .6-.2 1.2-.5 1.7l.5 1.8-2-.5c-.5.2-1 .3-1.5.3"/>
+      <circle cx="6.5" cy="13" r="1" fill="currentColor" stroke="none"/>
+      <circle cx="10.5" cy="13" r="1" fill="currentColor" stroke="none"/>
+      <circle cx="15" cy="17" r="1" fill="currentColor" stroke="none"/>
+      <circle cx="19" cy="16" r="1" fill="currentColor" stroke="none"/>
+    </svg>
+    <span>分享给微信好友</span>
+  </button>
+  <div class="wechat-qr" id="wechat-qr" hidden>
+    <div class="wechat-qr-inner">
+      <div class="wechat-qr-placeholder">
+        <span>AuricTrip<br/>公众号二维码</span>
+      </div>
+      <p class="wechat-qr-text">手机扫码查看此页面<br/>或长按分享给好友</p>
+    </div>
+  </div>
+</div>
+
+<script>
+  const btn = document.getElementById('wechat-btn');
+  const qr = document.getElementById('wechat-qr');
+  btn?.addEventListener('click', () => {
+    const hidden = qr?.hasAttribute('hidden');
+    if (hidden) {
+      qr?.removeAttribute('hidden');
+    } else {
+      qr?.setAttribute('hidden', '');
+    }
+  });
+</script>
+
+<style>
+  .wechat-share {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 2rem 0;
+  }
+  .wechat-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.65rem 1.5rem;
+    border: 1px solid #07C160;
+    background: transparent;
+    color: #07C160;
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+  }
+  .wechat-btn:hover {
+    background: #07C160;
+    color: #fff;
+  }
+  .wechat-qr {
+    margin-top: 1rem;
+  }
+  .wechat-qr-inner {
+    text-align: center;
+  }
+  .wechat-qr-placeholder {
+    width: 160px;
+    height: 160px;
+    margin: 0 auto 0.5rem;
+    border: 1px solid color-mix(in srgb, var(--color-text-muted) 20%, transparent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+    text-align: center;
+    line-height: 1.4;
+  }
+  .wechat-qr-text {
+    font-size: 0.7rem;
+    color: var(--color-text-muted);
+    line-height: 1.5;
+    margin: 0;
+  }
+</style>

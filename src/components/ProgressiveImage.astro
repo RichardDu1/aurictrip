@@ -1,0 +1,47 @@
+---
+export interface Props {
+  src?: string;
+  alt: string;
+  aspectRatio?: string;
+  fallbackColor?: "warm" | "cool" | "navy" | "cream";
+}
+
+const { src, alt, aspectRatio = "16/9", fallbackColor = "warm" } = Astro.props;
+
+const colorMap = {
+  warm: "var(--color-bg-warm)",
+  cool: "var(--color-bg-cool)",
+  navy: "var(--color-navy)",
+  cream: "var(--color-cream)",
+};
+---
+
+{src ? (
+  <img
+    src={src}
+    alt={alt}
+    class="progressive-image"
+    loading="lazy"
+    decoding="async"
+    style={`aspect-ratio: ${aspectRatio};`}
+  />
+) : (
+  <div
+    class="progressive-placeholder"
+    role="img"
+    aria-label={alt}
+    style={`aspect-ratio: ${aspectRatio}; background: ${colorMap[fallbackColor]};`}
+  ></div>
+)}
+
+<style>
+  .progressive-image {
+    width: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .progressive-placeholder {
+    width: 100%;
+    display: block;
+  }
+</style>

@@ -1,0 +1,35 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import Navigation from "@components/Navigation.astro";
+import Hero from "@components/Hero.astro";
+import TrustBar from "@components/TrustBar.astro";
+import AudienceEntry from "@components/AudienceEntry.astro";
+import EmotionEngine from "@components/EmotionEngine.astro";
+import IPProductLines from "@components/IPProductLines.astro";
+import JourneyCards from "@components/JourneyCards.astro";
+import ExpertTeam from "@components/ExpertTeam.astro";
+import CustomizationFlow from "@components/CustomizationFlow.astro";
+import CustomerStories from "@components/CustomerStories.astro";
+import CTA from "@components/CTA.astro";
+import Footer from "@components/Footer.astro";
+---
+
+<BaseLayout
+  title="首页"
+  description="鎏光旅行 AuricTrip — 全球高端定制旅行。私人定制、臻选小团、极地探索，用时间淬炼每一次出发。"
+>
+  <Navigation />
+  <main>
+    <Hero />
+    <TrustBar />
+    <AudienceEntry />
+    <EmotionEngine />
+    <IPProductLines />
+    <JourneyCards />
+    <ExpertTeam />
+    <CustomizationFlow />
+    <CustomerStories />
+    <CTA />
+  </main>
+  <Footer />
+</BaseLayout>

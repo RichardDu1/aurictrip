@@ -1,0 +1,162 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import Navigation from "@components/Navigation.astro";
+import Footer from "@components/Footer.astro";
+
+const regions = [
+  {
+    name: "亚洲",
+    destinations: [
+      { name: "日本", desc: "京都·奈良·东京", href: "/journeys/kyoto-nara" },
+      { name: "不丹", desc: "雷龙之国的幸福哲学", href: "/journeys/bhutan-kingdom" },
+    ],
+  },
+  {
+    name: "欧洲",
+    destinations: [
+      { name: "意大利", desc: "托斯卡纳·白松露·米其林", href: "/journeys/tuscany-truffle" },
+    ],
+  },
+  {
+    name: "非洲",
+    destinations: [
+      { name: "纳米比亚", desc: "沙漠星空·骷髅海岸", href: "/journeys/namibia-desert" },
+      { name: "坦桑尼亚", desc: "动物大迁徙·家庭游猎", href: "/journeys/tanzania-family" },
+    ],
+  },
+  {
+    name: "南美洲",
+    destinations: [
+      { name: "秘鲁", desc: "马丘比丘·印加古道", href: "/journeys/peru-inca" },
+    ],
+  },
+  {
+    name: "极地",
+    destinations: [
+      { name: "南极半岛", desc: "白色大陆的终极远征", href: "/journeys/antarctica-expedition" },
+    ],
+  },
+];
+---
+
+<BaseLayout title="目的地" description="探索鎏光旅行覆盖的全球高端旅行目的地">
+  <Navigation />
+  <main>
+    <section class="page-hero">
+      <div class="page-hero-inner">
+        <h1 class="page-hero-title">目的地</h1>
+        <p class="page-hero-sub">覆盖五大洲的精选目的地，每一个都经过深度勘察与反复打磨</p>
+      </div>
+    </section>
+
+    <section class="destinations">
+      <div class="dest-inner">
+        {regions.map((region) => (
+          <div class="dest-region">
+            <h2 class="dest-region-name">{region.name}</h2>
+            <div class="dest-grid">
+              {region.destinations.map((d) => (
+                <a href={d.href} class="dest-card card">
+                  <div class="dest-card-img"></div>
+                  <div class="dest-card-body">
+                    <h3 class="dest-card-name">{d.name}</h3>
+                    <p class="dest-card-desc">{d.desc}</p>
+                    <span class="dest-card-link">探索旅程 &rarr;</span>
+                  </div>
+                </a>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+  </main>
+  <Footer />
+</BaseLayout>
+
+<style>
+  .page-hero {
+    padding: 8rem 2rem 3rem;
+    background: var(--color-navy);
+    text-align: center;
+  }
+  .page-hero-inner {
+    max-width: 680px;
+    margin: 0 auto;
+  }
+  .page-hero-title {
+    font-family: var(--font-heading);
+    font-size: clamp(2rem, 4vw, 2.75rem);
+    font-weight: 700;
+    color: var(--color-text-on-dark);
+    margin-bottom: 0.75rem;
+  }
+  .page-hero-sub {
+    font-size: 0.95rem;
+    color: var(--color-text-on-dark-muted);
+    line-height: 1.6;
+  }
+  .destinations {
+    padding: 4rem 2rem;
+    background: var(--color-bg-page);
+  }
+  .dest-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .dest-region {
+    margin-bottom: 3rem;
+  }
+  .dest-region-name {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.03em;
+  }
+  .dest-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+  .dest-card {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    background: var(--color-bg-card);
+    transition: opacity 0.2s;
+  }
+  .dest-card:hover {
+    opacity: 0.7;
+  }
+  .dest-card-img {
+    height: 160px;
+    background: var(--color-bg-warm);
+  }
+  .dest-card-body {
+    padding: 1.25rem;
+  }
+  .dest-card-name {
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    margin-bottom: 0.35rem;
+  }
+  .dest-card-desc {
+    font-size: 0.8rem;
+    color: var(--color-text-muted);
+    margin-bottom: 0.75rem;
+    line-height: 1.5;
+  }
+  .dest-card-link {
+    font-size: 0.75rem;
+    color: var(--color-brand);
+  }
+  @media (max-width: 768px) {
+    .dest-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

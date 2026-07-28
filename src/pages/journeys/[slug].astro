@@ -1,0 +1,144 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { getCollection } from "astro:content";
+import BaseLayout from "@layouts/BaseLayout.astro";
+import Navigation from "@components/Navigation.astro";
+import Footer from "@components/Footer.astro";
+import HeroImage from "@components/detail/HeroImage.astro";
+import TitlePrice from "@components/detail/TitlePrice.astro";
+import StickyTabNav from "@components/detail/StickyTabNav.astro";
+import TripHighlights from "@components/detail/TripHighlights.astro";
+import DayTimeline from "@components/detail/DayTimeline.astro";
+import HotelSection from "@components/detail/HotelSection.astro";
+import CostComparison from "@components/detail/CostComparison.astro";
+import BookingNotes from "@components/detail/BookingNotes.astro";
+import FAQ from "@components/detail/FAQ.astro";
+import TrustAnchors from "@components/detail/TrustAnchors.astro";
+import FloatingCTA from "@components/detail/FloatingCTA.astro";
+
+export async function getStaticPaths() {
+  const journeys = await getCollection("journeys");
+  return journeys.map((j: CollectionEntry<"journeys">) => ({ params: { slug: j.id } }));
+}
+
+const { slug } = Astro.params;
+const journeys = await getCollection("journeys");
+const journey = journeys.find((j: CollectionEntry<"journeys">) => j.id === slug);
+
+if (!journey) {
+  return Astro.rewrite("/404");
+}
+
+const { data, body } = journey;
+const { Content } = await journey.render();
+
+interface ParsedDay {
+  day: string;
+  title: string;
+  content: string;
+}
+
+function parseDays(raw: string | null | undefined): ParsedDay[] {
+  if (!raw) return [];
+  const days: ParsedDay[] = [];
+  const lines = raw.split("\n");
+  let current: ParsedDay | null = null;
+  for (const line of lines) {
+    const match = line.match(/^\*\*(第.+?)\*\*\s*(.+)$/);
+    if (match) {
+      if (current) days.push(current);
+      current = { day: match[1], title: match[2].trim(), content: "" };
+    } else if (current && line.trim()) {
+      current.content += (current.content ? " " : "") + line.trim();
+    }
+  }
+  if (current) days.push(current);
+  return days;
+}
+
+const rawBody = body || "";
+const parsedDays = parseDays(rawBody);
+const subtitle = data.subtitle || (rawBody.match(/^##\s*(.+)/m)?.[1]?.replace(/^[^·]+·\s*/, "") || "");
+---
+
+<BaseLayout title={data.destination} description={`${data.destination} ${data.days}天${data.nights}晚 — ${data.priceLevel}`}>
+  <Navigation />
+  <main>
+    <HeroImage
+      src={data.heroImage}
+      alt={data.destination}
+      fallbackColor={data.priceLevel === "鎏光远征" ? "navy" : "warm"}
+    />
+    <TitlePrice
+      destination={data.destination}
+      subtitle={subtitle}
+      price={data.price}
+      days={data.days}
+      nights={data.nights}
+      priceLevel={data.priceLevel}
+      season={data.season}
+    />
+    <StickyTabNav />
+    <section id="itinerary">
+      <TripHighlights highlights={data.highlights ?? []} />
+      <DayTimeline days={parsedDays} />
+      <div class="content-prose">
+        <Content />
+      </div>
+    </section>
+    <section id="cost">
+      <CostComparison included={data.included ?? []} excluded={data.excluded ?? []} />
+    </section>
+    <section id="hotels">
+      <HotelSection hotels={data.hotels ?? []} />
+    </section>
+    <TrustAnchors />
+    <section id="booking">
+      <BookingNotes
+        bookingNotes={data.bookingNotes}
+        cancellationPolicy={data.cancellationPolicy}
+      />
+      <FAQ faqs={data.faqs ?? []} />
+    </section>
+  </main>
+  <Footer />
+  <FloatingCTA price={data.price} />
+</BaseLayout>
+
+<style>
+  .content-prose {
+    max-width: var(--spacing-content-max);
+    margin: 0 auto;
+    padding: 0 2rem 2rem;
+  }
+  .content-prose :global(h2) {
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    margin: 2.5rem 0 1rem;
+    letter-spacing: 0.03em;
+  }
+  .content-prose :global(h3) {
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    margin: 1.5rem 0 0.75rem;
+  }
+  .content-prose :global(p) {
+    font-size: 0.95rem;
+    color: var(--color-text-secondary);
+    line-height: 1.85;
+    margin: 0 0 1rem;
+  }
+  .content-prose :global(ul) {
+    padding-left: 1.25rem;
+    margin: 0 0 1rem;
+  }
+  .content-prose :global(li) {
+    font-size: 0.9rem;
+    color: var(--color-text-secondary);
+    line-height: 1.7;
+  }
+</style>

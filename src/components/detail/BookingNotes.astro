@@ -1,0 +1,95 @@
+---
+interface Props {
+  bookingNotes?: string;
+  cancellationPolicy?: string;
+}
+
+const { bookingNotes, cancellationPolicy } = Astro.props;
+---
+
+<section class="booking">
+  <h2 class="bk-heading">预订须知</h2>
+
+  {bookingNotes && (
+    <details class="bk-accordion">
+      <summary class="bk-summary">预订流程</summary>
+      <div class="bk-content">
+        <p>{bookingNotes}</p>
+      </div>
+    </details>
+  )}
+
+  {cancellationPolicy && (
+    <details class="bk-accordion">
+      <summary class="bk-summary">退改政策</summary>
+      <div class="bk-content">
+        <p>{cancellationPolicy}</p>
+      </div>
+    </details>
+  )}
+
+  <details class="bk-accordion">
+    <summary class="bk-summary">签证须知</summary>
+    <div class="bk-content">
+      <p>签证办理由我们全程协助。请在出发前至少 6 周与我们联系，我们将指导您准备所需材料。部分目的地可提供加急签证服务。</p>
+    </div>
+  </details>
+
+  <details class="bk-accordion">
+    <summary class="bk-summary">旅行保险</summary>
+    <div class="bk-content">
+      <p>我们强烈建议所有旅客购买综合旅行保险，涵盖医疗运送、行程取消和行李丢失。我们可协助推荐合适的保险方案。</p>
+    </div>
+  </details>
+</section>
+
+<style>
+  .booking {
+    max-width: var(--spacing-content-max);
+    margin: 0 auto;
+    padding: 3rem 2rem 0;
+  }
+  .bk-heading {
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.03em;
+  }
+  .bk-accordion {
+    border-bottom: 1px solid color-mix(in srgb, var(--color-text-muted) 20%, transparent);
+  }
+  .bk-summary {
+    padding: 1rem 0;
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--color-text-primary);
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .bk-summary::-webkit-details-marker {
+    display: none;
+  }
+  .bk-summary::after {
+    content: "+";
+    font-size: 1.2rem;
+    color: var(--color-text-muted);
+    transition: transform 0.2s;
+  }
+  details[open] .bk-summary::after {
+    content: "−";
+  }
+  .bk-content {
+    padding: 0 0 1.25rem;
+    font-size: 0.85rem;
+    color: var(--color-text-secondary);
+    line-height: 1.7;
+  }
+  .bk-content p {
+    margin: 0;
+  }
+</style>

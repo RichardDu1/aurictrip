@@ -1,0 +1,104 @@
+<footer class="footer" style="background: var(--color-bg-footer);">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <p class="footer-logo">鎏光旅行 <span class="footer-logo-en">AURICTRIP</span></p>
+      <p class="footer-tagline">鎏光所至，皆为风景</p>
+    </div>
+    <div class="footer-links">
+      <div class="footer-col">
+        <strong class="footer-col-title">旅行</strong>
+        <a href="/destinations">目的地</a>
+        <a href="/journey-types">旅行形态</a>
+        <a href="/inspiration">灵感</a>
+      </div>
+      <div class="footer-col">
+        <strong class="footer-col-title">服务</strong>
+        <a href="/bespoke">私人定制</a>
+        <a href="/groups">臻选小团</a>
+        <a href="/family">亲子时光</a>
+      </div>
+      <div class="footer-col">
+        <strong class="footer-col-title">关于</strong>
+        <a href="/about">关于我们</a>
+        <a href="/contact">联系我们</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>ATOL Protected | IATA: XXXXXXXX | UK Company: XXXXXXXX</p>
+      <p>+44 20 XXXX XXXX | service@aurictrip.com</p>
+      <p class="footer-copy">&copy; {new Date().getFullYear()} 鎏光旅行 AuricTrip. 保留所有权利.</p>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    padding: 4rem 2rem 2rem;
+    color: var(--color-text-on-dark);
+  }
+  .footer-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .footer-brand {
+    margin-bottom: 3rem;
+  }
+  .footer-logo {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 0.25rem;
+  }
+  .footer-logo-en {
+    font-size: 0.55rem;
+    letter-spacing: 0.3em;
+    color: var(--color-text-on-dark-muted);
+  }
+  .footer-tagline {
+    color: var(--color-brand);
+    font-size: 0.9rem;
+  }
+  .footer-links {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-bottom: 3rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid color-mix(in srgb, var(--color-text-on-dark-muted) 20%, transparent);
+  }
+  .footer-col {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .footer-col-title {
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    color: var(--color-brand);
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+  .footer-col a {
+    color: var(--color-text-on-dark-muted);
+    text-decoration: none;
+    font-size: 0.85rem;
+    transition: color 0.2s;
+  }
+  .footer-col a:hover {
+    color: var(--color-text-on-dark);
+  }
+  .footer-bottom {
+    font-size: 0.75rem;
+    color: var(--color-text-on-dark-muted);
+    line-height: 1.8;
+  }
+  .footer-copy {
+    margin-top: 1rem;
+  }
+
+  @media (max-width: 768px) {
+    .footer-links {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

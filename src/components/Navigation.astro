@@ -1,0 +1,245 @@
+---
+const navItems = [
+  { label: "目的地", href: "/destinations" },
+  { label: "旅行形态", href: "/journey-types" },
+  { label: "灵感", href: "/inspiration" },
+  { label: "关于", href: "/about" },
+];
+---
+
+<nav class="nav" aria-label="主导航" id="site-nav">
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">
+      <span class="nav-logo-zh">鎏光旅行</span>
+      <span class="nav-logo-en">AURICTRIP</span>
+    </a>
+    <ul class="nav-links">
+      {navItems.map((item) => (
+        <li>
+          <a href={item.href}>{item.label}</a>
+        </li>
+      ))}
+    </ul>
+    <a href="/contact" class="nav-cta">与顾问对话 &rarr;</a>
+    <button class="nav-hamburger" id="hamburger" aria-label="菜单" aria-expanded="false">
+      <span class="hamburger-line"></span>
+      <span class="hamburger-line"></span>
+      <span class="hamburger-line"></span>
+    </button>
+  </div>
+  <div class="nav-mobile" id="nav-mobile" aria-hidden="true">
+    <ul class="nav-mobile-links">
+      {navItems.map((item) => (
+        <li>
+          <a href={item.href}>{item.label}</a>
+        </li>
+      ))}
+    </ul>
+    <a href="/contact" class="nav-mobile-cta">与顾问对话 &rarr;</a>
+  </div>
+</nav>
+
+<script>
+  const hamburger = document.getElementById("hamburger");
+  const mobileMenu = document.getElementById("nav-mobile");
+  const body = document.body;
+
+  hamburger?.addEventListener("click", () => {
+    const isOpen = hamburger.getAttribute("aria-expanded") === "true";
+    hamburger.setAttribute("aria-expanded", String(!isOpen));
+    mobileMenu?.setAttribute("aria-hidden", String(isOpen));
+    hamburger.classList.toggle("nav-hamburger-open");
+    mobileMenu?.classList.toggle("nav-mobile-open");
+    body.style.overflow = isOpen ? "" : "hidden";
+  });
+
+  const mobileLinks = mobileMenu?.querySelectorAll("a");
+  mobileLinks?.forEach((link) => {
+    link.addEventListener("click", () => {
+      hamburger?.setAttribute("aria-expanded", "false");
+      mobileMenu?.setAttribute("aria-hidden", "true");
+      hamburger?.classList.remove("nav-hamburger-open");
+      mobileMenu?.classList.remove("nav-mobile-open");
+      body.style.overflow = "";
+    });
+  });
+</script>
+
+<script>
+  const nav = document.getElementById("site-nav");
+  if (nav) {
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 80) {
+        nav.classList.add("nav-scrolled");
+      } else {
+        nav.classList.remove("nav-scrolled");
+      }
+    });
+  }
+</script>
+
+<style>
+  .nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 50;
+    background: transparent;
+    transition: background 0.3s ease;
+  }
+  .nav.nav-scrolled {
+    background: rgba(250, 250, 250, 0.95);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid color-mix(in srgb, var(--color-text-muted) 12%, transparent);
+  }
+  .nav-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.25rem 2rem;
+  }
+  .nav-logo {
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    line-height: 1.2;
+  }
+  .nav-logo-zh {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    color: #fff;
+    transition: color 0.3s;
+  }
+  .nav-scrolled .nav-logo-zh {
+    color: var(--color-text-primary);
+  }
+  .nav-logo-en {
+    font-family: var(--font-body);
+    font-size: 0.6rem;
+    letter-spacing: 0.22em;
+    color: var(--color-text-on-dark-muted);
+    transition: color 0.3s;
+  }
+  .nav-scrolled .nav-logo-en {
+    color: var(--color-text-muted);
+  }
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .nav-links a {
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 0.9rem;
+    letter-spacing: 0.02em;
+    transition: color 0.3s;
+  }
+  .nav-scrolled .nav-links a {
+    color: var(--color-text-primary);
+  }
+  .nav-links a:hover {
+    color: var(--color-brand);
+  }
+  .nav-cta {
+    text-decoration: none;
+    color: var(--color-brand);
+    font-size: 0.85rem;
+    letter-spacing: 0.02em;
+  }
+  .nav-cta:hover {
+    color: var(--color-brand-hover);
+  }
+
+  @media (max-width: 768px) {
+    .nav-links,
+    .nav-cta {
+      display: none;
+    }
+    .nav-hamburger {
+      display: flex;
+    }
+    .nav-mobile-open {
+      display: block;
+      transform: translateY(0);
+    }
+  }
+
+  .nav-hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    padding: 4px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    z-index: 60;
+  }
+  .hamburger-line {
+    display: block;
+    width: 22px;
+    height: 1.5px;
+    background: #fff;
+    transition: background 0.3s, transform 0.3s;
+  }
+  .nav-scrolled .hamburger-line {
+    background: var(--color-text-primary);
+  }
+  .nav-hamburger-open .hamburger-line:nth-child(1) {
+    transform: translateY(6.5px) rotate(45deg);
+  }
+  .nav-hamburger-open .hamburger-line:nth-child(2) {
+    opacity: 0;
+  }
+  .nav-hamburger-open .hamburger-line:nth-child(3) {
+    transform: translateY(-6.5px) rotate(-45deg);
+  }
+
+  .nav-mobile {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--color-bg-page);
+    z-index: 55;
+    padding: 6rem 2rem 2rem;
+    transform: translateY(-100%);
+    transition: transform 0.3s ease;
+    overflow-y: auto;
+  }
+  .nav-mobile-links {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+  .nav-mobile-links a {
+    display: block;
+    padding: 1rem 0;
+    text-decoration: none;
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+    color: var(--color-text-primary);
+    border-bottom: 1px solid color-mix(in srgb, var(--color-text-muted) 12%, transparent);
+  }
+  .nav-mobile-cta {
+    display: inline-block;
+    padding: 0.85rem 2rem;
+    border: 1px solid var(--color-brand);
+    color: var(--color-brand);
+    text-decoration: none;
+    font-size: 0.95rem;
+    letter-spacing: 0.03em;
+  }
+</style>

@@ -1,0 +1,67 @@
+<div class="trust-anchors">
+  <div class="trust-item">
+    <span class="trust-icon">&#9733;</span>
+    <span class="trust-text"><strong>ATOL 保护</strong><br/>英国航空旅行组织者许可</span>
+  </div>
+  <div class="trust-item">
+    <span class="trust-icon">&#9733;</span>
+    <span class="trust-text"><strong>48小时方案</strong><br/>从首次沟通到专属行程初案</span>
+  </div>
+  <div class="trust-item">
+    <span class="trust-icon">&#9733;</span>
+    <span class="trust-text"><strong>24/7 中文管家</strong><br/>旅途中任何时刻，任何问题</span>
+  </div>
+  <div class="trust-item">
+    <span class="trust-icon">&#9733;</span>
+    <span class="trust-text"><strong>30天免费改期</strong><br/>出发前30天可免费调整</span>
+  </div>
+</div>
+
+<style>
+  .trust-anchors {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    border-top: 1px solid color-mix(in srgb, var(--color-text-muted) 15%, transparent);
+    border-bottom: 1px solid color-mix(in srgb, var(--color-text-muted) 15%, transparent);
+    padding: 1.5rem 0;
+    margin: 3rem 0;
+  }
+  .trust-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    padding: 0 1rem;
+    border-right: 1px solid color-mix(in srgb, var(--color-text-muted) 12%, transparent);
+  }
+  .trust-item:last-child {
+    border-right: none;
+  }
+  .trust-icon {
+    font-size: 0.9rem;
+    color: var(--color-brand);
+    flex-shrink: 0;
+    margin-top: 0.1rem;
+  }
+  .trust-text {
+    font-size: 0.7rem;
+    color: var(--color-text-muted);
+    line-height: 1.5;
+  }
+  .trust-text strong {
+    display: block;
+    font-size: 0.75rem;
+    color: var(--color-text-primary);
+    margin-bottom: 0.1rem;
+  }
+  @media (max-width: 768px) {
+    .trust-anchors {
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+    .trust-item {
+      border-right: none;
+      padding: 0;
+    }
+  }
+</style>

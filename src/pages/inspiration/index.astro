@@ -1,0 +1,114 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import Navigation from "@components/Navigation.astro";
+import Footer from "@components/Footer.astro";
+
+const emotions = [
+  { label: "惊叹", icon: "&#9733;", desc: "被自然奇观震撼的瞬间", href: "/journeys/namibia-desert" },
+  { label: "宁静", icon: "~", desc: "在秘境中找回内心的节奏", href: "/journeys/bhutan-kingdom" },
+  { label: "温暖", icon: "&#9829;", desc: "与至亲共享的私密时光", href: "/journeys/tanzania-family" },
+  { label: "好奇", icon: "?", desc: "走进从未想象过的世界", href: "/journeys/kyoto-nara" },
+  { label: "敬畏", icon: "&uarr;", desc: "与古老文明和天地对话", href: "/journeys/antarctica-expedition" },
+  { label: "沉醉", icon: "&#9835;", desc: "用味蕾丈量世界的深度", href: "/journeys/tuscany-truffle" },
+  { label: "自由", icon: "&#8599;", desc: "在广袤天地间找回自己", href: "/journeys/peru-inca" },
+];
+---
+
+<BaseLayout title="旅行灵感" description="按情绪探索你的下一段鎏光旅程">
+  <Navigation />
+  <main>
+    <section class="page-hero">
+      <div class="page-hero-inner">
+        <h1 class="page-hero-title">旅行灵感</h1>
+        <p class="page-hero-sub">重要的不是你想去哪里，而是你想感受什么</p>
+      </div>
+    </section>
+
+    <section class="inspiration">
+      <div class="insp-inner">
+        <div class="insp-grid">
+          {emotions.map((e) => (
+            <a href={e.href} class="insp-card card">
+              <span class="insp-icon">{e.icon}</span>
+              <span class="insp-label">{e.label}</span>
+              <span class="insp-desc">{e.desc}</span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</BaseLayout>
+
+<style>
+  .page-hero {
+    padding: 8rem 2rem 3rem;
+    background: var(--color-navy);
+    text-align: center;
+  }
+  .page-hero-inner {
+    max-width: 680px;
+    margin: 0 auto;
+  }
+  .page-hero-title {
+    font-family: var(--font-heading);
+    font-size: clamp(2rem, 4vw, 2.75rem);
+    font-weight: 700;
+    color: var(--color-text-on-dark);
+    margin-bottom: 0.75rem;
+  }
+  .page-hero-sub {
+    font-size: 0.95rem;
+    color: var(--color-text-on-dark-muted);
+    line-height: 1.6;
+  }
+  .inspiration {
+    padding: 4rem 2rem;
+    background: var(--color-bg-page);
+  }
+  .insp-inner {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  .insp-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+  .insp-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    padding: 2.5rem 1.5rem;
+    background: var(--color-bg-card);
+    transition: opacity 0.2s;
+  }
+  .insp-card:hover {
+    opacity: 0.7;
+  }
+  .insp-icon {
+    font-size: 1.75rem;
+    color: var(--color-brand);
+    margin-bottom: 1rem;
+  }
+  .insp-label {
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    margin-bottom: 0.35rem;
+  }
+  .insp-desc {
+    font-size: 0.8rem;
+    color: var(--color-text-muted);
+    text-align: center;
+    line-height: 1.5;
+  }
+  @media (max-width: 768px) {
+    .insp-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

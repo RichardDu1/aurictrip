@@ -1,0 +1,63 @@
+---
+interface Guarantee {
+  title: string;
+  desc: string;
+}
+const guarantees: Guarantee[] = [
+  { title: "安心行", desc: "专车、航司直签、航班应急预案" },
+  { title: "稳心住", desc: "实地考察、品牌直签" },
+  { title: "贴心伴", desc: "中文管家 24/7、医疗援助" },
+  { title: "透明价", desc: "无隐藏费用、退改公开" },
+  { title: "随心改", desc: "30天免费改期、不可抗力全退" },
+];
+---
+
+<section class="trust-bar">
+  <div class="trust-inner">
+    {guarantees.map((g) => (
+      <div class="trust-item">
+        <strong class="trust-title">{g.title}</strong>
+        <p class="trust-desc">{g.desc}</p>
+      </div>
+    ))}
+  </div>
+</section>
+
+<style>
+  .trust-bar {
+    background: var(--color-bg-card);
+    border-bottom: 1px solid color-mix(in srgb, var(--color-text-muted) 12%, transparent);
+    padding: 1.5rem 2rem;
+  }
+  .trust-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1.5rem;
+  }
+  .trust-item {
+    text-align: center;
+  }
+  .trust-title {
+    display: block;
+    font-family: var(--font-display);
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--color-text-primary);
+    margin-bottom: 0.35rem;
+    letter-spacing: 0.05em;
+  }
+  .trust-desc {
+    font-size: 0.7rem;
+    color: var(--color-text-muted);
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  @media (max-width: 768px) {
+    .trust-inner {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+</style>

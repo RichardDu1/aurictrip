@@ -1,0 +1,103 @@
+---
+interface Expert {
+  name: string;
+  title: string;
+  specialties: string[];
+}
+
+const experts: Expert[] = [
+  { name: "林语洲", title: "非洲与印度洋区域总监", specialties: ["坦桑尼亚", "纳米比亚", "塞舌尔"] },
+  { name: "苏望川", title: "东亚文化深度旅行策划师", specialties: ["日本", "不丹", "缅甸"] },
+  { name: "唐墨白", title: "欧洲美食品酒路线设计师", specialties: ["意大利", "法国", "西班牙"] },
+  { name: "陆寻野", title: "极地与南美探险领队", specialties: ["南极洲", "秘鲁", "智利"] },
+];
+---
+
+<section class="expert">
+  <div class="expert-inner">
+    <h2 class="expert-heading">目的地专家</h2>
+    <p class="expert-sub">每个目的地的背后，都有一位在当地生活超过十年的旅行策划师</p>
+    <div class="expert-grid">
+      {experts.map((e) => (
+        <div class="expert-card">
+          <div class="expert-avatar"></div>
+          <h3 class="expert-name">{e.name}</h3>
+          <p class="expert-title">{e.title}</p>
+          <p class="expert-spec">
+            {e.specialties.join(" · ")}
+          </p>
+        </div>
+      ))}
+    </div>
+    <p class="expert-footnote">每一段鎏光旅程均由目的地专家设计，搭配当地管家与中文向导全程护航</p>
+  </div>
+</section>
+
+<style>
+  .expert {
+    padding: var(--spacing-section) 2rem;
+    background: var(--color-bg-warm);
+  }
+  .expert-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .expert-heading {
+    font-family: var(--font-display);
+    font-size: 1.75rem;
+    font-weight: 700;
+    text-align: center;
+    color: var(--color-text-primary);
+    margin-bottom: 0.75rem;
+    letter-spacing: 0.04em;
+  }
+  .expert-sub {
+    text-align: center;
+    color: var(--color-text-muted);
+    font-size: 0.9rem;
+    margin-bottom: 3rem;
+  }
+  .expert-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 2.5rem;
+  }
+  .expert-card {
+    text-align: center;
+  }
+  .expert-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: color-mix(in srgb, var(--color-brand) 15%, var(--color-bg-page));
+    margin: 0 auto 1rem;
+  }
+  .expert-name {
+    font-family: var(--font-display);
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    margin-bottom: 0.25rem;
+  }
+  .expert-title {
+    font-size: 0.75rem;
+    color: var(--color-brand);
+    margin-bottom: 0.5rem;
+  }
+  .expert-spec {
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+  }
+  .expert-footnote {
+    text-align: center;
+    font-size: 0.8rem;
+    color: var(--color-text-muted);
+  }
+
+  @media (max-width: 768px) {
+    .expert-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+</style>

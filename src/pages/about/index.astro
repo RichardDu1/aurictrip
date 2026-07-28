@@ -1,0 +1,141 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import Navigation from "@components/Navigation.astro";
+import Footer from "@components/Footer.astro";
+---
+
+<BaseLayout title="关于我们" description="了解鎏光旅行 — 用时间淬炼的旅行">
+  <Navigation />
+  <main>
+    <section class="page-hero">
+      <div class="page-hero-inner">
+        <h1 class="page-hero-title">关于鎏光旅行</h1>
+        <p class="page-hero-sub">用时间淬炼的旅行</p>
+      </div>
+    </section>
+
+    <section class="story">
+      <div class="story-inner">
+        <div class="story-block">
+          <h2 class="story-heading">品牌故事</h2>
+          <p class="story-text">
+            Auric 来自拉丁语 <em>aurum</em>（金）和 <em>aura</em>（光）。鎏，中国古代金银错工艺——将金涂于器物，经火淬炼，去汞留金。这恰好是我们做旅行的方式：把世界各地的光收集起来，经过品味与时间的淬炼，留下那些真正值得的体验。
+          </p>
+          <p class="story-text">
+            我们相信，最好的旅行发生在光里——不是霓虹灯的光，而是托斯卡纳午后穿过百叶窗的光、塞伦盖蒂日出草尖上的光、冰岛极夜的蓝调微光。不是最贵的旅行，是经得起时间考验的旅行。
+          </p>
+        </div>
+
+        <div class="story-block">
+          <h2 class="story-heading">我们的团队</h2>
+          <p class="story-text">
+            每一位目的地专家都在当地生活超过十年。他们不是销售，是真正的旅行者——住在纳米比亚沙漠边的自然向导、在京都茶道中浸泡了二十年的文化学者、每年穿越德雷克海峡六次的极地领队。他们设计的不只是行程，是他们自己也想体验的旅程。
+          </p>
+        </div>
+
+        <div class="story-block">
+          <h2 class="story-heading">鎏光承诺</h2>
+          <div class="promises">
+            <div class="promise-item">
+              <strong class="promise-title">透明报价</strong>
+              <p class="promise-desc">每一分钱花在哪里，你都知道。无隐藏费用，无强制购物。</p>
+            </div>
+            <div class="promise-item">
+              <strong class="promise-title">48小时方案交付</strong>
+              <p class="promise-desc">从首次沟通到收到专属行程初案，不超过48小时。</p>
+            </div>
+            <div class="promise-item">
+              <strong class="promise-title">24/7中文管家</strong>
+              <p class="promise-desc">旅途中任何时候遇到任何问题，中文管家随时响应。</p>
+            </div>
+            <div class="promise-item">
+              <strong class="promise-title">灵活改期</strong>
+              <p class="promise-desc">出发前30天可免费改期。不可抗力全额退款。</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="story-block">
+          <h2 class="story-heading">资质与认证</h2>
+          <p class="story-text">
+            鎏光旅行 AuricTrip 为英国注册旅行公司。我们持有 ATOL（Air Travel Organiser's Licence）和 IATA（International Air Transport Association）认证，所有行程均受英国旅行行业标准保护。
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</BaseLayout>
+
+<style>
+  .page-hero {
+    padding: 8rem 2rem 3rem;
+    background: var(--color-navy);
+    text-align: center;
+  }
+  .page-hero-inner {
+    max-width: 680px;
+    margin: 0 auto;
+  }
+  .page-hero-title {
+    font-family: var(--font-heading);
+    font-size: clamp(2rem, 4vw, 2.75rem);
+    font-weight: 700;
+    color: var(--color-text-on-dark);
+    margin-bottom: 0.75rem;
+  }
+  .page-hero-sub {
+    font-size: 0.95rem;
+    color: var(--color-text-on-dark-muted);
+    line-height: 1.6;
+  }
+  .story {
+    padding: 4rem 2rem;
+    background: var(--color-bg-page);
+  }
+  .story-inner {
+    max-width: var(--spacing-content-max);
+    margin: 0 auto;
+  }
+  .story-block {
+    margin-bottom: 3.5rem;
+  }
+  .story-heading {
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    margin-bottom: 1rem;
+    letter-spacing: 0.03em;
+  }
+  .story-text {
+    font-size: 0.95rem;
+    color: var(--color-text-secondary);
+    line-height: 1.85;
+    margin-bottom: 0.75rem;
+  }
+  .promises {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+  .promise-title {
+    display: block;
+    font-family: var(--font-heading);
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    margin-bottom: 0.35rem;
+  }
+  .promise-desc {
+    font-size: 0.8rem;
+    color: var(--color-text-muted);
+    line-height: 1.6;
+    margin: 0;
+  }
+  @media (max-width: 768px) {
+    .promises {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

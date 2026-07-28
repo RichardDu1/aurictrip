@@ -1,0 +1,214 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import Navigation from "@components/Navigation.astro";
+import Footer from "@components/Footer.astro";
+import WeChatShare from "@components/WeChatShare.astro";
+---
+
+<BaseLayout title="联系我们" description="与鎏光旅行顾问对话，开启你的下一段旅程">
+  <Navigation />
+  <main>
+    <section class="page-hero">
+      <div class="page-hero-inner">
+        <h1 class="page-hero-title">联系我们</h1>
+        <p class="page-hero-sub">每一次旅程，都从一次对话开始</p>
+      </div>
+    </section>
+
+    <section class="contact">
+      <div class="contact-inner">
+        <div class="contact-grid">
+          <div class="contact-info">
+            <h2 class="contact-heading">与旅行顾问对话</h2>
+            <p class="contact-intro">
+              告诉我们你的旅行偏好、时间与期待。我们将在48小时内为你提交专属行程方案。没有费用，没有义务——只是一次关于旅行的对话。
+            </p>
+
+            <div class="contact-methods">
+              <div class="contact-method">
+                <strong class="cm-label">电话</strong>
+                <p class="cm-value">+44 20 XXXX XXXX</p>
+                <p class="cm-note">工作时间：周一至周五 9:00-18:00 (GMT)</p>
+              </div>
+              <div class="contact-method">
+                <strong class="cm-label">邮件</strong>
+                <p class="cm-value">service@aurictrip.com</p>
+                <p class="cm-note">我们通常在24小时内回复</p>
+              </div>
+              <div class="contact-method">
+                <strong class="cm-label">微信</strong>
+                <p class="cm-value">AuricTrip_Official</p>
+                <p class="cm-note">添加微信，随时沟通旅行计划</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="contact-form-wrapper">
+            <h2 class="contact-heading">快速咨询</h2>
+            <form class="contact-form">
+              <div class="form-group">
+                <label class="form-label" for="name">姓名</label>
+                <input type="text" id="name" class="form-input" placeholder="您的姓名" />
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="email">邮箱</label>
+                <input type="email" id="email" class="form-input" placeholder="your@email.com" />
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="phone">电话（选填）</label>
+                <input type="tel" id="phone" class="form-input" placeholder="+86 138 XXXX XXXX" />
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="destination">感兴趣的目的地</label>
+                <input type="text" id="destination" class="form-input" placeholder="例如：日本、意大利、南极..." />
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="message">旅行需求</label>
+                <textarea id="message" class="form-textarea" rows="4" placeholder="告诉我们出行时间、人数、预算范围、旅行偏好..."></textarea>
+              </div>
+              <button type="submit" class="form-submit">提交咨询 &rarr;</button>
+              <p class="form-note">提交即表示你同意我们通过邮件或电话与你联系。我们不会将你的信息分享给第三方。</p>
+            </form>
+          </div>
+        </div>
+        <WeChatShare />
+      </div>
+    </section>
+  </main>
+  <Footer />
+</BaseLayout>
+
+<style>
+  .page-hero {
+    padding: 8rem 2rem 3rem;
+    background: var(--color-navy);
+    text-align: center;
+  }
+  .page-hero-inner {
+    max-width: 680px;
+    margin: 0 auto;
+  }
+  .page-hero-title {
+    font-family: var(--font-heading);
+    font-size: clamp(2rem, 4vw, 2.75rem);
+    font-weight: 700;
+    color: var(--color-text-on-dark);
+    margin-bottom: 0.75rem;
+  }
+  .page-hero-sub {
+    font-size: 0.95rem;
+    color: var(--color-text-on-dark-muted);
+    line-height: 1.6;
+  }
+  .contact {
+    padding: 4rem 2rem;
+    background: var(--color-bg-page);
+  }
+  .contact-inner {
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+  }
+  .contact-heading {
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    margin-bottom: 1rem;
+    letter-spacing: 0.03em;
+  }
+  .contact-intro {
+    font-size: 0.9rem;
+    color: var(--color-text-secondary);
+    line-height: 1.75;
+    margin-bottom: 2rem;
+  }
+  .contact-methods {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  .cm-label {
+    display: block;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    color: var(--color-brand);
+    margin-bottom: 0.25rem;
+  }
+  .cm-value {
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    color: var(--color-text-primary);
+    margin-bottom: 0.15rem;
+  }
+  .cm-note {
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+    margin: 0;
+  }
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+  .form-group {
+    display: flex;
+    flex-direction: column;
+  }
+  .form-label {
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--color-text-secondary);
+    margin-bottom: 0.35rem;
+  }
+  .form-input,
+  .form-textarea {
+    padding: 0.75rem;
+    border: 1px solid color-mix(in srgb, var(--color-text-muted) 25%, transparent);
+    background: var(--color-bg-card);
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    color: var(--color-text-primary);
+    resize: vertical;
+  }
+  .form-input:focus,
+  .form-textarea:focus {
+    outline: none;
+    border-color: var(--color-brand);
+  }
+  .form-submit {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.85rem 2rem;
+    border: 1px solid var(--color-brand);
+    background: transparent;
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    color: var(--color-brand);
+    cursor: pointer;
+    letter-spacing: 0.03em;
+    transition: background 0.2s, color 0.2s;
+    align-self: flex-start;
+  }
+  .form-submit:hover {
+    background: var(--color-brand);
+    color: #fff;
+  }
+  .form-note {
+    font-size: 0.7rem;
+    color: var(--color-text-muted);
+    line-height: 1.5;
+    margin: 0;
+  }
+  @media (max-width: 768px) {
+    .contact-grid {
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+    }
+  }
+</style>

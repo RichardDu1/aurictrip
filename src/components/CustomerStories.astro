@@ -1,0 +1,108 @@
+---
+interface Story {
+  quote: string;
+  traveler: string;
+  destination: string;
+  context: string;
+}
+
+const stories: Story[] = [
+  {
+    quote: "孩子回来后一直在翻在非洲拍的星空照片。他说，妈妈，原来银河真的是银色的。",
+    traveler: "张女士",
+    destination: "坦桑尼亚亲子之旅",
+    context: "2024年7月，携8岁儿子出行",
+  },
+  {
+    quote: "结婚二十周年，我们只想找一个没有游客的地方。鎏光旅行为我们找到了一座私人岛屿，整个沙滩只有我们两个人。",
+    traveler: "李先生",
+    destination: "塞舌尔蜜月之旅",
+    context: "2024年10月出行",
+  },
+  {
+    quote: "我母亲今年75岁，一直想去日本看红叶，但担心体力。鎏光旅行把每天步行控制在8000步以内，还安排了温泉旅馆。母亲说这是她这辈子最舒服的一次旅行。",
+    traveler: "王女士",
+    destination: "京都红叶季银发之旅",
+    context: "2024年11月，携父母出行",
+  },
+];
+---
+
+<section class="stories">
+  <div class="stories-inner">
+    <h2 class="stories-heading">他们这样出发</h2>
+    <div class="stories-scroll">
+      {stories.map((s) => (
+        <figure class="story-card">
+          <blockquote class="story-quote">&ldquo;{s.quote}&rdquo;</blockquote>
+          <figcaption class="story-attr">
+            <span class="story-traveler">{s.traveler}</span>
+            <span class="story-dest">{s.destination}</span>
+            <span class="story-context">{s.context}</span>
+          </figcaption>
+        </figure>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .stories {
+    padding: var(--spacing-section) 2rem;
+    background: var(--color-bg-warm);
+  }
+  .stories-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .stories-heading {
+    font-family: var(--font-display);
+    font-size: 1.75rem;
+    font-weight: 700;
+    text-align: center;
+    color: var(--color-text-primary);
+    margin-bottom: 3rem;
+    letter-spacing: 0.04em;
+  }
+  .stories-scroll {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+  .story-card {
+    margin: 0;
+    padding: 2rem;
+    background: var(--color-bg-card);
+  }
+  .story-quote {
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    color: var(--color-text-primary);
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+  }
+  .story-attr {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+  }
+  .story-traveler {
+    font-weight: 600;
+    font-size: 0.85rem;
+    color: var(--color-text-primary);
+  }
+  .story-dest {
+    font-size: 0.8rem;
+    color: var(--color-brand);
+  }
+  .story-context {
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+  }
+
+  @media (max-width: 768px) {
+    .stories-scroll {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

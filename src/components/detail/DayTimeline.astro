@@ -1,0 +1,101 @@
+---
+interface Day {
+  day: string;
+  title: string;
+  content: string;
+}
+
+interface Props {
+  days: Day[];
+}
+
+const { days } = Astro.props;
+if (!days || days.length === 0) return;
+---
+
+<section class="timeline">
+  <h2 class="tl-heading">每日行程</h2>
+  <div class="tl-list">
+    {days.map((d, i) => (
+      <div class="tl-item">
+        <div class="tl-marker">
+          <span class="tl-dot"></span>
+          {i < days.length - 1 && <span class="tl-line"></span>}
+        </div>
+        <div class="tl-body">
+          <span class="tl-day">{d.day}</span>
+          <h3 class="tl-day-title">{d.title}</h3>
+          <p class="tl-day-content">{d.content}</p>
+        </div>
+      </div>
+    ))}
+  </div>
+</section>
+
+<style>
+  .timeline {
+    max-width: var(--spacing-content-max);
+    margin: 0 auto;
+    padding: 3rem 2rem 0;
+  }
+  .tl-heading {
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    margin-bottom: 2rem;
+    letter-spacing: 0.03em;
+  }
+  .tl-list {
+    display: flex;
+    flex-direction: column;
+  }
+  .tl-item {
+    display: flex;
+    gap: 1.5rem;
+  }
+  .tl-marker {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 20px;
+    flex-shrink: 0;
+  }
+  .tl-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--color-brand);
+    flex-shrink: 0;
+    margin-top: 0.4rem;
+  }
+  .tl-line {
+    width: 1px;
+    flex: 1;
+    background: color-mix(in srgb, var(--color-brand) 30%, transparent);
+    min-height: 40px;
+  }
+  .tl-body {
+    padding-bottom: 2.5rem;
+  }
+  .tl-day {
+    font-size: 0.65rem;
+    letter-spacing: 0.18em;
+    color: var(--color-brand);
+    display: block;
+    margin-bottom: 0.25rem;
+  }
+  .tl-day-title {
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    margin-bottom: 0.5rem;
+  }
+  .tl-day-content {
+    font-size: 0.9rem;
+    color: var(--color-text-secondary);
+    line-height: 1.75;
+    margin: 0;
+  }
+</style>

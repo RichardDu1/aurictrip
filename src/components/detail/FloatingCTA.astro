@@ -1,0 +1,80 @@
+---
+interface Props {
+  price: number;
+  contactUrl?: string;
+}
+
+const { price, contactUrl = "/contact" } = Astro.props;
+---
+
+<div class="floating-cta" id="floating-cta">
+  <div class="floating-cta-inner">
+    <div class="floating-cta-left">
+      <span class="floating-cta-price">¥{price.toLocaleString()}<span class="floating-cta-suffix">起/人</span></span>
+    </div>
+    <a href={contactUrl} class="floating-cta-btn">与顾问对话 &rarr;</a>
+  </div>
+</div>
+
+<script>
+  const bar = document.getElementById("floating-cta");
+  if (bar) {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        bar.classList.toggle("visible", !entry.isIntersecting);
+      },
+      { threshold: 0 }
+    );
+    const sentinel = document.createElement("div");
+    sentinel.style.position = "absolute";
+    sentinel.style.bottom = "0";
+    sentinel.style.height = "1px";
+    document.querySelector("main")?.appendChild(sentinel);
+    observer.observe(sentinel);
+  }
+</script>
+
+<style>
+  .floating-cta {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 50;
+    background: var(--color-bg-cta-bar);
+    backdrop-filter: blur(12px);
+    border-top: 1px solid color-mix(in srgb, var(--color-brand) 20%, transparent);
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+    padding: 0.75rem 1rem;
+    padding-bottom: max(0.75rem, env(safe-area-inset-bottom));
+  }
+  .floating-cta.visible {
+    transform: translateY(0);
+  }
+  .floating-cta-inner {
+    max-width: var(--spacing-content-max);
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .floating-cta-price {
+    font-family: var(--font-price);
+    font-size: 1.25rem;
+    color: var(--color-text-on-dark);
+  }
+  .floating-cta-suffix {
+    font-family: var(--font-body);
+    font-size: 0.7rem;
+    color: var(--color-text-on-dark-muted);
+    margin-left: 0.2rem;
+  }
+  .floating-cta-btn {
+    text-decoration: none;
+    color: var(--color-brand);
+    font-size: 0.95rem;
+    letter-spacing: 0.03em;
+    white-space: nowrap;
+  }
+</style>
