@@ -8,6 +8,27 @@ priceLevel: "鎏光远征"
 type: "野奢自然"
 season: "6月-10月（旱季，最佳猎游季节）"
 featured: false
+heroImage: "/images/journeys/botswana-okavango/botswana-okavango-1.jpg"
+gallery:
+  - "/images/journeys/botswana-okavango/botswana-okavango-1.jpg"
+  - "/images/journeys/botswana-okavango/botswana-okavango-2.jpg"
+  - "/images/journeys/botswana-okavango/botswana-okavango-3.jpg"
+  - "/images/journeys/botswana-okavango/botswana-okavango-4.jpg"
+  - "/images/journeys/botswana-okavango/botswana-okavango-5.jpg"
+  - "/images/journeys/botswana-okavango/botswana-okavango-6.jpg"
+packages:
+  - name: "鎏光臻选"
+    price: 115200
+    description: "标准五星野奢营地，含中文自然向导与 Mokoro 独木舟猎游"
+    hotelTier: "野奢五星"
+  - name: "鎏光定制"
+    price: 160000
+    description: "Mombo Camp 奢华帐篷 + Zarafa Camp 帐篷别墅，含私人向导与直升机飞越"
+    hotelTier: "顶级野奢"
+  - name: "鎏光远征"
+    price: 217600
+    description: "私属营地包场 + 独家夜间猎游与布须曼人同行，含全行程管家"
+    hotelTier: "顶级私属"
 subtitle: "在奥卡万戈三角洲的水上荒野中，乘坐传统独木舟Mokoro穿行于纸莎草丛之间——这是非洲最后的伊甸园，也是地球上最昂贵的猎游目的地"
 highlights:
   - "奥卡万戈三角洲Mokoro独木舟——站在传统独木舟上，撑篙穿行于纸莎草丛和睡莲池之间，大象在芦苇丛中涉水而过"

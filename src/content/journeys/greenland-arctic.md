@@ -8,6 +8,27 @@ priceLevel: "鎏光远征"
 type: "极地探索"
 season: "6月-9月（极昼，冰川探索）/ 9月-3月（北极光季）"
 featured: false
+heroImage: "/images/journeys/greenland-arctic/greenland-arctic-1.jpg"
+gallery:
+  - "/images/journeys/greenland-arctic/greenland-arctic-1.jpg"
+  - "/images/journeys/greenland-arctic/greenland-arctic-2.jpg"
+  - "/images/journeys/greenland-arctic/greenland-arctic-3.jpg"
+  - "/images/journeys/greenland-arctic/greenland-arctic-4.jpg"
+  - "/images/journeys/greenland-arctic/greenland-arctic-5.jpg"
+  - "/images/journeys/greenland-arctic/greenland-arctic-6.jpg"
+packages:
+  - name: "鎏光臻选"
+    price: 115200
+    description: "Hotel Arctic标准冰山景观房+Old Camp冰盖营地，含中文向导与专车"
+    hotelTier: "四星极地酒店"
+  - name: "鎏光定制"
+    price: 160000
+    description: "Hotel Arctic冰山景观套房+私属冰峡湾游艇，含私人因纽特向导"
+    hotelTier: "奢华极地酒店"
+  - name: "鎏光远征"
+    price: 217600
+    description: "冰盖内陆直升机+狗拉雪橇全日+因纽特村庄Kaffemik私访，含全行程管家"
+    hotelTier: "顶级极地远征"
 subtitle: "在Ilulissat冰峡湾中漂流在比金字塔还大的冰山之间，在因纽特人的狗拉雪橇上穿越北极冰原，在零光污染的Kangerlussuaq中看北极光在你头顶炸开——在格陵兰，踏上地球上最北的旅行目的地"
 highlights:
   - "Ilulissat冰峡湾——在联合国教科文组织世界遗产中，从Sermeq Kujalleq冰川崩裂的冰山在午夜阳光中漂流——每一座冰山都是独一无二的冰雕，蓝色如液体的天空"

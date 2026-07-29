@@ -8,6 +8,27 @@ priceLevel: "鎏光定制"
 type: "野奢自然"
 season: "12月-次年4月（旱季最佳）"
 featured: false
+heroImage: "/images/journeys/costa-rica/costa-rica-1.jpg"
+gallery:
+  - "/images/journeys/costa-rica/costa-rica-1.jpg"
+  - "/images/journeys/costa-rica/costa-rica-2.jpg"
+  - "/images/journeys/costa-rica/costa-rica-3.jpg"
+  - "/images/journeys/costa-rica/costa-rica-4.jpg"
+  - "/images/journeys/costa-rica/costa-rica-5.jpg"
+  - "/images/journeys/costa-rica/costa-rica-6.jpg"
+packages:
+  - name: "鎏光臻选"
+    price: 46800
+    description: "精选生态小屋+标准温泉度假村，含中文自然向导与专车"
+    hotelTier: "精品生态"
+  - name: "鎏光定制"
+    price: 65000
+    description: "Nayara Springs私人温泉别墅+Lapa Rios生态小屋，含私人向导与夜间徒步"
+    hotelTier: "奢华生态度假村"
+  - name: "鎏光远征"
+    price: 88400
+    description: "Nayara Springs顶级别墅升级+Corcovado独家私属导览+私人自然保护区通道，含全行程管家"
+    hotelTier: "顶级野奢"
 subtitle: "在世界上最快乐的国家，从云雾森林到太平洋海岸的纯粹自然之旅"
 highlights:
   - 'Corcovado国家公园——国家地理认证的"地球上生物密度最高的地方"'

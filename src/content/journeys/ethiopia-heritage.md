@@ -8,6 +8,27 @@ priceLevel: "鎏光远征"
 type: "文化深度"
 season: "10月-3月（旱季最佳）"
 featured: false
+heroImage: "/images/journeys/ethiopia-heritage/ethiopia-heritage-1.jpg"
+gallery:
+  - "/images/journeys/ethiopia-heritage/ethiopia-heritage-1.jpg"
+  - "/images/journeys/ethiopia-heritage/ethiopia-heritage-2.jpg"
+  - "/images/journeys/ethiopia-heritage/ethiopia-heritage-3.jpg"
+  - "/images/journeys/ethiopia-heritage/ethiopia-heritage-4.jpg"
+  - "/images/journeys/ethiopia-heritage/ethiopia-heritage-5.jpg"
+  - "/images/journeys/ethiopia-heritage/ethiopia-heritage-6.jpg"
+packages:
+  - name: "鎏光臻选"
+    price: 38500
+    description: "Sheraton Addis标准五星+精选高原旅馆，含中文向导与专车"
+    hotelTier: "国际五星"
+  - name: "鎏光定制"
+    price: 53500
+    description: "Limalimo Lodge生态旅馆升级+Sheraton Addis，含私人向导与部落探访"
+    hotelTier: "精品生态"
+  - name: "鎏光远征"
+    price: 72800
+    description: "Limalimo Lodge顶级套房+达纳基尔洼地私属远征+奥莫河谷独家部落通道，含全行程管家"
+    hotelTier: "顶级远征"
 subtitle: "在拉利贝拉的岩石教堂中触摸800年前的信仰，在奥莫河谷的部落中遇见人类最古老的面孔——在埃塞俄比亚，回到文明的起点"
 highlights:
   - "拉利贝拉岩石教堂——在11座从整块火山岩中凿出的教堂中，穿过黑暗的隧道进入圣乔治教堂——它在地下30米，形如一个完美的十字"

@@ -1,0 +1,255 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import Navigation from "@components/Navigation.astro";
+import Footer from "@components/Footer.astro";
+
+export const prerender = true;
+
+const pillars = [
+  {
+    no: "01",
+    title: "英国根基，国际标准",
+    body: "鎏光旅行注册于英国，受 ATOL 与 ABTA 双重财务保护——你的每一笔旅行资金在法律层面独立托管，并非汇入某个国内账户。我们的公司注册号与 IATA 资质公开可查。这不是营销话术，是一家英国旅行运营商的法定义务。",
+    points: ["ATOL 财务保护", "ABTA 会员资质", "IATA 票务认证"],
+  },
+  {
+    no: "02",
+    title: "欧洲深度，近水楼台",
+    body: "我们的伦敦团队每周都在欧洲的土地上——苏格兰高地的雨后、格鲁吉亚卡赫季的酒窖、葡萄牙杜罗河谷的梯田。欧洲小众目的地的'地方性'，不是一个北京办公室靠二手资料能复刻的。当你的行程出状况，我们在两小时时区内就能动手解决，而不是隔着六个时区发邮件。",
+    points: ["苏格兰·格鲁吉亚·葡萄牙一线直踩", "欧洲端专车接驳", "本地关系网络"],
+  },
+  {
+    no: "03",
+    title: "48 小时拿到第一版方案",
+    body: "大多数定制游的流程是：询价 → 等三天 → 销售回电 → 再等一周 → 收到一版通用模板。鎏光不是这样。你提出需求后的 48 小时内，会收到一份带具名酒店、逐日行程和指导价的完整方案——不是询价回执，是可以直接讨论的真实方案。因为我们自己就是方案的撰写者，不是二道贩子。",
+    points: ["48 小时方案交付", "具名酒店而非'同级五星'", "可直接讨论的初稿"],
+  },
+  {
+    no: "04",
+    title: "24/7 中文管家，欧洲端接驳",
+    body: "中国旅客在欧洲的两焦虑——语言和交通——我们用同一个角色解决。一位中文母语的旅行管家，从你落地欧洲机场开始全程伴随：专车接机、酒店沟通、餐厅预订、突发状况。不是 400 电话那头一个换班的客服，是一个叫得出你名字、记得你孩子不吃香菜的真人。",
+    points: ["中文母语管家", "欧洲端专车", "一个管家跟到底"],
+  },
+  {
+    no: "05",
+    title: "30 天免费改期",
+    body: "行程不是期货合约，生活会有变化。出发前 30 天内可免费改期一次——这是我们写进服务条款的承诺，不是 case by case 的'特殊情况申请'。灵活性是高端服务该有的样子，而不是加价的理由。",
+    points: ["30 天免费改期", "条款透明", "不加价的灵活"],
+  },
+];
+---
+
+<BaseLayout title="为什么选择鎏光" description="一家扎根伦敦、服务中国的高端旅行工坊——英国根基、欧洲深度、48小时方案交付、24/7中文管家">
+  <Navigation />
+  <main>
+    <section class="page-hero">
+      <div class="page-hero-inner">
+        <span class="page-hero-eyebrow">为什么选择鎏光</span>
+        <h1 class="page-hero-title">鎏光所至，皆为风景</h1>
+        <p class="page-hero-sub">
+          一家扎根伦敦、服务中国的高端旅行工坊。我们不和国内 OTA 拼出发城市数量，不拼机票补贴——
+          我们拼的是对欧洲的深度理解、对方案的诚实交付、以及一个会记住你偏好的真人管家。
+        </p>
+      </div>
+    </section>
+
+    <section class="pillars">
+      <div class="pillars-inner">
+        {pillars.map((p) => (
+          <article class="pillar">
+            <div class="pillar-no">{p.no}</div>
+            <div class="pillar-body">
+              <h2 class="pillar-title">{p.title}</h2>
+              <p class="pillar-text">{p.body}</p>
+              <ul class="pillar-points">
+                {p.points.map((pt) => (
+                  <li>{pt}</li>
+                ))}
+              </ul>
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section class="positioning">
+      <div class="positioning-inner">
+        <h2 class="positioning-heading">我们更适合谁</h2>
+        <p class="positioning-text">
+          如果你已经计划深度探索欧洲——想看的不只是巴黎铁塔和罗马斗兽场，而是苏格兰高地的雾、
+          格鲁吉亚的葡萄酒、冰岛的极光、葡萄牙的渔村——鎏光是你最合适的伙伴。
+          我们不追求覆盖全球每一个角落，但在我们覆盖的每一寸土地上，我们比任何人都熟。
+        </p>
+        <p class="positioning-text">
+          如果你的行程以欧洲为核心，或者你希望由一个真正在欧洲的团队来组织你的全球旅程，
+          而不是一个把行程外包给当地地接的中间商——来找我们聊聊。
+        </p>
+      </div>
+    </section>
+
+    <section class="cta-section">
+      <div class="cta-inner">
+        <h2 class="cta-heading">聊聊你的下一次旅程</h2>
+        <p class="cta-sub">48 小时内，你会收到一份带具名酒店和指导价的完整方案。</p>
+        <a href="/contact" class="cta-btn">与顾问对话 &rarr;</a>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</BaseLayout>
+
+<style>
+  .page-hero {
+    padding: 9rem 2rem 4rem;
+    background: var(--color-bg-page);
+    text-align: center;
+  }
+  .page-hero-inner {
+    max-width: 720px;
+    margin: 0 auto;
+  }
+  .page-hero-eyebrow {
+    display: inline-block;
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    color: var(--color-brand);
+    margin-bottom: 1rem;
+  }
+  .page-hero-title {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 4.5vw, 3rem);
+    font-weight: 700;
+    color: var(--color-text-primary);
+    margin-bottom: 1rem;
+    letter-spacing: 0.04em;
+  }
+  .page-hero-sub {
+    font-size: 1rem;
+    color: var(--color-text-secondary);
+    line-height: 1.8;
+  }
+  .pillars {
+    padding: 4rem 2rem;
+    background: var(--color-bg-page);
+  }
+  .pillars-inner {
+    max-width: 820px;
+    margin: 0 auto;
+  }
+  .pillar {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 2rem;
+    padding: 2.5rem 0;
+    border-bottom: 1px solid color-mix(in srgb, var(--color-text-muted) 12%, transparent);
+  }
+  .pillar:last-child {
+    border-bottom: none;
+  }
+  .pillar-no {
+    font-family: var(--font-price);
+    font-size: 1.5rem;
+    color: var(--color-brand);
+    letter-spacing: 0.05em;
+  }
+  .pillar-title {
+    font-family: var(--font-heading);
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    margin-bottom: 0.85rem;
+    letter-spacing: 0.02em;
+  }
+  .pillar-text {
+    font-size: 0.95rem;
+    color: var(--color-text-secondary);
+    line-height: 1.85;
+    margin-bottom: 1rem;
+  }
+  .pillar-points {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem 1.5rem;
+  }
+  .pillar-points li {
+    font-size: 0.78rem;
+    color: var(--color-text-muted);
+    letter-spacing: 0.05em;
+    padding-left: 1rem;
+    position: relative;
+  }
+  .pillar-points li::before {
+    content: "◆";
+    position: absolute;
+    left: 0;
+    color: var(--color-brand);
+    font-size: 0.6rem;
+    top: 0.15rem;
+  }
+  .positioning {
+    padding: 5rem 2rem;
+    background: var(--color-bg-warm);
+  }
+  .positioning-inner {
+    max-width: 720px;
+    margin: 0 auto;
+  }
+  .positioning-heading {
+    font-family: var(--font-heading);
+    font-size: 1.75rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.03em;
+  }
+  .positioning-text {
+    font-size: 1rem;
+    color: var(--color-text-secondary);
+    line-height: 1.9;
+    margin-bottom: 1.25rem;
+  }
+  .cta-section {
+    padding: 5rem 2rem;
+    background: var(--color-bg-page);
+    text-align: center;
+  }
+  .cta-inner {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  .cta-heading {
+    font-family: var(--font-display);
+    font-size: 1.75rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    margin-bottom: 0.75rem;
+  }
+  .cta-sub {
+    font-size: 0.95rem;
+    color: var(--color-text-muted);
+    margin-bottom: 2rem;
+  }
+  .cta-btn {
+    display: inline-block;
+    padding: 0.9rem 2.5rem;
+    border: 1px solid var(--color-brand);
+    color: var(--color-brand);
+    text-decoration: none;
+    font-size: 0.95rem;
+    letter-spacing: 0.03em;
+    transition: background 0.2s, color 0.2s;
+  }
+  .cta-btn:hover {
+    background: var(--color-brand);
+    color: var(--color-bg-page);
+  }
+  @media (max-width: 768px) {
+    .pillar {
+      grid-template-columns: 1fr;
+      gap: 0.5rem;
+    }
+  }
+</style>

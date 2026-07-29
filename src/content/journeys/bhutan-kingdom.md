@@ -8,6 +8,27 @@ priceLevel: "鎏光定制"
 type: "文化深度"
 season: "3-5月，9-11月"
 featured: false
+heroImage: "/images/journeys/bhutan-kingdom/bhutan-kingdom-1.jpg"
+gallery:
+  - "/images/journeys/bhutan-kingdom/bhutan-kingdom-1.jpg"
+  - "/images/journeys/bhutan-kingdom/bhutan-kingdom-2.jpg"
+  - "/images/journeys/bhutan-kingdom/bhutan-kingdom-3.jpg"
+  - "/images/journeys/bhutan-kingdom/bhutan-kingdom-4.jpg"
+  - "/images/journeys/bhutan-kingdom/bhutan-kingdom-5.jpg"
+  - "/images/journeys/bhutan-kingdom/bhutan-kingdom-6.jpg"
+packages:
+  - name: "鎏光臻选"
+    price: 46800
+    description: "标准五星酒店，含中文向导与专车，帕罗/廷布当地精品酒店基础房型"
+    hotelTier: "标准五星"
+  - name: "鎏光定制"
+    price: 65000
+    description: "Amankora 帕罗+普纳卡山谷小屋，含虎穴寺私人古道向导"
+    hotelTier: "奢华五星"
+  - name: "鎏光远征"
+    price: 88400
+    description: "Amankora 五谷全包+喇嘛私人冥想+热石浴仪式，含全行程管家"
+    hotelTier: "顶级野奢"
 ---
 
 ## 不丹 · 雷龙之国的幸福哲学

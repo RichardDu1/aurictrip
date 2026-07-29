@@ -1,42 +1,51 @@
 ---
+import { getCollection } from "astro:content";
+import type { CollectionEntry } from "astro:content";
 import BaseLayout from "@layouts/BaseLayout.astro";
 import Navigation from "@components/Navigation.astro";
 import Footer from "@components/Footer.astro";
+import { groupByRegion } from "@lib/journeys-meta";
 
-const regions = [
-  {
-    name: "亚洲",
-    destinations: [
-      { name: "日本", desc: "京都·奈良·东京", href: "/journeys/kyoto-nara" },
-      { name: "不丹", desc: "雷龙之国的幸福哲学", href: "/journeys/bhutan-kingdom" },
-    ],
-  },
-  {
-    name: "欧洲",
-    destinations: [
-      { name: "意大利", desc: "托斯卡纳·白松露·米其林", href: "/journeys/tuscany-truffle" },
-    ],
-  },
-  {
-    name: "非洲",
-    destinations: [
-      { name: "纳米比亚", desc: "沙漠星空·骷髅海岸", href: "/journeys/namibia-desert" },
-      { name: "坦桑尼亚", desc: "动物大迁徙·家庭游猎", href: "/journeys/tanzania-family" },
-    ],
-  },
-  {
-    name: "南美洲",
-    destinations: [
-      { name: "秘鲁", desc: "马丘比丘·印加古道", href: "/journeys/peru-inca" },
-    ],
-  },
-  {
-    name: "极地",
-    destinations: [
-      { name: "南极半岛", desc: "白色大陆的终极远征", href: "/journeys/antarctica-expedition" },
-    ],
-  },
-];
+export const prerender = true;
+
+const journeys = await getCollection("journeys");
+
+// 建立 destination -> journeys 映射（一个目的地可能有多条行程）
+const byDestination = new Map<string, CollectionEntry<"journeys">[]>();
+for (const j of journeys) {
+  const arr = byDestination.get(j.data.destination) ?? [];
+  arr.push(j);
+  byDestination.set(j.data.destination, arr);
+}
+
+// 用 journeys-meta 的大洲分组
+const regions = groupByRegion().map((entry) => {
+  return {
+    region: entry.region,
+    destinations: entry.destinations
+      .map((meta) => {
+        const items = byDestination.get(meta.destination) ?? [];
+        const journeysForDest = items.map((j) => ({
+          slug: j.id.replace(/\.md$/, ""),
+          price: j.data.price,
+          days: j.data.days,
+          nights: j.data.nights,
+        }));
+        const lowestPrice = journeysForDest.length
+          ? Math.min(...journeysForDest.map((j) => j.price))
+          : null;
+        return {
+          name: meta.destination,
+          desc: meta.desc,
+          href: `/journeys/${journeysForDest[0]?.slug ?? meta.slug}`,
+          image: `/images/journeys/${meta.slug}/${meta.slug}-1.jpg`,
+          count: journeysForDest.length,
+          lowestPrice,
+        };
+      })
+      .filter((d) => d.count > 0),
+  };
+});
 ---
 
 <BaseLayout title="目的地" description="探索鎏光旅行覆盖的全球高端旅行目的地">
@@ -45,7 +54,9 @@ const regions = [
     <section class="page-hero">
       <div class="page-hero-inner">
         <h1 class="page-hero-title">目的地</h1>
-        <p class="page-hero-sub">覆盖五大洲的精选目的地，每一个都经过深度勘察与反复打磨</p>
+        <p class="page-hero-sub">
+          覆盖七大洲 {journeys.length} 条精选旅程，每一个目的地都经过深度勘察与反复打磨
+        </p>
       </div>
     </section>
 
@@ -53,14 +64,23 @@ const regions = [
       <div class="dest-inner">
         {regions.map((region) => (
           <div class="dest-region">
-            <h2 class="dest-region-name">{region.name}</h2>
+            <h2 class="dest-region-name">{region.region}</h2>
+            <p class="dest-region-count">{region.destinations.length} 个目的地</p>
             <div class="dest-grid">
               {region.destinations.map((d) => (
                 <a href={d.href} class="dest-card card">
-                  <div class="dest-card-img"></div>
+                  <div class="dest-card-img" style={`background-image: url(${d.image});`}></div>
                   <div class="dest-card-body">
                     <h3 class="dest-card-name">{d.name}</h3>
                     <p class="dest-card-desc">{d.desc}</p>
+                    <div class="dest-card-meta">
+                      {d.count > 1 && <span class="dest-card-count">{d.count} 条旅程</span>}
+                      {d.lowestPrice !== null && (
+                        <span class="dest-card-price">
+                          ¥{d.lowestPrice.toLocaleString()}<span class="dest-card-price-suffix">起/人</span>
+                        </span>
+                      )}
+                    </div>
                     <span class="dest-card-link">探索旅程 &rarr;</span>
                   </div>
                 </a>
@@ -105,15 +125,20 @@ const regions = [
     margin: 0 auto;
   }
   .dest-region {
-    margin-bottom: 3rem;
+    margin-bottom: 3.5rem;
   }
   .dest-region-name {
     font-family: var(--font-heading);
     font-size: 1.5rem;
     font-weight: 600;
     color: var(--color-text-primary);
-    margin-bottom: 1.5rem;
+    margin-bottom: 0.35rem;
     letter-spacing: 0.03em;
+  }
+  .dest-region-count {
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+    margin-bottom: 1.5rem;
   }
   .dest-grid {
     display: grid;
@@ -128,14 +153,20 @@ const regions = [
     transition: opacity 0.2s;
   }
   .dest-card:hover {
-    opacity: 0.7;
+    opacity: 0.75;
   }
   .dest-card-img {
-    height: 160px;
-    background: var(--color-bg-warm);
+    height: 180px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: var(--color-bg-warm);
   }
   .dest-card-body {
     padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
   }
   .dest-card-name {
     font-family: var(--font-heading);
@@ -147,8 +178,32 @@ const regions = [
   .dest-card-desc {
     font-size: 0.8rem;
     color: var(--color-text-muted);
-    margin-bottom: 0.75rem;
+    margin-bottom: 0.85rem;
     line-height: 1.5;
+    flex: 1;
+  }
+  .dest-card-meta {
+    display: flex;
+    align-items: baseline;
+    gap: 0.75rem;
+    margin-bottom: 0.85rem;
+    flex-wrap: wrap;
+  }
+  .dest-card-count {
+    font-size: 0.7rem;
+    color: var(--color-text-muted);
+    letter-spacing: 0.05em;
+  }
+  .dest-card-price {
+    font-family: var(--font-price);
+    font-size: 0.95rem;
+    color: var(--color-text-secondary);
+  }
+  .dest-card-price-suffix {
+    font-family: var(--font-body);
+    font-size: 0.65rem;
+    color: var(--color-text-muted);
+    margin-left: 0.15rem;
   }
   .dest-card-link {
     font-size: 0.75rem;

@@ -8,6 +8,27 @@ priceLevel: "鎏光臻选"
 type: "野奢自然"
 season: "5-10月（旱季，星空最佳）"
 featured: true
+heroImage: "/images/journeys/namibia-desert/namibia-desert-1.jpg"
+gallery:
+  - "/images/journeys/namibia-desert/namibia-desert-1.jpg"
+  - "/images/journeys/namibia-desert/namibia-desert-2.jpg"
+  - "/images/journeys/namibia-desert/namibia-desert-3.jpg"
+  - "/images/journeys/namibia-desert/namibia-desert-4.jpg"
+  - "/images/journeys/namibia-desert/namibia-desert-5.jpg"
+  - "/images/journeys/namibia-desert/namibia-desert-6.jpg"
+packages:
+  - name: "鎏光臻选"
+    price: 77400
+    description: "标准五星星空营地，含中文向导与私人小飞机转场"
+    hotelTier: "野奢五星"
+  - name: "鎏光定制"
+    price: 107500
+    description: "&Beyond Sossusvlei Desert Lodge 星空穹顶别墅，含私人向导与热气球"
+    hotelTier: "奢华野奢"
+  - name: "鎏光远征"
+    price: 146200
+    description: "Wilderness Serra Cafema 偏远营地 + 独家骷髅海岸飞行，含全行程管家"
+    hotelTier: "顶级野奢"
 ---
 
 ## 纳米布沙漠 · 星空穹顶下的奢华露营

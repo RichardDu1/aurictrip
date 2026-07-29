@@ -8,6 +8,27 @@ priceLevel: "鎏光远征"
 type: "野奢自然"
 season: "6月-9月 / 12月-2月（旱季最佳追踪条件）"
 featured: false
+heroImage: "/images/journeys/rwanda-gorillas/rwanda-gorillas-1.jpg"
+gallery:
+  - "/images/journeys/rwanda-gorillas/rwanda-gorillas-1.jpg"
+  - "/images/journeys/rwanda-gorillas/rwanda-gorillas-2.jpg"
+  - "/images/journeys/rwanda-gorillas/rwanda-gorillas-3.jpg"
+  - "/images/journeys/rwanda-gorillas/rwanda-gorillas-4.jpg"
+  - "/images/journeys/rwanda-gorillas/rwanda-gorillas-5.jpg"
+  - "/images/journeys/rwanda-gorillas/rwanda-gorillas-6.jpg"
+packages:
+  - name: "鎏光臻选"
+    price: 151200
+    description: "标准五星野奢酒店，含大猩猩追踪许可证与中文自然向导"
+    hotelTier: "野奢五星"
+  - name: "鎏光定制"
+    price: 210000
+    description: "Singita Kwitonda Lodge 火山景观套房 + One&Only Nyungwe House，含私人向导"
+    hotelTier: "顶级野奢"
+  - name: "鎏光远征"
+    price: 285600
+    description: "私属大猩猩家族追踪 + 额外许可证 + 独家火山徒步，含全行程管家"
+    hotelTier: "顶级私属"
 subtitle: "在维龙加火山的竹林中，与地球上最后的山地大猩猩面对面——这是世界上最昂贵、最稀有的野生动物体验"
 highlights:
   - "山地大猩猩追踪——在海拔3000米的竹林中，与银背大猩猩家族面对面。它看你一眼，你便理解了人类和自然之间最古老的连接"

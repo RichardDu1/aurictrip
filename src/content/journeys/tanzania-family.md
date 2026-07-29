@@ -8,6 +8,27 @@ priceLevel: "鎏光臻选"
 type: "亲子时光"
 season: "6-10月（动物大迁徙）"
 featured: false
+heroImage: "/images/journeys/tanzania-family/tanzania-family-1.jpg"
+gallery:
+  - "/images/journeys/tanzania-family/tanzania-family-1.jpg"
+  - "/images/journeys/tanzania-family/tanzania-family-2.jpg"
+  - "/images/journeys/tanzania-family/tanzania-family-3.jpg"
+  - "/images/journeys/tanzania-family/tanzania-family-4.jpg"
+  - "/images/journeys/tanzania-family/tanzania-family-5.jpg"
+  - "/images/journeys/tanzania-family/tanzania-family-6.jpg"
+packages:
+  - name: "鎏光臻选"
+    price: 49500
+    description: "标准五星家庭营地，含中文向导与儿童丛林课程"
+    hotelTier: "家庭五星"
+  - name: "鎏光定制"
+    price: 68800
+    description: "&Beyond Ngorongoro Crater Lodge 火山口营地，含私人家庭向导"
+    hotelTier: "奢华野奢"
+  - name: "鎏光远征"
+    price: 93500
+    description: "Singita Sasakwa Lodge 顶级家庭营地 + 私人小飞机转场，含全行程管家"
+    hotelTier: "顶级野奢"
 ---
 
 ## 坦桑尼亚 · 带着孩子看世界最初的样貌

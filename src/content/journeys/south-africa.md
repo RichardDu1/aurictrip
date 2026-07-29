@@ -8,6 +8,27 @@ priceLevel: "鎏光臻选"
 type: "野奢自然"
 season: "全年皆可（开普敦最佳：11-4月 / 克鲁格最佳：6-9月）"
 featured: true
+heroImage: "/images/journeys/south-africa/south-africa-1.jpg"
+gallery:
+  - "/images/journeys/south-africa/south-africa-1.jpg"
+  - "/images/journeys/south-africa/south-africa-2.jpg"
+  - "/images/journeys/south-africa/south-africa-3.jpg"
+  - "/images/journeys/south-africa/south-africa-4.jpg"
+  - "/images/journeys/south-africa/south-africa-5.jpg"
+  - "/images/journeys/south-africa/south-africa-6.jpg"
+packages:
+  - name: "鎏光臻选"
+    price: 59200
+    description: "标准五星酒店，含中文向导与专车，桌山日落与好望角游"
+    hotelTier: "城市五星"
+  - name: "鎏光定制"
+    price: 82200
+    description: "The Silo 河景房 + La Residence 庄园套房，含私人向导与品酒"
+    hotelTier: "奢华五星"
+  - name: "鎏光远征"
+    price: 111900
+    description: "Singita Ebony Lodge 河畔帐篷别墅 + 私属猎游，含全行程管家与独家体验"
+    hotelTier: "顶级野奢"
 subtitle: "从开普敦的桌山之巅到克鲁格国家公园的荒野之心，再到花园大道的鲸歌——这是非洲大陆最多元、最精致的一面"
 highlights:
   - "桌山日落——搭乘360度旋转缆车登顶世界七大自然奇观之一，在平顶山上看着太阳沉入大西洋"

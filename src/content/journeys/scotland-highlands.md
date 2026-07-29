@@ -8,6 +8,27 @@ priceLevel: "鎏光臻选"
 type: "文化深度"
 season: "5月-9月（最佳季节，日照长）"
 featured: false
+heroImage: "/images/journeys/scotland-highlands/scotland-highlands-1.jpg"
+gallery:
+  - "/images/journeys/scotland-highlands/scotland-highlands-1.jpg"
+  - "/images/journeys/scotland-highlands/scotland-highlands-2.jpg"
+  - "/images/journeys/scotland-highlands/scotland-highlands-3.jpg"
+  - "/images/journeys/scotland-highlands/scotland-highlands-4.jpg"
+  - "/images/journeys/scotland-highlands/scotland-highlands-5.jpg"
+  - "/images/journeys/scotland-highlands/scotland-highlands-6.jpg"
+packages:
+  - name: "鎏光臻选"
+    price: 56500
+    description: "标准五星酒店，含中文向导与专车"
+    hotelTier: "标准五星"
+  - name: "鎏光定制"
+    price: 78500
+    description: "The Balmoral城堡景房 + Inverlochy Castle城堡套房级别，含威士忌私属品鉴"
+    hotelTier: "奢华城堡"
+  - name: "鎏光远征"
+    price: 106800
+    description: "爱丁堡城堡私属日出导览 + Inverlochy城堡全包体验，含全行程管家"
+    hotelTier: "顶级城堡"
 subtitle: "从爱丁堡的城堡到高地的威士忌之路，从斯凯岛的仙女池到科茨沃尔德的蜂蜜色村庄——在英伦三岛最狂野的角落，发现绅士的故乡"
 highlights:
   - "爱丁堡城堡日出——在千年古堡之巅看第一缕阳光照在皇家英里的石板路上，晨雾中的爱丁堡如哈利波特中的霍格沃茨"

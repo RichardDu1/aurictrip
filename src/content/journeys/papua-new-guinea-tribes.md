@@ -8,6 +8,27 @@ priceLevel: "鎏光远征"
 type: "文化深度"
 season: "5月-10月（旱季最佳，部落节庆季）"
 featured: false
+heroImage: "/images/journeys/papua-new-guinea-tribes/papua-new-guinea-tribes-1.jpg"
+gallery:
+  - "/images/journeys/papua-new-guinea-tribes/papua-new-guinea-tribes-1.jpg"
+  - "/images/journeys/papua-new-guinea-tribes/papua-new-guinea-tribes-2.jpg"
+  - "/images/journeys/papua-new-guinea-tribes/papua-new-guinea-tribes-3.jpg"
+  - "/images/journeys/papua-new-guinea-tribes/papua-new-guinea-tribes-4.jpg"
+  - "/images/journeys/papua-new-guinea-tribes/papua-new-guinea-tribes-5.jpg"
+  - "/images/journeys/papua-new-guinea-tribes/papua-new-guinea-tribes-6.jpg"
+packages:
+  - name: "鎏光臻选"
+    price: 79700
+    description: "Rondon Ridge标准小屋+精选生态旅馆，含中文向导与部落翻译"
+    hotelTier: "生态旅馆"
+  - name: "鎏光定制"
+    price: 110800
+    description: "Rondon Ridge高原套房+Sepik Spirit河轮，含Goroka Singsing专属席位与私人向导"
+    hotelTier: "野奢生态旅馆"
+  - name: "鎏光远征"
+    price: 150600
+    description: "Sepik河独木舟深度远征+部落村庄Tumbuan过夜+天堂鸟追踪，含全行程管家"
+    hotelTier: "顶级部落远征"
 subtitle: "在Singsing部落节中见证800个部落同时歌唱，在Sepik河的独木舟上穿越世界上最后的石器时代文明——在巴布亚新几内亚，发现地球上最后一个未被发现的旅行秘境"
 highlights:
   - "Goroka Singsing——在一年一度的大部落节中，800个部落的舞者在同一片高原上同时歌唱、跳舞——这是南太平洋最壮观的部落仪式，羽毛头饰、面绘、贝壳项链和Kundu鼓在你的每一个感官中炸开"

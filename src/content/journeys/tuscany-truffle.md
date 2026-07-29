@@ -8,6 +8,27 @@ priceLevel: "鎏光臻选"
 type: "美食美酒"
 season: "10-11月（白松露季）"
 featured: true
+heroImage: "/images/journeys/tuscany-truffle/tuscany-truffle-1.jpg"
+gallery:
+  - "/images/journeys/tuscany-truffle/tuscany-truffle-1.jpg"
+  - "/images/journeys/tuscany-truffle/tuscany-truffle-2.jpg"
+  - "/images/journeys/tuscany-truffle/tuscany-truffle-3.jpg"
+  - "/images/journeys/tuscany-truffle/tuscany-truffle-4.jpg"
+  - "/images/journeys/tuscany-truffle/tuscany-truffle-5.jpg"
+  - "/images/journeys/tuscany-truffle/tuscany-truffle-6.jpg"
+packages:
+  - name: "鎏光臻选"
+    price: 55800
+    description: "阿诺河畔精品酒店，含中文向导与松露猎人带犬采松露"
+    hotelTier: "标准五星"
+  - name: "鎏光定制"
+    price: 77500
+    description: "Portrait Firenze + Rosewood Castiglion del Bosco级别，含私人向导与Antinori酒庄午宴"
+    hotelTier: "奢华五星"
+  - name: "鎏光远征"
+    price: 105400
+    description: "Rosewood庄园套房+白松露拍卖会VIP入场，含全程管家与米其林三星私宴"
+    hotelTier: "顶级野奢"
 ---
 
 ## 托斯卡纳 · 白松露季的米其林朝圣

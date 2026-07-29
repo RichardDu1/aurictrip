@@ -8,6 +8,27 @@ priceLevel: "鎏光臻选"
 type: "美食美酒"
 season: "4月-6月 / 9月-10月（最佳季节，避开暑假人潮）"
 featured: true
+heroImage: "/images/journeys/italy-amalfi/italy-amalfi-1.jpg"
+gallery:
+  - "/images/journeys/italy-amalfi/italy-amalfi-1.jpg"
+  - "/images/journeys/italy-amalfi/italy-amalfi-2.jpg"
+  - "/images/journeys/italy-amalfi/italy-amalfi-3.jpg"
+  - "/images/journeys/italy-amalfi/italy-amalfi-4.jpg"
+  - "/images/journeys/italy-amalfi/italy-amalfi-5.jpg"
+  - "/images/journeys/italy-amalfi/italy-amalfi-6.jpg"
+packages:
+  - name: "鎏光臻选"
+    price: 65500
+    description: "海岸精选五星酒店，含中文向导与私人游艇一日"
+    hotelTier: "标准五星"
+  - name: "鎏光定制"
+    price: 91000
+    description: "Le Sirenuse + Belmond Hotel Caruso + JK Place Capri级别，含私人向导"
+    hotelTier: "奢华五星"
+  - name: "鎏光远征"
+    price: 123800
+    description: "Le Sirenuse海景套房+Belmond悬崖无边泳池+卡普里私属游艇，含全程管家"
+    hotelTier: "顶级野奢"
 subtitle: "从阿马尔菲海岸的柠檬园到卡普里岛的蓝洞，从波西塔诺的垂直悬崖到拉维罗的云端花园——这是意大利最甜蜜的一角"
 highlights:
   - "阿马尔菲海岸私人游艇——从海上而不是公路上看波西塔诺的彩色房子，在Fiordo di Furore的峡湾中跳入碧绿海水"

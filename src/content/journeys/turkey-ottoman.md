@@ -8,6 +8,27 @@ priceLevel: "鎏光定制"
 type: "文化深度"
 season: "4月-6月 / 9月-10月（最佳季节）"
 featured: false
+heroImage: "/images/journeys/turkey-ottoman/turkey-ottoman-1.jpg"
+gallery:
+  - "/images/journeys/turkey-ottoman/turkey-ottoman-1.jpg"
+  - "/images/journeys/turkey-ottoman/turkey-ottoman-2.jpg"
+  - "/images/journeys/turkey-ottoman/turkey-ottoman-3.jpg"
+  - "/images/journeys/turkey-ottoman/turkey-ottoman-4.jpg"
+  - "/images/journeys/turkey-ottoman/turkey-ottoman-5.jpg"
+  - "/images/journeys/turkey-ottoman/turkey-ottoman-6.jpg"
+packages:
+  - name: "鎏光臻选"
+    price: 42100
+    description: "标准五星酒店，含中文向导与专车"
+    hotelTier: "标准五星"
+  - name: "鎏光定制"
+    price: 58500
+    description: "Çırağan Palace Kempinski博斯普鲁斯海景房 + Museum Hotel洞穴套房级别，含私人游艇"
+    hotelTier: "奢华五星"
+  - name: "鎏光远征"
+    price: 79600
+    description: "升级Mandarin Oriental爱琴海景套房 + 卡帕多奇亚热气球私属批次，含全行程管家"
+    hotelTier: "顶级野奢"
 subtitle: "从伊斯坦布尔的清真寺到卡帕多奇亚的洞穴，从棉花堡的白色梯田到博德鲁姆的蓝色海湾——在东西方之间，寻找君士坦丁堡的千年余晖"
 highlights:
   - "卡帕多奇亚热气球——在黎明时分，超过100只热气球在玫瑰谷上空升起，从空中俯瞰精灵烟囱和洞穴教堂"

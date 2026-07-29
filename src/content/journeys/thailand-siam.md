@@ -8,6 +8,27 @@ priceLevel: "鎏光定制"
 type: "文化深度"
 season: "11月-次年3月（凉季最佳）"
 featured: true
+heroImage: "/images/journeys/thailand-siam/thailand-siam-1.jpg"
+gallery:
+  - "/images/journeys/thailand-siam/thailand-siam-1.jpg"
+  - "/images/journeys/thailand-siam/thailand-siam-2.jpg"
+  - "/images/journeys/thailand-siam/thailand-siam-3.jpg"
+  - "/images/journeys/thailand-siam/thailand-siam-4.jpg"
+  - "/images/journeys/thailand-siam/thailand-siam-5.jpg"
+  - "/images/journeys/thailand-siam/thailand-siam-6.jpg"
+packages:
+  - name: "鎏光臻选"
+    price: 42100
+    description: "标准五星酒店，含中文向导与专车，文华东方+四季级别基础房型"
+    hotelTier: "标准五星"
+  - name: "鎏光定制"
+    price: 58500
+    description: "曼谷文华东方河景房+清迈四季稻田别墅+Soneva Kiri 海滩泳池别墅，含私人向导"
+    hotelTier: "奢华五星"
+  - name: "鎏光远征"
+    price: 79600
+    description: "Soneva Kiri 私人飞机抵达+树屋餐厅滑索上菜，含全行程管家与私人长尾船包船"
+    hotelTier: "顶级野奢"
 subtitle: "从曼谷的寺庙到清迈的山间，再到安达曼海的私人岛屿——一场关于味觉、灵性与热带海洋的深度旅程"
 highlights:
   - "私人长尾船穿越丹嫩沙多水上市场——在黎明时分，只有你和划着满载芒果糯米饭的小船"

@@ -8,6 +8,27 @@ priceLevel: "鎏光远征"
 type: "野奢自然"
 season: "11-2月（南半球夏季）"
 featured: false
+heroImage: "/images/journeys/patagonia-hiking/patagonia-hiking-1.jpg"
+gallery:
+  - "/images/journeys/patagonia-hiking/patagonia-hiking-1.jpg"
+  - "/images/journeys/patagonia-hiking/patagonia-hiking-2.jpg"
+  - "/images/journeys/patagonia-hiking/patagonia-hiking-3.jpg"
+  - "/images/journeys/patagonia-hiking/patagonia-hiking-4.jpg"
+  - "/images/journeys/patagonia-hiking/patagonia-hiking-5.jpg"
+  - "/images/journeys/patagonia-hiking/patagonia-hiking-6.jpg"
+packages:
+  - name: "鎏光臻选"
+    price: 115200
+    description: "标准五星酒店，含中文向导与专车，百内经典W线徒步"
+    hotelTier: "标准五星"
+  - name: "鎏光定制"
+    price: 160000
+    description: "Explora Patagonia 荒野营地 + The Singular Santiago 级别，含私人向导"
+    hotelTier: "奢华五星"
+  - name: "鎏光远征"
+    price: 217600
+    description: "顶级野奢营地+私人游艇合恩角+火地岛独家徒步，含全行程管家"
+    hotelTier: "顶级野奢"
 ---
 
 ## 巴塔哥尼亚 · 在世界尽头徒步

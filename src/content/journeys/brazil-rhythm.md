@@ -8,6 +8,27 @@ priceLevel: "鎏光远征"
 type: "野奢自然"
 season: "12月-3月（里约夏季狂欢节）/ 6月-9月（潘塔纳尔旱季最佳猎游）"
 featured: false
+heroImage: "/images/journeys/brazil-rhythm/brazil-rhythm-1.jpg"
+gallery:
+  - "/images/journeys/brazil-rhythm/brazil-rhythm-1.jpg"
+  - "/images/journeys/brazil-rhythm/brazil-rhythm-2.jpg"
+  - "/images/journeys/brazil-rhythm/brazil-rhythm-3.jpg"
+  - "/images/journeys/brazil-rhythm/brazil-rhythm-4.jpg"
+  - "/images/journeys/brazil-rhythm/brazil-rhythm-5.jpg"
+  - "/images/journeys/brazil-rhythm/brazil-rhythm-6.jpg"
+packages:
+  - name: "鎏光臻选"
+    price: 56500
+    description: "标准五星酒店，含中文向导与专车，里约与亚马逊经典行程"
+    hotelTier: "标准五星"
+  - name: "鎏光定制"
+    price: 78500
+    description: "Belmond Copacabana Palace 海景房 + Caiman Lodge 套房 + Anavilhanas 雨林别墅，含私人向导"
+    hotelTier: "奢华五星"
+  - name: "鎏光远征"
+    price: 106800
+    description: "潘塔纳尔美洲豹独家追踪+基督山日出私访+桑巴城后台通道，含全行程管家"
+    hotelTier: "顶级野奢"
 subtitle: "从里约的基督山到亚马逊的雨林，从潘塔纳尔的 Jaguar 追踪到萨尔瓦多的非洲之魂——在巴西，每一个节拍都是桑巴"
 highlights:
   - "基督山日出——在科尔科瓦多山顶，基督像张开双臂拥抱里约，脚下是瓜纳巴拉湾的蓝色水域和面包山"

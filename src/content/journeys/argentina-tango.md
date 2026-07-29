@@ -8,6 +8,27 @@ priceLevel: "鎏光远征"
 type: "野奢自然"
 season: "11月-3月（巴塔哥尼亚夏季）/ 4月-6月（布宜诺斯艾利斯秋季）"
 featured: false
+heroImage: "/images/journeys/argentina-tango/argentina-tango-1.jpg"
+gallery:
+  - "/images/journeys/argentina-tango/argentina-tango-1.jpg"
+  - "/images/journeys/argentina-tango/argentina-tango-2.jpg"
+  - "/images/journeys/argentina-tango/argentina-tango-3.jpg"
+  - "/images/journeys/argentina-tango/argentina-tango-4.jpg"
+  - "/images/journeys/argentina-tango/argentina-tango-5.jpg"
+  - "/images/journeys/argentina-tango/argentina-tango-6.jpg"
+packages:
+  - name: "鎏光臻选"
+    price: 65500
+    description: "标准五星酒店，含中文向导与专车，冰川与瀑布经典行程"
+    hotelTier: "标准五星"
+  - name: "鎏光定制"
+    price: 91000
+    description: "Alvear Palace 经典套房 + EOLO 冰川景观房 + Cavas Wine Lodge 葡萄园别墅，含私人向导"
+    hotelTier: "奢华五星"
+  - name: "鎏光远征"
+    price: 123800
+    description: "巴塔哥尼亚私人牧场骑马+莫雷诺冰川独家通道+私人探戈课，含全行程管家"
+    hotelTier: "顶级野奢"
 subtitle: "从布宜诺斯艾利斯的探戈舞厅到巴塔哥尼亚的冰川之巅，从门多萨的马尔贝克到伊瓜苏的雷霆之水——在阿根廷，每一个角落都在跳舞"
 highlights:
   - "莫雷诺冰川徒步——穿上冰爪走在世界上唯一还在前进的冰川上，300米厚的冰在你脚下发出蓝光"

@@ -8,6 +8,27 @@ priceLevel: "鎏光定制"
 type: "文化深度"
 season: "12月-3月（西南海岸）/ 4月-9月（东海岸）"
 featured: false
+heroImage: "/images/journeys/sri-lanka-tea/sri-lanka-tea-1.jpg"
+gallery:
+  - "/images/journeys/sri-lanka-tea/sri-lanka-tea-1.jpg"
+  - "/images/journeys/sri-lanka-tea/sri-lanka-tea-2.jpg"
+  - "/images/journeys/sri-lanka-tea/sri-lanka-tea-3.jpg"
+  - "/images/journeys/sri-lanka-tea/sri-lanka-tea-4.jpg"
+  - "/images/journeys/sri-lanka-tea/sri-lanka-tea-5.jpg"
+  - "/images/journeys/sri-lanka-tea/sri-lanka-tea-6.jpg"
+packages:
+  - name: "鎏光臻选"
+    price: 35800
+    description: "标准五星酒店，含中文向导与专车，科伦坡/康提当地五星基础房型"
+    hotelTier: "标准五星"
+  - name: "鎏光定制"
+    price: 49800
+    description: "Ceylon Tea Trails 茶园套房+Amanwella 海景套房+Galle Face Hotel 海景房，含私人向导"
+    hotelTier: "奢华五星"
+  - name: "鎏光远征"
+    price: 67700
+    description: "雅拉私属猎游+狮子岩开园前私访+茶园火车独享包厢，含全行程管家"
+    hotelTier: "顶级野奢"
 subtitle: "从狮子岩的空中宫殿到康提的佛牙寺，从茶园的翡翠山丘到加勒古堡的荷兰城墙——在印度洋的泪滴之岛上，发现锡兰的微笑"
 highlights:
   - "狮子岩日出——在200米高的空中宫殿之巅看太阳从丛林和湖泊之间升起，2000年前的壁画少女在岩壁上微笑"

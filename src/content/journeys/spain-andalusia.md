@@ -8,6 +8,27 @@ priceLevel: "鎏光臻选"
 type: "文化深度"
 season: "4月-6月 / 9月-10月（最佳季节）"
 featured: true
+heroImage: "/images/journeys/spain-andalusia/spain-andalusia-1.jpg"
+gallery:
+  - "/images/journeys/spain-andalusia/spain-andalusia-1.jpg"
+  - "/images/journeys/spain-andalusia/spain-andalusia-2.jpg"
+  - "/images/journeys/spain-andalusia/spain-andalusia-3.jpg"
+  - "/images/journeys/spain-andalusia/spain-andalusia-4.jpg"
+  - "/images/journeys/spain-andalusia/spain-andalusia-5.jpg"
+  - "/images/journeys/spain-andalusia/spain-andalusia-6.jpg"
+packages:
+  - name: "鎏光臻选"
+    price: 47500
+    description: "安达卢西亚精选五星酒店，含中文向导与阿尔罕布拉宫私属导览"
+    hotelTier: "标准五星"
+  - name: "鎏光定制"
+    price: 66000
+    description: "Alfonso XIII + Parador de Ronda + Finca Cortesin级别，含私人向导与敞篷自驾"
+    hotelTier: "奢华五星"
+  - name: "鎏光远征"
+    price: 89800
+    description: "Alfonso XIII皇家套房+龙达悬崖套房+Finca Cortesin泳池别墅，含全程管家与独家弗拉明戈私场"
+    hotelTier: "顶级野奢"
 subtitle: "从塞维利亚的弗拉明戈到龙达的悬崖之上，从格拉纳达的阿拉伯宫殿到太阳海岸的白色村庄——这是最热情的欧洲，也是最精致的安达卢西亚"
 highlights:
   - "阿尔罕布拉宫的日落——在纳斯里德王朝的狮子庭院中，看夕阳把阿拉伯花纹和摩尔式拱门染成金色"

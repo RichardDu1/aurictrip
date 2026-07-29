@@ -8,6 +8,27 @@ priceLevel: "鎏光定制"
 type: "文化深度"
 season: "10月-次年4月（避开夏季酷暑）"
 featured: false
+heroImage: "/images/journeys/morocco-sahara/morocco-sahara-1.jpg"
+gallery:
+  - "/images/journeys/morocco-sahara/morocco-sahara-1.jpg"
+  - "/images/journeys/morocco-sahara/morocco-sahara-2.jpg"
+  - "/images/journeys/morocco-sahara/morocco-sahara-3.jpg"
+  - "/images/journeys/morocco-sahara/morocco-sahara-4.jpg"
+  - "/images/journeys/morocco-sahara/morocco-sahara-5.jpg"
+  - "/images/journeys/morocco-sahara/morocco-sahara-6.jpg"
+packages:
+  - name: "鎏光臻选"
+    price: 49500
+    description: "标准五星Riad与精品沙漠营地，含中文向导与专车"
+    hotelTier: "精品五星"
+  - name: "鎏光定制"
+    price: 68800
+    description: "Royal Mansour Marrakech级别宫殿酒店+Scarabeo Camp沙漠营地，含私人向导"
+    hotelTier: "宫殿级五星"
+  - name: "鎏光远征"
+    price: 93500
+    description: "Royal Mansour皇家Riad升级+私属撒哈拉豪华营地，含全行程管家与独家柏柏尔体验"
+    hotelTier: "顶级野奢"
 subtitle: "从马拉喀什的迷宫集市到撒哈拉的星空穹顶，穿越一千零一夜的梦境"
 highlights:
   - "入住马拉喀什皇家曼苏尔（Royal Mansour）——国王的迎宾馆"

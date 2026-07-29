@@ -8,6 +8,27 @@ priceLevel: "鎏光定制"
 type: "文化深度"
 season: "4月-6月 / 9月-10月（最佳季节）"
 featured: true
+heroImage: "/images/journeys/portugal-discover/portugal-discover-1.jpg"
+gallery:
+  - "/images/journeys/portugal-discover/portugal-discover-1.jpg"
+  - "/images/journeys/portugal-discover/portugal-discover-2.jpg"
+  - "/images/journeys/portugal-discover/portugal-discover-3.jpg"
+  - "/images/journeys/portugal-discover/portugal-discover-4.jpg"
+  - "/images/journeys/portugal-discover/portugal-discover-5.jpg"
+  - "/images/journeys/portugal-discover/portugal-discover-6.jpg"
+packages:
+  - name: "鎏光臻选"
+    price: 43900
+    description: "标准五星酒店，含中文向导与全程专车"
+    hotelTier: "标准五星"
+  - name: "鎏光定制"
+    price: 61000
+    description: "Four Seasons Ritz Lisbon + Six Senses Douro Valley级别，含私人向导与私人游艇"
+    hotelTier: "奢华五星"
+  - name: "鎏光远征"
+    price: 83000
+    description: "升级São Lourenço do Barrocal私属庄园全包，含独家暗夜星空与贝伦蛋挞私坊通道"
+    hotelTier: "顶级庄园"
 subtitle: "从里斯本的有轨电车到杜罗河谷的葡萄园，从辛特拉的山中宫殿到阿连特茹的星空——这是欧洲最后一个'未被发现'的宝藏"
 highlights:
   - "里斯本28路电车私乘——租下整辆百年老电车穿行于Alfama的鹅卵石道路，法多的旋律从街角的酒吧中飘出"

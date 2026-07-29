@@ -1,16 +1,27 @@
 ---
+interface Package {
+  name: string;
+  price: number;
+  description: string;
+  hotelTier?: string;
+}
+
 interface Props {
   price: number;
+  packages?: Package[];
   contactUrl?: string;
 }
 
-const { price, contactUrl = "/contact" } = Astro.props;
+const { price, packages = [], contactUrl = "/contact" } = Astro.props;
+const hasPackages = packages.length >= 2;
+const packageName = hasPackages ? [...packages].sort((a, b) => a.price - b.price)[0].name : "";
 ---
 
 <div class="floating-cta" id="floating-cta">
   <div class="floating-cta-inner">
     <div class="floating-cta-left">
-      <span class="floating-cta-price">¥{price.toLocaleString()}<span class="floating-cta-suffix">起/人</span></span>
+      <span class="floating-cta-price" data-cta-price>¥{price.toLocaleString()}<span class="floating-cta-suffix">起/人</span></span>
+      {hasPackages && <span class="floating-cta-pkg" data-cta-pkg>{packageName}</span>}
     </div>
     <a href={contactUrl} class="floating-cta-btn">与顾问对话 &rarr;</a>
   </div>
@@ -31,6 +42,19 @@ const { price, contactUrl = "/contact" } = Astro.props;
     sentinel.style.height = "1px";
     document.querySelector("main")?.appendChild(sentinel);
     observer.observe(sentinel);
+
+    // 套餐切换联动
+    const priceEl = bar.querySelector<HTMLElement>("[data-cta-price]");
+    const pkgEl = bar.querySelector<HTMLElement>("[data-cta-pkg]");
+    window.addEventListener("package-change", (e: Event) => {
+      const detail = (e as CustomEvent).detail;
+      if (priceEl && typeof detail.price === "number") {
+        priceEl.innerHTML = `¥${detail.price.toLocaleString()}<span class="floating-cta-suffix">起/人</span>`;
+      }
+      if (pkgEl && detail.name) {
+        pkgEl.textContent = detail.name;
+      }
+    });
   }
 </script>
 
@@ -63,6 +87,13 @@ const { price, contactUrl = "/contact" } = Astro.props;
     font-family: var(--font-price);
     font-size: 1.25rem;
     color: var(--color-text-primary);
+  }
+  .floating-cta-pkg {
+    display: block;
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+    color: var(--color-brand);
+    margin-top: 0.1rem;
   }
   .floating-cta-suffix {
     font-family: var(--font-body);

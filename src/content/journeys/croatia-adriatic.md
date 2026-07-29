@@ -8,6 +8,27 @@ priceLevel: "鎏光定制"
 type: "文化深度"
 season: "5月-6月 / 9月-10月（避开暑期人潮）"
 featured: false
+heroImage: "/images/journeys/croatia-adriatic/croatia-adriatic-1.jpg"
+gallery:
+  - "/images/journeys/croatia-adriatic/croatia-adriatic-1.jpg"
+  - "/images/journeys/croatia-adriatic/croatia-adriatic-2.jpg"
+  - "/images/journeys/croatia-adriatic/croatia-adriatic-3.jpg"
+  - "/images/journeys/croatia-adriatic/croatia-adriatic-4.jpg"
+  - "/images/journeys/croatia-adriatic/croatia-adriatic-5.jpg"
+  - "/images/journeys/croatia-adriatic/croatia-adriatic-6.jpg"
+packages:
+  - name: "鎏光臻选"
+    price: 42100
+    description: "标准五星酒店，含中文向导与专车"
+    hotelTier: "标准五星"
+  - name: "鎏光定制"
+    price: 58500
+    description: "Hotel Excelsior海景房 + Palace Elisabeth海景套房级别，含蓝洞快艇私访"
+    hotelTier: "奢华五星"
+  - name: "鎏光远征"
+    price: 79600
+    description: "入住戴克里先宫Hotel Vestibul Palace宫殿套房，含城墙私属导览与全行程管家"
+    hotelTier: "顶级宫殿"
 subtitle: "从杜布罗夫尼克的城墙到赫瓦尔岛的薰衣草，从斯普利特的罗马宫殿到十六湖的翡翠瀑布——地中海上被遗忘的最后一块宝石"
 highlights:
   - "杜布罗夫尼克城墙日落——在君临城的古老城墙上俯瞰亚得里亚海的金色落日，史塔克家族和兰尼斯特家族的故事在石头间回响"

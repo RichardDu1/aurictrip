@@ -8,6 +8,27 @@ priceLevel: "鎏光定制"
 type: "文化深度"
 season: "11月-次年4月（旱季最佳）"
 featured: false
+heroImage: "/images/journeys/mexico-maya/mexico-maya-1.jpg"
+gallery:
+  - "/images/journeys/mexico-maya/mexico-maya-1.jpg"
+  - "/images/journeys/mexico-maya/mexico-maya-2.jpg"
+  - "/images/journeys/mexico-maya/mexico-maya-3.jpg"
+  - "/images/journeys/mexico-maya/mexico-maya-4.jpg"
+  - "/images/journeys/mexico-maya/mexico-maya-5.jpg"
+  - "/images/journeys/mexico-maya/mexico-maya-6.jpg"
+packages:
+  - name: "鎏光臻选"
+    price: 42100
+    description: "标准五星酒店+Chablé Yucatán基础房型，含中文向导与专车"
+    hotelTier: "国际五星"
+  - name: "鎏光定制"
+    price: 58500
+    description: "Four Seasons Mexico City庭院套房+Chablé Yucatán泳池别墅+Rosewood Mayakoba泻湖套房，含私人向导"
+    hotelTier: "奢华五星"
+  - name: "鎏光远征"
+    price: 79600
+    description: "Chablé Yucatán顶级庄园别墅+奇琴伊察独家清早私访+天然井私属体验，含全行程管家"
+    hotelTier: "顶级庄园"
 subtitle: "从墨西哥城的弗里达故居到尤卡坦半岛的玛雅金字塔，从梅里达的殖民街巷到加勒比海的天然井——在古老文明与加勒比海风之间"
 highlights:
   - "特奥蒂瓦坎热气球日出——在2000年前的金字塔上空飘过，太阳在太阳金字塔和月亮金字塔之间升起"

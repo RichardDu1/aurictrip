@@ -8,6 +8,27 @@ priceLevel: "鎏光定制"
 type: "美食美酒"
 season: "全年皆可（热带气候，室内空调）"
 featured: false
+heroImage: "/images/journeys/singapore-gourmet/singapore-gourmet-1.jpg"
+gallery:
+  - "/images/journeys/singapore-gourmet/singapore-gourmet-1.jpg"
+  - "/images/journeys/singapore-gourmet/singapore-gourmet-2.jpg"
+  - "/images/journeys/singapore-gourmet/singapore-gourmet-3.jpg"
+  - "/images/journeys/singapore-gourmet/singapore-gourmet-4.jpg"
+  - "/images/journeys/singapore-gourmet/singapore-gourmet-5.jpg"
+  - "/images/journeys/singapore-gourmet/singapore-gourmet-6.jpg"
+packages:
+  - name: "鎏光臻选"
+    price: 25900
+    description: "标准五星酒店，含中文向导与专车，滨海湾五星基础房型"
+    hotelTier: "标准五星"
+  - name: "鎏光定制"
+    price: 36000
+    description: "Marina Bay Sands 城市天际线房+Raffles Hotel 殖民套房，含私人美食博主导览"
+    hotelTier: "奢华五星"
+  - name: "鎏光远征"
+    price: 49000
+    description: "金沙空中泳池独享时段+莱佛士长吧原版新加坡司令私享+全行程管家"
+    hotelTier: "顶级定制"
 subtitle: "在滨海湾的空中无边泳池中俯瞰城市天际线，在米其林小贩中心的烟火气中品尝南洋最顶级的街头美食——这是一座未来之城，也是一场味觉的盛宴"
 highlights:
   - "滨海湾金沙空中泳池——在57层楼高的无边泳池中，俯瞰新加坡的天际线和马六甲海峡"

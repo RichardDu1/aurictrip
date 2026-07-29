@@ -8,6 +8,27 @@ priceLevel: "鎏光远征"
 type: "极地探索"
 season: "10月-次年3月（极光季）"
 featured: false
+heroImage: "/images/journeys/norway-lofoten/norway-lofoten-1.jpg"
+gallery:
+  - "/images/journeys/norway-lofoten/norway-lofoten-1.jpg"
+  - "/images/journeys/norway-lofoten/norway-lofoten-2.jpg"
+  - "/images/journeys/norway-lofoten/norway-lofoten-3.jpg"
+  - "/images/journeys/norway-lofoten/norway-lofoten-4.jpg"
+  - "/images/journeys/norway-lofoten/norway-lofoten-5.jpg"
+  - "/images/journeys/norway-lofoten/norway-lofoten-6.jpg"
+packages:
+  - name: "鎏光臻选"
+    price: 121500
+    description: "渔夫木屋+高端酒店，含极光向导与摄影师随行"
+    hotelTier: "精品木屋"
+  - name: "鎏光定制"
+    price: 168800
+    description: "Eliassen Rorbuer峡湾景木屋 + Thon Hotel Svolvær海港套房级别，含观鲸与雪鞋徒步"
+    hotelTier: "奢华木屋"
+  - name: "鎏光远征"
+    price: 229500
+    description: "独家极光追猎私属行程 + 专业摄影师全程跟拍，含全行程管家"
+    hotelTier: "顶级远征"
 subtitle: "北极圈内的光影盛宴"
 highlights:
   - "在世界最美群岛追猎北极光"

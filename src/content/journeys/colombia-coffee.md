@@ -8,6 +8,27 @@ priceLevel: "鎏光定制"
 type: "文化深度"
 season: "12月-3月 / 7月-8月（旱季最佳）"
 featured: false
+heroImage: "/images/journeys/colombia-coffee/colombia-coffee-1.jpg"
+gallery:
+  - "/images/journeys/colombia-coffee/colombia-coffee-1.jpg"
+  - "/images/journeys/colombia-coffee/colombia-coffee-2.jpg"
+  - "/images/journeys/colombia-coffee/colombia-coffee-3.jpg"
+  - "/images/journeys/colombia-coffee/colombia-coffee-4.jpg"
+  - "/images/journeys/colombia-coffee/colombia-coffee-5.jpg"
+  - "/images/journeys/colombia-coffee/colombia-coffee-6.jpg"
+packages:
+  - name: "鎏光臻选"
+    price: 38500
+    description: "标准五星酒店，含中文向导与专车，卡塔赫纳与咖啡三角区经典行程"
+    hotelTier: "标准五星"
+  - name: "鎏光定制"
+    price: 53500
+    description: "Sofitel Legend Santa Clara 殖民套房 + Hacienda Bambusa 庄园房 + The Charlee 城市套房，含私人向导"
+    hotelTier: "精品庄园"
+  - name: "鎏光远征"
+    price: 72800
+    description: "罗萨里奥群岛私人快艇+蜡棕榈森林独家徒步+Comuna 13 深度导览，含全行程管家"
+    hotelTier: "顶级野奢"
 subtitle: "从卡塔赫纳的殖民色彩到咖啡三角区的翡翠山丘，从麦德林的永恒春天到加勒比海的无人沙滩——南美洲最令人惊喜的目的地"
 highlights:
   - "卡塔赫纳老城马车私游——搭乘白色马车穿行于17世纪的殖民街巷，彩色房子和九重葛在老城墙的阴影中盛开"

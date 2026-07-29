@@ -8,6 +8,27 @@ priceLevel: "鎏光臻选"
 type: "野奢自然"
 season: "全年（夏季午夜太阳，冬季极光）"
 featured: false
+heroImage: "/images/journeys/iceland-ring-road/iceland-ring-road-1.jpg"
+gallery:
+  - "/images/journeys/iceland-ring-road/iceland-ring-road-1.jpg"
+  - "/images/journeys/iceland-ring-road/iceland-ring-road-2.jpg"
+  - "/images/journeys/iceland-ring-road/iceland-ring-road-3.jpg"
+  - "/images/journeys/iceland-ring-road/iceland-ring-road-4.jpg"
+  - "/images/journeys/iceland-ring-road/iceland-ring-road-5.jpg"
+  - "/images/journeys/iceland-ring-road/iceland-ring-road-6.jpg"
+packages:
+  - name: "鎏光臻选"
+    price: 88200
+    description: "设计酒店+精品酒店，含四驱越野车与司机向导"
+    hotelTier: "设计精品"
+  - name: "鎏光定制"
+    price: 122500
+    description: "ION Adventure Hotel极光景观房 + Hotel Rangá天文台套房级别，含私人温泉体验"
+    hotelTier: "奢华设计"
+  - name: "鎏光远征"
+    price: 166600
+    description: "蓝冰洞/火山内部独家探秘 + 极光叫醒私属服务，含全行程管家"
+    hotelTier: "顶级野奢"
 subtitle: "环冰岛一号公路，追寻地球最原始的风景"
 highlights:
   - "完整环岛，打卡所有经典+秘境瀑布"

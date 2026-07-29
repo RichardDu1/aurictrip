@@ -8,6 +8,27 @@ priceLevel: "鎏光臻选"
 type: "里程碑时刻"
 season: "11-4月（旱季）"
 featured: false
+heroImage: "/images/journeys/maldives-honeymoon/maldives-honeymoon-1.jpg"
+gallery:
+  - "/images/journeys/maldives-honeymoon/maldives-honeymoon-1.jpg"
+  - "/images/journeys/maldives-honeymoon/maldives-honeymoon-2.jpg"
+  - "/images/journeys/maldives-honeymoon/maldives-honeymoon-3.jpg"
+  - "/images/journeys/maldives-honeymoon/maldives-honeymoon-4.jpg"
+  - "/images/journeys/maldives-honeymoon/maldives-honeymoon-5.jpg"
+  - "/images/journeys/maldives-honeymoon/maldives-honeymoon-6.jpg"
+packages:
+  - name: "鎏光臻选"
+    price: 79200
+    description: "标准五星水上别墅，含中文向导与私人管家，沙洲与浮潜经典体验"
+    hotelTier: "标准五星"
+  - name: "鎏光定制"
+    price: 110000
+    description: "Soneva Fushi 带滑梯水上别墅 + 海底餐厅 + 私人沙洲，含私人向导"
+    hotelTier: "奢华五星"
+  - name: "鎏光远征"
+    price: 149600
+    description: "私人包岛+私人水上飞机+玻璃底平台海底烛光晚宴+海洋生物学家随行，含全行程管家"
+    hotelTier: "顶级野奢"
 ---
 
 ## 马尔代夫 · 印度洋上的二人世界

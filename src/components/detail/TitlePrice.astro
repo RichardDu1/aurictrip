@@ -1,4 +1,11 @@
 ---
+interface Package {
+  name: string;
+  price: number;
+  description: string;
+  hotelTier?: string;
+}
+
 interface Props {
   destination: string;
   subtitle?: string;
@@ -7,12 +14,17 @@ interface Props {
   nights: number;
   priceLevel: string;
   season: string;
+  packages?: Package[];
 }
 
-const { destination, subtitle, price, days, nights, priceLevel, season } = Astro.props;
+const { destination, subtitle, price, days, nights, priceLevel, season, packages = [] } = Astro.props;
+const hasPackages = packages.length >= 2;
+// 套餐按价格升序排列，第一档为默认选中
+const sortedPackages = hasPackages ? [...packages].sort((a, b) => a.price - b.price) : [];
+const displayPrice = hasPackages ? sortedPackages[0].price : price;
 ---
 
-<div class="title-price">
+<div class="title-price" data-title-price>
   <div class="tp-tag">{priceLevel}</div>
   <h1 class="tp-title">{destination}</h1>
   {subtitle && <p class="tp-subtitle">{subtitle}</p>}
@@ -21,8 +33,31 @@ const { destination, subtitle, price, days, nights, priceLevel, season } = Astro
     <span class="tp-sep">·</span>
     <span>最佳季节：{season}</span>
   </div>
-  <p class="tp-price">¥{price.toLocaleString()}<span class="tp-price-suffix">起/人</span></p>
-  <p class="tp-disclaimer">参考价，将根据出行人数、季节和定制需求有所调整</p>
+
+  {hasPackages ? (
+    <div class="tp-packages" data-packages>
+      {sortedPackages.map((pkg, i) => (
+        <button
+          type="button"
+          class={`tp-package${i === 0 ? " is-active" : ""}`}
+          data-package
+          data-price={String(pkg.price)}
+          data-name={pkg.name}
+        >
+          <span class="tp-package-name">{pkg.name}</span>
+          <span class="tp-package-price">¥{pkg.price.toLocaleString()}</span>
+          {pkg.hotelTier && <span class="tp-package-tier">{pkg.hotelTier}</span>}
+          <span class="tp-package-desc">{pkg.description}</span>
+        </button>
+      ))}
+      <p class="tp-disclaimer">参考起价，2人同行核算。将根据出行人数、季节和定制需求有所调整</p>
+    </div>
+  ) : (
+    <>
+      <p class="tp-price">¥{displayPrice.toLocaleString()}<span class="tp-price-suffix">起/人</span></p>
+      <p class="tp-disclaimer">参考价，将根据出行人数、季节和定制需求有所调整</p>
+    </>
+  )}
 </div>
 
 <style>
@@ -77,5 +112,83 @@ const { destination, subtitle, price, days, nights, priceLevel, season } = Astro
   .tp-disclaimer {
     font-size: 0.75rem;
     color: var(--color-text-muted);
+    margin-top: 0.75rem;
+  }
+
+  .tp-packages {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1rem;
+    margin-top: 0.5rem;
+  }
+  .tp-package {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.3rem;
+    padding: 1.25rem;
+    border: 1px solid var(--color-border, rgba(0,0,0,0.08));
+    background: var(--color-bg-card);
+    cursor: pointer;
+    text-align: left;
+    transition: border-color 0.2s, background 0.2s;
+    font-family: var(--font-body);
+  }
+  .tp-package:hover {
+    border-color: var(--color-brand);
+  }
+  .tp-package.is-active {
+    border-color: var(--color-brand);
+    background: var(--color-bg-warm);
+  }
+  .tp-package-name {
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    color: var(--color-brand);
+    font-weight: 600;
+  }
+  .tp-package-price {
+    font-family: var(--font-price);
+    font-size: 1.35rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+  }
+  .tp-package-tier {
+    font-size: 0.7rem;
+    color: var(--color-text-muted);
+    letter-spacing: 0.03em;
+  }
+  .tp-package-desc {
+    font-size: 0.78rem;
+    color: var(--color-text-secondary);
+    line-height: 1.5;
+    margin-top: 0.25rem;
+  }
+
+  @media (max-width: 768px) {
+    .tp-packages {
+      grid-template-columns: 1fr;
+    }
   }
 </style>
+
+<script>
+  function initTitlePrice(root: HTMLElement) {
+    const packages = root.querySelectorAll<HTMLButtonElement>("[data-package]");
+    if (packages.length === 0) return;
+
+    packages.forEach((pkg) => {
+      pkg.addEventListener("click", () => {
+        packages.forEach((p) => p.classList.remove("is-active"));
+        pkg.classList.add("is-active");
+        const price = Number(pkg.dataset.price);
+        const name = pkg.dataset.name ?? "";
+        window.dispatchEvent(
+          new CustomEvent("package-change", { detail: { price, name } })
+        );
+      });
+    });
+  }
+
+  document.querySelectorAll<HTMLElement>("[data-title-price]").forEach(initTitlePrice);
+</script>

@@ -8,6 +8,27 @@ priceLevel: "鎏光臻选"
 type: "文化深度"
 season: "全年（春樱秋枫尤佳）"
 featured: true
+heroImage: "/images/journeys/kyoto-nara/kyoto-nara-1.jpg"
+gallery:
+  - "/images/journeys/kyoto-nara/kyoto-nara-1.jpg"
+  - "/images/journeys/kyoto-nara/kyoto-nara-2.jpg"
+  - "/images/journeys/kyoto-nara/kyoto-nara-3.jpg"
+  - "/images/journeys/kyoto-nara/kyoto-nara-4.jpg"
+  - "/images/journeys/kyoto-nara/kyoto-nara-5.jpg"
+  - "/images/journeys/kyoto-nara/kyoto-nara-6.jpg"
+packages:
+  - name: "鎏光臻选"
+    price: 43200
+    description: "标准五星旅馆，含中文向导与专车，京都/奈良精品旅馆基础房型"
+    hotelTier: "精品旅馆"
+  - name: "鎏光定制"
+    price: 60000
+    description: "俵屋三百町屋+奈良饭店明治洋馆，含里千家茶道私人稽古与私人向导"
+    hotelTier: "奢华旅馆"
+  - name: "鎏光远征"
+    price: 81600
+    description: "大德寺非公开塔头独享参拜+比叡山延历寺私访+全行程管家"
+    hotelTier: "顶级定制"
 ---
 
 ## 京都奈良 · 茶道源流与千年古寺巡礼

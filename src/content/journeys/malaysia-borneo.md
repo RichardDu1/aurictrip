@@ -8,6 +8,27 @@ priceLevel: "鎏光定制"
 type: "野奢自然"
 season: "3月-10月（东海岸）/ 12月-3月（西海岸）"
 featured: false
+heroImage: "/images/journeys/malaysia-borneo/malaysia-borneo-1.jpg"
+gallery:
+  - "/images/journeys/malaysia-borneo/malaysia-borneo-1.jpg"
+  - "/images/journeys/malaysia-borneo/malaysia-borneo-2.jpg"
+  - "/images/journeys/malaysia-borneo/malaysia-borneo-3.jpg"
+  - "/images/journeys/malaysia-borneo/malaysia-borneo-4.jpg"
+  - "/images/journeys/malaysia-borneo/malaysia-borneo-5.jpg"
+  - "/images/journeys/malaysia-borneo/malaysia-borneo-6.jpg"
+packages:
+  - name: "鎏光臻选"
+    price: 35800
+    description: "标准五星酒店，含中文向导与专车，兰卡威/槟城当地五星基础房型"
+    hotelTier: "标准五星"
+  - name: "鎏光定制"
+    price: 49800
+    description: "The Datai Langkawi 雨林别墅+E&O Hotel 海景套房+Four Seasons KL 双子塔景房，含私人向导"
+    hotelTier: "奢华五星"
+  - name: "鎏光远征"
+    price: 67700
+    description: "兰卡威私人游艇包船+姆鲁山沙捞越厅独家探险+西必洛人猿私访，含全行程管家"
+    hotelTier: "顶级野奢"
 subtitle: "从婆罗洲的热带雨林到兰卡威的翡翠海域，从槟城的街头美食到吉隆坡的双子塔——在马来西亚，发现亚洲最多元的国度"
 highlights:
   - "婆罗洲猩猩保护区——在西必洛人猿保护中心，看红毛猩猩从树冠上荡下，这是亚洲唯一能看到野生类人猿的地方"

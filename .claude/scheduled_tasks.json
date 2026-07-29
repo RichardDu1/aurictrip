@@ -1,14 +1,3 @@
 {
-  "tasks": [
-    {
-      "id": "6d348d54",
-      "cron": "*/10 * * * *",
-      "prompt": "AuricTrip competitor scraping heartbeat. Continue scraping competitor product catalogs (Black Tomato, Scott Dunn, Kuoni, A&K, 赞那度, 鸿鹄逸游). Focus on deep individual trip pages: extract trip names, durations, prices, hotels used, day-by-day highlights, and unique selling points. Organize into docs/competitor-data/ directory. Then create Tier 1 journey MDX files (12 priority destinations: Italy-Amalfi, Japan-Tokyo, France-Paris, Greece-Athens, Thailand, Indonesia-Bali, Spain, Portugal, Kenya, South Africa, Australia, Mexico) with full Chinese-language frontmatter and day-by-day itineraries. Auto-push after each batch of 3-5 journeys. Keep working until all 3 tiers complete (33 new journeys).",
-      "createdAt": 1785238234009,
-      "lastFiredAt": 1785240980279,
-      "recurring": true,
-      "createdBySessionId": "9ca4edba-96cf-499a-952d-ad8ba2b3b3cc",
-      "createdByPid": 18680
-    }
-  ]
+  "tasks": []
 }

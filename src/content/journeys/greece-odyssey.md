@@ -8,6 +8,27 @@ priceLevel: "鎏光臻选"
 type: "文化深度"
 season: "4月-6月 / 9月-10月（避开暑期人潮和高温）"
 featured: false
+heroImage: "/images/journeys/greece-odyssey/greece-odyssey-1.jpg"
+gallery:
+  - "/images/journeys/greece-odyssey/greece-odyssey-1.jpg"
+  - "/images/journeys/greece-odyssey/greece-odyssey-2.jpg"
+  - "/images/journeys/greece-odyssey/greece-odyssey-3.jpg"
+  - "/images/journeys/greece-odyssey/greece-odyssey-4.jpg"
+  - "/images/journeys/greece-odyssey/greece-odyssey-5.jpg"
+  - "/images/journeys/greece-odyssey/greece-odyssey-6.jpg"
+packages:
+  - name: "鎏光臻选"
+    price: 52900
+    description: "标准五星酒店，含中文向导与专车"
+    hotelTier: "标准五星"
+  - name: "鎏光定制"
+    price: 73500
+    description: "Hotel Grande Bretagne卫城景房 + Domes Noruz Chania海景套房级别，含私人帆船"
+    hotelTier: "奢华五星"
+  - name: "鎏光远征"
+    price: 100000
+    description: "雅典卫城关闭前私访 + 科孚岛私人帆船独家海湾，含全行程管家"
+    hotelTier: "顶级私享"
 subtitle: "从雅典卫城的金色落日到克里特岛的米诺斯迷宫，从科孚岛的威尼斯街巷到迈泰奥拉的空中修道院——在诸神的故乡寻找西方文明的根"
 highlights:
   - "雅典卫城落日私访——在向公众关闭前的一小时私有时段中，在帕特农神庙前看太阳沉入爱琴海"

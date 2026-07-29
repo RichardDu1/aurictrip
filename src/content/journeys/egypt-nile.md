@@ -8,6 +8,27 @@ priceLevel: "鎏光臻选"
 type: "文化深度"
 season: "10月-次年4月（避开酷暑）"
 featured: false
+heroImage: "/images/journeys/egypt-nile/egypt-nile-1.jpg"
+gallery:
+  - "/images/journeys/egypt-nile/egypt-nile-1.jpg"
+  - "/images/journeys/egypt-nile/egypt-nile-2.jpg"
+  - "/images/journeys/egypt-nile/egypt-nile-3.jpg"
+  - "/images/journeys/egypt-nile/egypt-nile-4.jpg"
+  - "/images/journeys/egypt-nile/egypt-nile-5.jpg"
+  - "/images/journeys/egypt-nile/egypt-nile-6.jpg"
+packages:
+  - name: "鎏光臻选"
+    price: 58500
+    description: "The Nile Ritz-Carlton标准五星+共享Dahabiya帆船，含中文埃及学家向导"
+    hotelTier: "国际五星"
+  - name: "鎏光定制"
+    price: 81300
+    description: "Sofitel Legend Old Cataract宫殿酒店+私人Dahabiya帆船包船，含私人向导"
+    hotelTier: "传奇宫殿五星"
+  - name: "鎏光远征"
+    price: 110500
+    description: "私人Dahabiya帆船整船包租+金字塔独家日出通道，含全行程管家与考古专家陪同"
+    hotelTier: "顶级私属"
 subtitle: "乘坐尼罗河私人Dahabiya帆船，在法老的土地上开启一段尼罗河上的慢旅行"
 highlights:
   - "私人Dahabiya帆船——尼罗河上仅有的10艘传统木制帆船之一"

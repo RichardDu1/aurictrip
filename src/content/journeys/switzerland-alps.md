@@ -8,6 +8,27 @@ priceLevel: "鎏光臻选"
 type: "私人定制"
 season: "12-3月（滑雪季）/ 6-9月（徒步季）"
 featured: false
+heroImage: "/images/journeys/switzerland-alps/switzerland-alps-1.jpg"
+gallery:
+  - "/images/journeys/switzerland-alps/switzerland-alps-1.jpg"
+  - "/images/journeys/switzerland-alps/switzerland-alps-2.jpg"
+  - "/images/journeys/switzerland-alps/switzerland-alps-3.jpg"
+  - "/images/journeys/switzerland-alps/switzerland-alps-4.jpg"
+  - "/images/journeys/switzerland-alps/switzerland-alps-5.jpg"
+  - "/images/journeys/switzerland-alps/switzerland-alps-6.jpg"
+packages:
+  - name: "鎏光臻选"
+    price: 64800
+    description: "标准五星传奇酒店，含中文向导与专车，冰川快车一等座"
+    hotelTier: "传奇五星"
+  - name: "鎏光定制"
+    price: 90000
+    description: "Badrutt's Palace 豪华套房 + The Omnia 山景房，含私人滑雪/徒步向导"
+    hotelTier: "奢华五星"
+  - name: "鎏光远征"
+    price: 122400
+    description: "马特洪峰私属木屋 + 直升机转场，含全行程私人管家与独家高山体验"
+    hotelTier: "顶级私属"
 subtitle: "在阿尔卑斯之巅，体验欧洲贵族的冬日传统"
 highlights:
   - "圣莫里茨 + 采尔马特双镇连住，马特洪峰近在窗前"

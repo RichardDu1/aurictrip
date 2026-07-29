@@ -8,6 +8,27 @@ priceLevel: "鎏光远征"
 type: "野奢自然"
 season: "4月-11月（旱季最佳，狐猴活跃，道路可通过）"
 featured: false
+heroImage: "/images/journeys/madagascar-ark/madagascar-ark-1.jpg"
+gallery:
+  - "/images/journeys/madagascar-ark/madagascar-ark-1.jpg"
+  - "/images/journeys/madagascar-ark/madagascar-ark-2.jpg"
+  - "/images/journeys/madagascar-ark/madagascar-ark-3.jpg"
+  - "/images/journeys/madagascar-ark/madagascar-ark-4.jpg"
+  - "/images/journeys/madagascar-ark/madagascar-ark-5.jpg"
+  - "/images/journeys/madagascar-ark/madagascar-ark-6.jpg"
+packages:
+  - name: "鎏光臻选"
+    price: 59200
+    description: "Anjajavy le Lodge经典自然旅馆+精选雨林旅馆，含中文向导与专车"
+    hotelTier: "精品生态"
+  - name: "鎏光定制"
+    price: 82300
+    description: "Anjajavy le Lodge升级+Miavana私人岛屿别墅，含私人向导与狐猴追踪专家"
+    hotelTier: "顶级海岛度假村"
+  - name: "鎏光远征"
+    price: 111900
+    description: "Miavana私人岛屿整岛包租+Tsingy独家穿越通道+鲸鲨私船共游，含全行程管家"
+    hotelTier: "顶级私属"
 subtitle: "在猢狲树上日落，在Tsingy的石灰岩刀锋中穿越，在Nosy Be的印度洋中与鲸鲨共游——在马达加斯加，踏上8000万年前从非洲大陆分离的方舟，地球上80%的物种只生活在这里"
 highlights:
   - "狐猴追踪——在Andasibe-Mantadia雨林中，Indri（最大的狐猴）在树冠上歌唱——它们的叫声可以在3公里外听到，听起像鲸歌撞上了森林"

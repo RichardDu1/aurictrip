@@ -8,6 +8,27 @@ priceLevel: "鎏光远征"
 type: "极地探索"
 season: "6-9月（夏季野生动物+午夜太阳）"
 featured: false
+heroImage: "/images/journeys/alaska-wilderness/alaska-wilderness-1.jpg"
+gallery:
+  - "/images/journeys/alaska-wilderness/alaska-wilderness-1.jpg"
+  - "/images/journeys/alaska-wilderness/alaska-wilderness-2.jpg"
+  - "/images/journeys/alaska-wilderness/alaska-wilderness-3.jpg"
+  - "/images/journeys/alaska-wilderness/alaska-wilderness-4.jpg"
+  - "/images/journeys/alaska-wilderness/alaska-wilderness-5.jpg"
+  - "/images/journeys/alaska-wilderness/alaska-wilderness-6.jpg"
+packages:
+  - name: "鎏光臻选"
+    price: 130500
+    description: "精选荒野小屋+私人小飞机接驳，含中文向导与棕熊观察向导"
+    hotelTier: "荒野小屋"
+  - name: "鎏光定制"
+    price: 181300
+    description: "Ultima Thule Lodge家庭荒野小屋升级+直升机冰川徒步，含私人向导"
+    hotelTier: "顶级荒野小屋"
+  - name: "鎏光远征"
+    price: 246500
+    description: "Sheldon Chalet冰川之上私属套房+Katmai独家熊瀑通道+私人飞机整程包租，含全行程管家"
+    hotelTier: "顶级野奢"
 subtitle: "在北美最后的荒野，近距离见证冰川崩解和棕熊捕食鲑鱼"
 highlights:
   - "Katmai国家公园——站在瀑布前看棕熊在空中叼住跃起的鲑鱼"

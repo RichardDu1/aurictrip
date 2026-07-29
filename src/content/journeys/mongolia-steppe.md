@@ -8,6 +8,27 @@ priceLevel: "鎏光远征"
 type: "野奢自然"
 season: "6月-9月（夏季，草原最绿的季节）"
 featured: false
+heroImage: "/images/journeys/mongolia-steppe/mongolia-steppe-1.jpg"
+gallery:
+  - "/images/journeys/mongolia-steppe/mongolia-steppe-1.jpg"
+  - "/images/journeys/mongolia-steppe/mongolia-steppe-2.jpg"
+  - "/images/journeys/mongolia-steppe/mongolia-steppe-3.jpg"
+  - "/images/journeys/mongolia-steppe/mongolia-steppe-4.jpg"
+  - "/images/journeys/mongolia-steppe/mongolia-steppe-5.jpg"
+  - "/images/journeys/mongolia-steppe/mongolia-steppe-6.jpg"
+packages:
+  - name: "鎏光臻选"
+    price: 41200
+    description: "HS Khaan Resort蒙古包套房+标准戈壁营地，含中文向导与越野车"
+    hotelTier: "精品草原营地"
+  - name: "鎏光定制"
+    price: 57300
+    description: "Three Camel Lodge顶级生态蒙古包+鹰猎人家族私访，含私人向导"
+    hotelTier: "野奢生态营地"
+  - name: "鎏光远征"
+    price: 77900
+    description: "阿尔泰山鹰猎人帐篷沉浸+戈壁驼队+那达慕专属席位，含全行程管家"
+    hotelTier: "顶级草原远征"
 subtitle: "在戈壁沙漠的星空下，在阿尔泰山鹰猎人的帐篷中，在成吉思汗的草原上——在蒙古，地平线是你唯一的边界"
 highlights:
   - "戈壁沙漠驼队——在金色沙丘之间骑双峰骆驼，在沙漠中的蒙古包营地看银河在你头顶炸开"

@@ -8,6 +8,27 @@ priceLevel: "鎏光臻选"
 type: "美食美酒"
 season: "6-8月（薰衣草花季）"
 featured: false
+heroImage: "/images/journeys/france-provence/france-provence-1.jpg"
+gallery:
+  - "/images/journeys/france-provence/france-provence-1.jpg"
+  - "/images/journeys/france-provence/france-provence-2.jpg"
+  - "/images/journeys/france-provence/france-provence-3.jpg"
+  - "/images/journeys/france-provence/france-provence-4.jpg"
+  - "/images/journeys/france-provence/france-provence-5.jpg"
+  - "/images/journeys/france-provence/france-provence-6.jpg"
+packages:
+  - name: "鎏光臻选"
+    price: 76500
+    description: "普罗旺斯精品石屋酒店，含中文向导与薰衣草花季专车"
+    hotelTier: "标准五星"
+  - name: "鎏光定制"
+    price: 106300
+    description: "La Bastide de Gordes + Hotel du Cap-Eden-Roc级别，含私人向导与圣特罗佩游艇"
+    hotelTier: "奢华五星"
+  - name: "鎏光远征"
+    price: 144500
+    description: "La Bastide悬崖皇宫套房+Cap-Eden-Roc传奇悬崖泳池，含全程管家与米其林三星私宴"
+    hotelTier: "顶级野奢"
 subtitle: "从薰衣草田到地中海蓝，一场感官的全面觉醒"
 highlights:
   - "薰衣草花季限定：穿行Valensole高原紫色海洋"

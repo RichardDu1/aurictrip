@@ -8,6 +8,27 @@ priceLevel: "鎏光定制"
 type: "文化深度"
 season: "4-5月、9-10月"
 featured: false
+heroImage: "/images/journeys/silk-road-heritage/silk-road-heritage-1.jpg"
+gallery:
+  - "/images/journeys/silk-road-heritage/silk-road-heritage-1.jpg"
+  - "/images/journeys/silk-road-heritage/silk-road-heritage-2.jpg"
+  - "/images/journeys/silk-road-heritage/silk-road-heritage-3.jpg"
+  - "/images/journeys/silk-road-heritage/silk-road-heritage-4.jpg"
+  - "/images/journeys/silk-road-heritage/silk-road-heritage-5.jpg"
+  - "/images/journeys/silk-road-heritage/silk-road-heritage-6.jpg"
+packages:
+  - name: "鎏光臻选"
+    price: 40500
+    description: "Hyatt Regency + 精品庭院酒店，含中文向导与专车"
+    hotelTier: "标准五星"
+  - name: "鎏光定制"
+    price: 56300
+    description: "Samarkand Regency + 经学院改造精品酒店，含私人向导与陶艺大师工坊"
+    hotelTier: "奢华五星"
+  - name: "鎏光远征"
+    price: 76500
+    description: "雷吉斯坦广场观景套房+经学院私属夜宿，含全程管家与当地人私宴"
+    hotelTier: "顶级野奢"
 ---
 
 ## 西域之光 · 重走丝绸之路

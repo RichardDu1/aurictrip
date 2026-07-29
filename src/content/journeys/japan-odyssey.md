@@ -8,6 +8,27 @@ priceLevel: "鎏光臻选"
 type: "文化深度"
 season: "3月-4月（樱花）/ 10月-11月（红叶）"
 featured: true
+heroImage: "/images/journeys/japan-odyssey/japan-odyssey-1.jpg"
+gallery:
+  - "/images/journeys/japan-odyssey/japan-odyssey-1.jpg"
+  - "/images/journeys/japan-odyssey/japan-odyssey-2.jpg"
+  - "/images/journeys/japan-odyssey/japan-odyssey-3.jpg"
+  - "/images/journeys/japan-odyssey/japan-odyssey-4.jpg"
+  - "/images/journeys/japan-odyssey/japan-odyssey-5.jpg"
+  - "/images/journeys/japan-odyssey/japan-odyssey-6.jpg"
+packages:
+  - name: "鎏光臻选"
+    price: 65500
+    description: "标准五星酒店，含中文向导与专车，东京/京都顶级五星基础房型"
+    hotelTier: "标准五星"
+  - name: "鎏光定制"
+    price: 91000
+    description: "安缦东京天际房+无何有温泉套房+虹夕诺雅京都河景房，含私人向导"
+    hotelTier: "奢华五星"
+  - name: "鎏光远征"
+    price: 123800
+    description: "兼六园开园前私访+岚山竹林清晨独享+直岛艺术岛独家导览，含全行程管家"
+    hotelTier: "顶级定制"
 subtitle: "从东京的霓虹到金泽的武士，从白川乡的合掌屋到京都的枯山水——这不仅是日本，这是老钱们私藏的日本"
 highlights:
   - "东京私人寿司大师课——在银座后巷的秘密寿司店中，三代目主厨教你捏出一贯完美的江户前寿司"

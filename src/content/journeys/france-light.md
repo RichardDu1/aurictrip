@@ -8,6 +8,27 @@ priceLevel: "鎏光臻选"
 type: "美食美酒"
 season: "5月-7月 / 9月-10月（巴黎最佳）"
 featured: true
+heroImage: "/images/journeys/france-light/france-light-1.jpg"
+gallery:
+  - "/images/journeys/france-light/france-light-1.jpg"
+  - "/images/journeys/france-light/france-light-2.jpg"
+  - "/images/journeys/france-light/france-light-3.jpg"
+  - "/images/journeys/france-light/france-light-4.jpg"
+  - "/images/journeys/france-light/france-light-5.jpg"
+  - "/images/journeys/france-light/france-light-6.jpg"
+packages:
+  - name: "鎏光臻选"
+    price: 71800
+    description: "巴黎及波尔多精选五星酒店，含中文向导与卢浮宫私访"
+    hotelTier: "标准五星"
+  - name: "鎏光定制"
+    price: 99800
+    description: "Ritz Paris + Les Sources de Caudalie级别，含私人向导与波尔多酒庄晚宴"
+    hotelTier: "奢华五星"
+  - name: "鎏光远征"
+    price: 135700
+    description: "Ritz Paris经典套房+凡尔赛宫国王私享区+卢浮宫闭馆独享，含全程管家"
+    hotelTier: "顶级野奢"
 subtitle: "从巴黎的Ritz到波尔多的葡萄田，再到诺曼底的悬崖海岸——这是法国人自己才懂的法国，不在旅游大巴的路线图上"
 highlights:
   - "卢浮宫闭馆私访——在周一闭馆日进入卢浮宫，在蒙娜丽莎前只有你和达芬奇的微笑"

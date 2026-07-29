@@ -8,6 +8,27 @@ priceLevel: "鎏光臻选"
 type: "文化深度"
 season: "11月-次年2月（旱季+凉爽）"
 featured: false
+heroImage: "/images/journeys/vietnam-cambodia/vietnam-cambodia-1.jpg"
+gallery:
+  - "/images/journeys/vietnam-cambodia/vietnam-cambodia-1.jpg"
+  - "/images/journeys/vietnam-cambodia/vietnam-cambodia-2.jpg"
+  - "/images/journeys/vietnam-cambodia/vietnam-cambodia-3.jpg"
+  - "/images/journeys/vietnam-cambodia/vietnam-cambodia-4.jpg"
+  - "/images/journeys/vietnam-cambodia/vietnam-cambodia-5.jpg"
+  - "/images/journeys/vietnam-cambodia/vietnam-cambodia-6.jpg"
+packages:
+  - name: "鎏光臻选"
+    price: 34200
+    description: "精选五星酒店+Amansara吴哥考古特权，含中文向导与专车"
+    hotelTier: "标准五星"
+  - name: "鎏光定制"
+    price: 47500
+    description: "Amanoi + Amansara级别海崖与王宫酒店，含私人向导与下龙湾私人游艇"
+    hotelTier: "奢华五星"
+  - name: "鎏光远征"
+    price: 64600
+    description: "Amanoi悬崖别墅+Amansara私属吴哥日出通道，含全程管家与独家考古体验"
+    hotelTier: "顶级野奢"
 subtitle: "从下龙湾的翡翠水域到吴哥窟的日出，穿越东南亚最迷人的两个文明"
 highlights:
   - "下龙湾私人游艇两日——避开一日游人群，在石灰岩群岛之间过夜"

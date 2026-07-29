@@ -8,6 +8,27 @@ priceLevel: "鎏光远征"
 type: "文化深度"
 season: "10月-4月（冬季，气温宜人18-30°C）"
 featured: false
+heroImage: "/images/journeys/oman-incense/oman-incense-1.jpg"
+gallery:
+  - "/images/journeys/oman-incense/oman-incense-1.jpg"
+  - "/images/journeys/oman-incense/oman-incense-2.jpg"
+  - "/images/journeys/oman-incense/oman-incense-3.jpg"
+  - "/images/journeys/oman-incense/oman-incense-4.jpg"
+  - "/images/journeys/oman-incense/oman-incense-5.jpg"
+  - "/images/journeys/oman-incense/oman-incense-6.jpg"
+packages:
+  - name: "鎏光臻选"
+    price: 47500
+    description: "Al Bustan Palace海景房+Desert Nights Camp标准帐篷，含中文向导与专车"
+    hotelTier: "奢华五星"
+  - name: "鎏光定制"
+    price: 66000
+    description: "Al Bustan Palace海景套房+Desert Nights Camp观星甲板帐篷，含私人向导"
+    hotelTier: "顶级五星"
+  - name: "鎏光远征"
+    price: 89800
+    description: "穆桑达姆峡湾包船dhow+乳香之路私访+沙漠独家星空营地，含全行程管家"
+    hotelTier: "顶级沙漠远征"
 subtitle: "在苏丹卡布斯清真寺的巨大水晶灯下，在瓦希巴沙漠的1000颗星星下，在尼兹瓦古堡的香料市场中——在阿拉伯半岛最后一片净土，发现乳香之路的千年传奇"
 highlights:
   - "苏丹卡布斯清真寺——在波斯地毯下跪坐的地毯是世界上第二大的手工波斯地毯，头顶的水晶灯重达8吨，60万颗施华洛世奇水晶在光中闪烁"

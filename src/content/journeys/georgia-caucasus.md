@@ -8,6 +8,27 @@ priceLevel: "鎏光定制"
 type: "文化深度"
 season: "5月-10月（春秋最佳，夏季炎热但可用，冬季滑雪季12-3月）"
 featured: false
+heroImage: "/images/journeys/georgia-caucasus/georgia-caucasus-1.jpg"
+gallery:
+  - "/images/journeys/georgia-caucasus/georgia-caucasus-1.jpg"
+  - "/images/journeys/georgia-caucasus/georgia-caucasus-2.jpg"
+  - "/images/journeys/georgia-caucasus/georgia-caucasus-3.jpg"
+  - "/images/journeys/georgia-caucasus/georgia-caucasus-4.jpg"
+  - "/images/journeys/georgia-caucasus/georgia-caucasus-5.jpg"
+  - "/images/journeys/georgia-caucasus/georgia-caucasus-6.jpg"
+packages:
+  - name: "鎏光臻选"
+    price: 35800
+    description: "标准五星设计酒店，含中文向导与专车，卡赫季葡萄酒品鉴"
+    hotelTier: "设计五星"
+  - name: "鎏光定制"
+    price: 49800
+    description: "Rooms Hotel Kazbegi 山景房 + Stamba Hotel 设计套房，含私人向导"
+    hotelTier: "奢华设计"
+  - name: "鎏光远征"
+    price: 67700
+    description: "卡兹别克私属木屋 + 私人葡萄酒庄主晚宴，含独家通道与全行程管家"
+    hotelTier: "顶级庄园"
 subtitle: "在卡赫季的葡萄酒庄园中喝8000年前的葡萄酒，在卡兹别克山脚下看圣三一教堂在雪峰中如悬空——在格鲁吉亚，亚洲和欧洲在此相遇，葡萄酒文明在此诞生"
 highlights:
   - "卡赫季葡萄酒之路——在葡萄藤覆盖的Alazani山谷中，从Qvevri（埋在地下的陶罐）中舀出琥珀色的葡萄酒——格鲁吉亚人已经这样做了8000年"

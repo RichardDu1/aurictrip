@@ -1,79 +1,65 @@
 ---
-interface Journey {
+import { getCollection } from "astro:content";
+import type { CollectionEntry } from "astro:content";
+
+export const prerender = true;
+
+interface CardJourney {
   label: string;
   title: string;
   days: string;
   href: string;
   image: string;
+  price: number;
+  priceLevel: string;
 }
 
-const journeys: Journey[] = [
-  {
-    label: "暹罗秘境",
-    title: "泰国 11天10晚 从曼谷的寺庙到安达曼海的私人岛屿",
-    days: "11天10晚",
-    href: "/journeys/thailand-siam",
-    image:
-      "https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?w=800&q=80&auto=format&fit=crop",
-  },
-  {
-    label: "众神之岛",
-    title: "巴厘岛 10天9晚 从乌布稻田到乌鲁瓦图的悬崖之巅",
-    days: "10天9晚",
-    href: "/journeys/bali-islands",
-    image:
-      "https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=800&q=80&auto=format&fit=crop",
-  },
-  {
-    label: "旷野呼唤",
-    title: "肯尼亚 10天9晚 马赛马拉的星空与角马大迁徙",
-    days: "10天9晚",
-    href: "/journeys/kenya-safari",
-    image:
-      "https://images.unsplash.com/photo-1516426122078-c23e76319801?w=800&q=80&auto=format&fit=crop",
-  },
-  {
-    label: "野性之美",
-    title: "南非 11天10晚 从桌山之巅到克鲁格国家公园",
-    days: "11天10晚",
-    href: "/journeys/south-africa",
-    image:
-      "https://images.unsplash.com/photo-1484318571209-661cf29a69c5?w=800&q=80&auto=format&fit=crop",
-  },
-  {
-    label: "日出之国",
-    title: "日本 12天11晚 从东京安缦到京都岚山深处",
-    days: "12天11晚",
-    href: "/journeys/japan-odyssey",
-    image:
-      "https://images.unsplash.com/photo-1528360983277-13d401cdc186?w=800&q=80&auto=format&fit=crop",
-  },
-  {
-    label: "安达卢西亚之梦",
-    title: "西班牙 10天9晚 弗拉明戈与阿尔罕布拉宫的阿拉伯之梦",
-    days: "10天9晚",
-    href: "/journeys/spain-andalusia",
-    image:
-      "https://images.unsplash.com/photo-1543783207-ec64e4d95325?w=800&q=80&auto=format&fit=crop",
-  },
-];
+const all = await getCollection("journeys");
+const featured = all
+  .filter((j: CollectionEntry<"journeys">) => j.data.featured)
+  .sort((a: CollectionEntry<"journeys">, b: CollectionEntry<"journeys">) => a.data.price - b.data.price);
+
+// 若 featured 不足 6 条，用 price 升序补齐
+if (featured.length < 6) {
+  const others = all
+    .filter((j: CollectionEntry<"journeys">) => !j.data.featured)
+    .sort((a: CollectionEntry<"journeys">, b: CollectionEntry<"journeys">) => a.data.price - b.data.price);
+  for (const j of others) {
+    if (featured.length >= 6) break;
+    featured.push(j);
+  }
+}
+
+const journeys: CardJourney[] = featured.slice(0, 6).map((j: CollectionEntry<"journeys">) => ({
+  label: j.data.label,
+  title: `${j.data.destination} ${j.data.days}天${j.data.nights}晚 ${j.data.subtitle ?? ""}`.trim(),
+  days: `${j.data.days}天${j.data.nights}晚`,
+  href: `/journeys/${j.id.replace(/\.md$/, "")}`,
+  image: j.data.heroImage ?? "",
+  price: j.data.price,
+  priceLevel: j.data.priceLevel,
+}));
 ---
 
 <section class="journeys">
   <div class="journeys-inner">
     <h2 class="journeys-heading">精选旅程</h2>
-    <p class="journeys-sub">每一段旅程，皆为私人定制。价格详询旅行顾问。</p>
+    <p class="journeys-sub">每一段旅程，皆为私人定制。价格为参考起价，详询旅行顾问。</p>
     <div class="journeys-grid">
       {journeys.map((j) => (
         <a href={j.href} class="journey-card card">
           <div
             class="journey-card-img"
-            style={`background-image: url(${j.image});`}
+            style={j.image ? `background-image: url(${j.image});` : ""}
           ></div>
           <div class="journey-card-body">
             <span class="journey-card-label">{j.label}</span>
             <h3 class="journey-card-title">{j.title}</h3>
             <span class="journey-card-days">{j.days}</span>
+            <div class="journey-card-price">
+              <span class="journey-card-price-tag">{j.priceLevel}</span>
+              <span class="journey-card-price-num">¥{j.price.toLocaleString()}<span class="journey-card-price-suffix">起/人 · 指导价</span></span>
+            </div>
             <span class="journey-card-action">了解详情 &rarr;</span>
           </div>
         </a>
@@ -148,12 +134,36 @@ const journeys: Journey[] = [
     font-weight: 600;
     color: var(--color-text-primary);
     line-height: 1.5;
-    margin-bottom: 1.25rem;
+    margin-bottom: 1rem;
   }
   .journey-card-days {
     font-size: 0.8rem;
     color: var(--color-text-muted);
     margin-bottom: 1rem;
+  }
+  .journey-card-price {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    margin-bottom: 1rem;
+  }
+  .journey-card-price-tag {
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    color: var(--color-brand);
+  }
+  .journey-card-price-num {
+    font-family: var(--font-price);
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+  }
+  .journey-card-price-suffix {
+    font-family: var(--font-body);
+    font-size: 0.65rem;
+    font-weight: 400;
+    color: var(--color-text-muted);
+    margin-left: 0.2rem;
   }
   .journey-card-action {
     font-size: 0.8rem;

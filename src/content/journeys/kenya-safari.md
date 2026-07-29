@@ -8,6 +8,27 @@ priceLevel: "鎏光远征"
 type: "野奢自然"
 season: "7月-10月（角马渡河季）/ 1月-2月（产仔季）"
 featured: true
+heroImage: "/images/journeys/kenya-safari/kenya-safari-1.jpg"
+gallery:
+  - "/images/journeys/kenya-safari/kenya-safari-1.jpg"
+  - "/images/journeys/kenya-safari/kenya-safari-2.jpg"
+  - "/images/journeys/kenya-safari/kenya-safari-3.jpg"
+  - "/images/journeys/kenya-safari/kenya-safari-4.jpg"
+  - "/images/journeys/kenya-safari/kenya-safari-5.jpg"
+  - "/images/journeys/kenya-safari/kenya-safari-6.jpg"
+packages:
+  - name: "鎏光臻选"
+    price: 65500
+    description: "标准五星悬崖帐篷，含中文自然向导与可开顶越野车"
+    hotelTier: "野奢五星"
+  - name: "鎏光定制"
+    price: 91000
+    description: "Angama Mara 悬崖帐篷 + Mahali Mzuri 私人保护区帐篷，含私人向导"
+    hotelTier: "奢华野奢"
+  - name: "鎏光远征"
+    price: 123800
+    description: "Giraffe Manor 庄园 + 私属猎游营地，含独家夜间猎游与全行程管家"
+    hotelTier: "顶级野奢"
 subtitle: "在马赛马拉的星空下入睡，在角马渡河的轰鸣中醒来——这是地球上最后的伟大迁徙，而你的帐篷就在迁徙之路的正中央"
 highlights:
   - "马赛马拉角马大迁徙——超过150万头角马、30万匹斑马、50万只瞪羚，在马拉河上展开地球上最壮观的野生动物奇观"

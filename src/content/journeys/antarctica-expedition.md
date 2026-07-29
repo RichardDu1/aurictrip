@@ -8,6 +8,27 @@ priceLevel: "鎏光远征"
 type: "极地探索"
 season: "11月-次年2月（南极夏季）"
 featured: true
+heroImage: "/images/journeys/antarctica-expedition/antarctica-expedition-1.jpg"
+gallery:
+  - "/images/journeys/antarctica-expedition/antarctica-expedition-1.jpg"
+  - "/images/journeys/antarctica-expedition/antarctica-expedition-2.jpg"
+  - "/images/journeys/antarctica-expedition/antarctica-expedition-3.jpg"
+  - "/images/journeys/antarctica-expedition/antarctica-expedition-4.jpg"
+  - "/images/journeys/antarctica-expedition/antarctica-expedition-5.jpg"
+  - "/images/journeys/antarctica-expedition/antarctica-expedition-6.jpg"
+packages:
+  - name: "鎏光臻选"
+    price: 142200
+    description: "标准极地邮轮阳台套房，含中文向导与布宜诺斯艾利斯五星住宿"
+    hotelTier: "精品极地邮轮"
+  - name: "鎏光定制"
+    price: 197500
+    description: "Silver Endeavour管家套房+Palacio Duhau Park Hyatt级别，含私人极地向导"
+    hotelTier: "奢华极地邮轮"
+  - name: "鎏光远征"
+    price: 268600
+    description: "顶级PC6冰级邮轮私属套房+南极大陆露营+包船级独家登陆，含全行程管家"
+    hotelTier: "顶级远征邮轮"
 ---
 
 ## 南极半岛 · 白色大陆的终极远征

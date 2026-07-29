@@ -8,6 +8,27 @@ priceLevel: "鎏光臻选"
 type: "野奢自然"
 season: "5月-10月（旱季最佳，天气凉爽干燥）"
 featured: false
+heroImage: "/images/journeys/fiji-paradise/fiji-paradise-1.jpg"
+gallery:
+  - "/images/journeys/fiji-paradise/fiji-paradise-1.jpg"
+  - "/images/journeys/fiji-paradise/fiji-paradise-2.jpg"
+  - "/images/journeys/fiji-paradise/fiji-paradise-3.jpg"
+  - "/images/journeys/fiji-paradise/fiji-paradise-4.jpg"
+  - "/images/journeys/fiji-paradise/fiji-paradise-5.jpg"
+  - "/images/journeys/fiji-paradise/fiji-paradise-6.jpg"
+packages:
+  - name: "鎏光臻选"
+    price: 52900
+    description: "标准五星海滨酒店，含中文向导与专车，泻湖与部落经典体验"
+    hotelTier: "标准五星"
+  - name: "鎏光定制"
+    price: 73500
+    description: "Likuliku Lagoon 水上别墅 + Six Senses Fiji 泳池别墅，含私人向导"
+    hotelTier: "奢华五星"
+  - name: "鎏光远征"
+    price: 100000
+    description: "私人直升机群岛观光+私人岛屿包岛+与鲨鱼共潜独家潜点，含全行程管家"
+    hotelTier: "顶级野奢"
 subtitle: "在333座岛屿的南太平洋天堂中，从私人岛屿的水上别墅到传统部落的Kava仪式——这是地球上最接近天堂的地方"
 highlights:
   - "私人岛屿水上别墅——在Likuliku Lagoon的水上别墅中，从你的甲板上直接跳入翡翠色的泻湖"

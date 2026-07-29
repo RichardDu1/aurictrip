@@ -8,6 +8,27 @@ priceLevel: "鎏光臻选"
 type: "野奢自然"
 season: "5月-10月（旱季最佳）"
 featured: true
+heroImage: "/images/journeys/bali-islands/bali-islands-1.jpg"
+gallery:
+  - "/images/journeys/bali-islands/bali-islands-1.jpg"
+  - "/images/journeys/bali-islands/bali-islands-2.jpg"
+  - "/images/journeys/bali-islands/bali-islands-3.jpg"
+  - "/images/journeys/bali-islands/bali-islands-4.jpg"
+  - "/images/journeys/bali-islands/bali-islands-5.jpg"
+  - "/images/journeys/bali-islands/bali-islands-6.jpg"
+packages:
+  - name: "鎏光臻选"
+    price: 50200
+    description: "标准五星酒店，含中文向导与专车，Oberoi 海景房级别基础房型"
+    hotelTier: "标准五星"
+  - name: "鎏光定制"
+    price: 69800
+    description: "Capella Ubud 帐篷别墅+Alila Villas Uluwatu 悬崖泳池别墅+Oberoi 海景房，含私人向导"
+    hotelTier: "奢华五星"
+  - name: "鎏光远征"
+    price: 94900
+    description: "Bill Bensley 定制帐篷+龙目岛私人快艇包船跳岛，含全行程管家与独家珊瑚花园通道"
+    hotelTier: "顶级野奢"
 subtitle: "从乌布的稻田到乌鲁瓦图的悬崖，再到龙目岛的秘密海岸——在众神居住的岛屿上，重新定义热带奢华"
 highlights:
   - "乌布稻田徒步——黎明时分穿越Tegallalang梯田，在晨雾中见证巴厘岛的苏醒"

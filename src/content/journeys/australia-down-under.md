@@ -8,6 +8,27 @@ priceLevel: "鎏光远征"
 type: "野奢自然"
 season: "全年皆可（悉尼/大堡礁：9-4月最佳 / 乌鲁鲁：4-9月最佳）"
 featured: true
+heroImage: "/images/journeys/australia-down-under/australia-down-under-1.jpg"
+gallery:
+  - "/images/journeys/australia-down-under/australia-down-under-1.jpg"
+  - "/images/journeys/australia-down-under/australia-down-under-2.jpg"
+  - "/images/journeys/australia-down-under/australia-down-under-3.jpg"
+  - "/images/journeys/australia-down-under/australia-down-under-4.jpg"
+  - "/images/journeys/australia-down-under/australia-down-under-5.jpg"
+  - "/images/journeys/australia-down-under/australia-down-under-6.jpg"
+packages:
+  - name: "鎏光臻选"
+    price: 71800
+    description: "标准五星酒店，含中文向导与专车，悉尼与大堡礁经典行程"
+    hotelTier: "标准五星"
+  - name: "鎏光定制"
+    price: 99800
+    description: "Park Hyatt Sydney 歌剧院景房 + Longitude 131° 帐篷别墅 + qualia 海景别墅，含私人向导"
+    hotelTier: "奢华五星"
+  - name: "鎏光远征"
+    price: 135700
+    description: "悉尼港私人帆船+乌鲁鲁寂静之声独家晚宴+大堡礁直升机包机，含全行程管家"
+    hotelTier: "顶级野奢"
 subtitle: "从悉尼港的帆船到乌鲁鲁的星空，从大堡礁的海底到戴恩树雨林的树冠——在世界上最大的岛屿上，重新定义'远方'"
 highlights:
   - "悉尼港私人帆船日落——在一艘40英尺的经典帆船上，从海上回望歌剧院和海港大桥的剪影"

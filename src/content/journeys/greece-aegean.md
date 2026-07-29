@@ -8,6 +8,27 @@ priceLevel: "鎏光臻选"
 type: "里程碑时刻"
 season: "5-10月（7-8月最旺但人多）"
 featured: false
+heroImage: "/images/journeys/greece-aegean/greece-aegean-1.jpg"
+gallery:
+  - "/images/journeys/greece-aegean/greece-aegean-1.jpg"
+  - "/images/journeys/greece-aegean/greece-aegean-2.jpg"
+  - "/images/journeys/greece-aegean/greece-aegean-3.jpg"
+  - "/images/journeys/greece-aegean/greece-aegean-4.jpg"
+  - "/images/journeys/greece-aegean/greece-aegean-5.jpg"
+  - "/images/journeys/greece-aegean/greece-aegean-6.jpg"
+packages:
+  - name: "鎏光臻选"
+    price: 52200
+    description: "标准悬崖酒店海景房，含中文向导与内陆航班"
+    hotelTier: "精品五星"
+  - name: "鎏光定制"
+    price: 72500
+    description: "Katikies Hotel悬崖套房 + Santa Marina私人沙滩级别，含私人双体船日落巡游"
+    hotelTier: "奢华悬崖"
+  - name: "鎏光远征"
+    price: 98600
+    description: "私属双体船包船远离Oia人潮 + Delos独家考古导览，含全行程管家"
+    hotelTier: "顶级私享"
 subtitle: "在蓝白世界的悬崖上，用一场爱琴海日落定义浪漫"
 highlights:
   - "圣托里尼悬崖酒店三晚，私人无边泳池正对火山口"

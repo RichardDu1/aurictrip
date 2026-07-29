@@ -8,6 +8,27 @@ priceLevel: "鎏光定制"
 type: "文化深度"
 season: "10月-次年3月（避开酷暑和雨季）"
 featured: false
+heroImage: "/images/journeys/india-rajasthan/india-rajasthan-1.jpg"
+gallery:
+  - "/images/journeys/india-rajasthan/india-rajasthan-1.jpg"
+  - "/images/journeys/india-rajasthan/india-rajasthan-2.jpg"
+  - "/images/journeys/india-rajasthan/india-rajasthan-3.jpg"
+  - "/images/journeys/india-rajasthan/india-rajasthan-4.jpg"
+  - "/images/journeys/india-rajasthan/india-rajasthan-5.jpg"
+  - "/images/journeys/india-rajasthan/india-rajasthan-6.jpg"
+packages:
+  - name: "鎏光臻选"
+    price: 43200
+    description: "精选宫殿酒店，含中文向导与泰姬陵日出私人导览"
+    hotelTier: "标准五星"
+  - name: "鎏光定制"
+    price: 60000
+    description: "The Oberoi Amarvilas + Taj Lake Palace级别，含私人向导与热气球"
+    hotelTier: "奢华五星"
+  - name: "鎏光远征"
+    price: 81600
+    description: "Oberoi泰姬陵直面套房+Taj Lake Palace王室套房，含全程管家与独家宫廷晚宴"
+    hotelTier: "顶级野奢"
 subtitle: "入住昔日王公宫殿，追寻从泰姬陵到蓝色之城的皇室足迹"
 highlights:
   - "泰姬陵日出——在大门打开的第一刻进入，避开人潮"

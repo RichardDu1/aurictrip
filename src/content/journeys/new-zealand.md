@@ -8,6 +8,27 @@ priceLevel: "鎏光臻选"
 type: "野奢自然"
 season: "全年（10-4月最佳）"
 featured: false
+heroImage: "/images/journeys/new-zealand/new-zealand-1.jpg"
+gallery:
+  - "/images/journeys/new-zealand/new-zealand-1.jpg"
+  - "/images/journeys/new-zealand/new-zealand-2.jpg"
+  - "/images/journeys/new-zealand/new-zealand-3.jpg"
+  - "/images/journeys/new-zealand/new-zealand-4.jpg"
+  - "/images/journeys/new-zealand/new-zealand-5.jpg"
+  - "/images/journeys/new-zealand/new-zealand-6.jpg"
+packages:
+  - name: "鎏光臻选"
+    price: 70200
+    description: "标准五星酒店，含中文向导与专车，南北岛冰川与峡湾经典行程"
+    hotelTier: "标准五星"
+  - name: "鎏光定制"
+    price: 97500
+    description: "Matakauri Lodge 湖畔套房 + The Lindis 山谷套房 + Tekapo 湖畔玻璃屋，含私人向导"
+    hotelTier: "精品度假屋"
+  - name: "鎏光远征"
+    price: 132600
+    description: "直升机冰川登陆+米尔福德峡湾私人游艇过夜+霍比屯私享导览，含全行程管家"
+    hotelTier: "顶级野奢"
 subtitle: "从北岛的地热奇境到南岛的冰川峡湾，在世界尽头的纯净之地重新认识自然"
 highlights:
   - "直升机登陆Franz Josef冰川，徒步蓝冰裂缝"

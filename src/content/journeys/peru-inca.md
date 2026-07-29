@@ -8,6 +8,27 @@ priceLevel: "鎏光臻选"
 type: "私人定制"
 season: "4-10月（旱季）"
 featured: false
+heroImage: "/images/journeys/peru-inca/peru-inca-1.jpg"
+gallery:
+  - "/images/journeys/peru-inca/peru-inca-1.jpg"
+  - "/images/journeys/peru-inca/peru-inca-2.jpg"
+  - "/images/journeys/peru-inca/peru-inca-3.jpg"
+  - "/images/journeys/peru-inca/peru-inca-4.jpg"
+  - "/images/journeys/peru-inca/peru-inca-5.jpg"
+  - "/images/journeys/peru-inca/peru-inca-6.jpg"
+packages:
+  - name: "鎏光臻选"
+    price: 70200
+    description: "Belmond Miraflores Park标准五星+经典印加古道徒步，含中文向导与专车"
+    hotelTier: "国际五星"
+  - name: "鎏光定制"
+    price: 97500
+    description: "Belmond Hotel Monasterio修道院套房+Belmond Hiram Bingham豪华列车，含私人向导与背夫团队"
+    hotelTier: "传奇五星"
+  - name: "鎏光远征"
+    price: 132600
+    description: "Belmond顶级套房+太阳门独家日出通道+私人印加古道支线整程包队，含全行程管家"
+    hotelTier: "顶级私属"
 ---
 
 ## 秘鲁 · 印加古道与天空之城
