@@ -35,7 +35,9 @@ const displayPrice = hasPackages ? sortedPackages[0].price : price;
   </div>
 
   {hasPackages ? (
-    <div class="tp-packages" data-packages>
+    <div class="tp-packages-wrap">
+      <p class="tp-packages-label">选择您的鎏光档位</p>
+      <div class="tp-packages" data-packages>
       {sortedPackages.map((pkg, i) => (
         <button
           type="button"
@@ -51,6 +53,7 @@ const displayPrice = hasPackages ? sortedPackages[0].price : price;
         </button>
       ))}
       <p class="tp-disclaimer">参考起价，2人同行核算。将根据出行人数、季节和定制需求有所调整</p>
+      </div>
     </div>
   ) : (
     <>
@@ -64,40 +67,46 @@ const displayPrice = hasPackages ? sortedPackages[0].price : price;
   .title-price {
     max-width: var(--spacing-content-max);
     margin: 0 auto;
-    padding: 3rem 2rem 2rem;
+    padding: 4rem 2rem 3rem;
+    border-bottom: 1px solid color-mix(in srgb, var(--color-text-muted) 12%, transparent);
   }
   .tp-tag {
     display: inline-block;
-    font-size: 0.65rem;
-    letter-spacing: 0.18em;
+    font-size: 0.62rem;
+    letter-spacing: 0.22em;
     color: var(--color-brand);
-    margin-bottom: 0.75rem;
+    margin-bottom: 0.85rem;
+    padding: 0.25rem 0.75rem;
+    border: 1px solid color-mix(in srgb, var(--color-brand) 40%, transparent);
   }
   .tp-title {
     font-family: var(--font-heading);
-    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    font-size: clamp(1.9rem, 4.5vw, 2.75rem);
     font-weight: 700;
     color: var(--color-text-primary);
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.6rem;
     letter-spacing: 0.02em;
+    line-height: 1.25;
   }
   .tp-subtitle {
-    font-size: 1.05rem;
+    font-size: 1.02rem;
     color: var(--color-text-secondary);
-    margin-bottom: 1rem;
-    line-height: 1.6;
+    margin-bottom: 1.25rem;
+    line-height: 1.7;
+    max-width: 720px;
   }
   .tp-meta {
     font-size: 0.85rem;
     color: var(--color-text-muted);
-    margin-bottom: 1.5rem;
+    margin-bottom: 2rem;
+    letter-spacing: 0.02em;
   }
   .tp-sep {
     margin: 0 0.5rem;
   }
   .tp-price {
     font-family: var(--font-price);
-    font-size: 2rem;
+    font-size: 2.25rem;
     font-weight: 600;
     color: var(--color-text-primary);
     margin-bottom: 0.35rem;
@@ -110,59 +119,77 @@ const displayPrice = hasPackages ? sortedPackages[0].price : price;
     margin-left: 0.25rem;
   }
   .tp-disclaimer {
-    font-size: 0.75rem;
+    font-size: 0.74rem;
     color: var(--color-text-muted);
-    margin-top: 0.75rem;
+    margin-top: 0.85rem;
+    line-height: 1.6;
   }
 
+  .tp-packages-label {
+    font-size: 0.62rem;
+    letter-spacing: 0.22em;
+    color: var(--color-text-muted);
+    margin-bottom: 0.85rem;
+  }
   .tp-packages {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 0.75rem;
     margin-top: 0.5rem;
   }
   .tp-package {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: 0.3rem;
-    padding: 1.25rem;
-    border: 1px solid var(--color-border, rgba(0,0,0,0.08));
+    gap: 0.35rem;
+    padding: 1.5rem 1.35rem;
+    border: 1px solid color-mix(in srgb, var(--color-text-muted) 16%, transparent);
     background: var(--color-bg-card);
     cursor: pointer;
     text-align: left;
-    transition: border-color 0.2s, background 0.2s;
+    transition: border-color 0.25s, background 0.25s, transform 0.25s;
     font-family: var(--font-body);
+    position: relative;
   }
   .tp-package:hover {
-    border-color: var(--color-brand);
+    border-color: color-mix(in srgb, var(--color-brand) 60%, transparent);
+    transform: translateY(-2px);
   }
   .tp-package.is-active {
     border-color: var(--color-brand);
     background: var(--color-bg-warm);
   }
+  .tp-package.is-active::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--color-brand);
+  }
   .tp-package-name {
     font-size: 0.7rem;
-    letter-spacing: 0.15em;
+    letter-spacing: 0.16em;
     color: var(--color-brand);
     font-weight: 600;
   }
   .tp-package-price {
     font-family: var(--font-price);
-    font-size: 1.35rem;
+    font-size: 1.5rem;
     font-weight: 600;
     color: var(--color-text-primary);
   }
   .tp-package-tier {
-    font-size: 0.7rem;
+    font-size: 0.68rem;
     color: var(--color-text-muted);
-    letter-spacing: 0.03em;
+    letter-spacing: 0.04em;
   }
   .tp-package-desc {
     font-size: 0.78rem;
     color: var(--color-text-secondary);
-    line-height: 1.5;
-    margin-top: 0.25rem;
+    line-height: 1.6;
+    margin-top: 0.35rem;
   }
 
   @media (max-width: 768px) {

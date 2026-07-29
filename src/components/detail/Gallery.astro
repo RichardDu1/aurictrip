@@ -21,6 +21,9 @@ const thumbs = hasGallery ? images.slice(1) : [];
         decoding="async"
         data-gallery-main
       />
+      <div class="gallery-main-overlay">
+        <span class="gallery-counter" data-gallery-counter>1 / {images.length}</span>
+      </div>
     </div>
     {thumbs.length > 0 && (
       <div class="gallery-thumbs">
@@ -51,13 +54,14 @@ const thumbs = hasGallery ? images.slice(1) : [];
 
 <style>
   .gallery {
-    max-width: var(--spacing-content-max);
-    margin: 0 auto;
-    padding: 0 2rem 1rem;
+    width: 100%;
+    margin: 0;
+    padding: 0;
   }
   .gallery-main {
+    position: relative;
     width: 100%;
-    aspect-ratio: 16 / 9;
+    aspect-ratio: 21 / 9;
     background: var(--color-bg-warm);
     overflow: hidden;
   }
@@ -66,13 +70,28 @@ const thumbs = hasGallery ? images.slice(1) : [];
     height: 100%;
     object-fit: cover;
     display: block;
-    transition: opacity 0.3s ease;
+    transition: opacity 0.4s ease, transform 6s ease;
+    transform: scale(1);
+  }
+  .gallery-main-overlay {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    padding: 1.25rem 1.5rem;
+    background: linear-gradient(135deg, transparent, rgba(0, 0, 0, 0.45));
+    pointer-events: none;
+  }
+  .gallery-counter {
+    font-family: var(--font-price);
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.9);
+    letter-spacing: 0.08em;
   }
   .gallery-thumbs {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
-    gap: 0.75rem;
-    margin-top: 0.75rem;
+    gap: 4px;
+    margin: 0;
   }
   .gallery-thumb {
     border: none;
@@ -81,12 +100,26 @@ const thumbs = hasGallery ? images.slice(1) : [];
     cursor: pointer;
     aspect-ratio: 4 / 3;
     overflow: hidden;
-    opacity: 0.65;
-    transition: opacity 0.2s;
+    opacity: 0.55;
+    transition: opacity 0.3s;
+    position: relative;
+  }
+  .gallery-thumb::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: var(--color-bg-page);
+    opacity: 0.4;
+    transition: opacity 0.3s;
+    pointer-events: none;
   }
   .gallery-thumb:hover,
   .gallery-thumb.is-active {
     opacity: 1;
+  }
+  .gallery-thumb:hover::after,
+  .gallery-thumb.is-active::after {
+    opacity: 0;
   }
   .gallery-thumb img {
     width: 100%;
@@ -95,12 +128,12 @@ const thumbs = hasGallery ? images.slice(1) : [];
     display: block;
   }
   @media (max-width: 768px) {
+    .gallery-main {
+      aspect-ratio: 4 / 3;
+    }
     .gallery-thumbs {
       grid-template-columns: repeat(5, 1fr);
-      gap: 0.5rem;
-    }
-    .gallery-main {
-      aspect-ratio: 3 / 2;
+      gap: 3px;
     }
   }
 </style>
@@ -108,7 +141,9 @@ const thumbs = hasGallery ? images.slice(1) : [];
 <script>
   function initGallery(root: HTMLElement) {
     const main = root.querySelector<HTMLImageElement>("[data-gallery-main]");
+    const counter = root.querySelector<HTMLElement>("[data-gallery-counter]");
     const thumbs = root.querySelectorAll<HTMLButtonElement>("[data-gallery-thumb]");
+    const total = thumbs.length;
     if (!main || thumbs.length === 0) return;
 
     thumbs.forEach((thumb) => {
@@ -119,9 +154,13 @@ const thumbs = hasGallery ? images.slice(1) : [];
         window.setTimeout(() => {
           main.src = img.src;
           main.style.opacity = "1";
-        }, 150);
+        }, 200);
         thumbs.forEach((t) => t.classList.remove("is-active"));
         thumb.classList.add("is-active");
+        if (counter) {
+          const index = Number(thumb.dataset.index) + 1;
+          counter.textContent = `${index} / ${total}`;
+        }
       });
     });
   }

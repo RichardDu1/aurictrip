@@ -7,28 +7,54 @@ interface Day {
 
 interface Props {
   days: Day[];
+  gallery?: string[];
 }
 
-const { days } = Astro.props;
+const { days, gallery = [] } = Astro.props;
 if (!days || days.length === 0) return;
+
+// 每日行程配图：从 gallery 循环取（跳过索引0=封面留给hero，从体验图开始）
+// gallery 维度: [0]风光 [1]体验 [2]酒店外观 [3]酒店空间 [4]美食 [5]第二视角
+// 行程图优先用体验/美食/第二视角：1,4,5,2,3 循环
+const dayImageIndices = [1, 4, 5, 2, 3, 0];
+const getDayImage = (i: number): string | undefined => {
+  if (gallery.length === 0) return undefined;
+  const preferred = dayImageIndices[i % dayImageIndices.length];
+  if (preferred < gallery.length) return gallery[preferred];
+  return gallery[i % gallery.length];
+};
 ---
 
 <section class="timeline">
-  <h2 class="tl-heading">每日行程</h2>
+  <div class="tl-head">
+    <span class="tl-eyebrow">ITINERARY</span>
+    <h2 class="tl-heading">每日行程</h2>
+  </div>
   <div class="tl-list">
-    {days.map((d, i) => (
-      <div class="tl-item">
-        <div class="tl-marker">
-          <span class="tl-dot"></span>
-          {i < days.length - 1 && <span class="tl-line"></span>}
-        </div>
-        <div class="tl-body">
-          <span class="tl-day">{d.day}</span>
-          <h3 class="tl-day-title">{d.title}</h3>
-          <p class="tl-day-content">{d.content}</p>
-        </div>
-      </div>
-    ))}
+    {days.map((d, i) => {
+      const img = getDayImage(i);
+      const reverse = i % 2 === 1;
+      return (
+        <article class={`tl-item${reverse ? " is-reverse" : ""}${img ? " has-img" : ""}`}>
+          <div class="tl-marker">
+            <span class="tl-dot">{String(i + 1).padStart(2, "0")}</span>
+            {i < days.length - 1 && <span class="tl-line"></span>}
+          </div>
+          <div class="tl-content">
+            {img && (
+              <div class="tl-img-wrap">
+                <img src={img} alt={`${d.day} · ${d.title}`} loading="lazy" decoding="async" />
+              </div>
+            )}
+            <div class="tl-body">
+              <span class="tl-day">{d.day}</span>
+              <h3 class="tl-day-title">{d.title}</h3>
+              <p class="tl-day-content">{d.content}</p>
+            </div>
+          </div>
+        </article>
+      );
+    })}
   </div>
 </section>
 
@@ -36,14 +62,23 @@ if (!days || days.length === 0) return;
   .timeline {
     max-width: var(--spacing-content-max);
     margin: 0 auto;
-    padding: 3rem 2rem 0;
+    padding: 4rem 2rem 0;
+  }
+  .tl-head {
+    margin-bottom: 2.5rem;
+  }
+  .tl-eyebrow {
+    display: block;
+    font-size: 0.62rem;
+    letter-spacing: 0.25em;
+    color: var(--color-brand);
+    margin-bottom: 0.6rem;
   }
   .tl-heading {
     font-family: var(--font-heading);
-    font-size: 1.25rem;
+    font-size: 1.5rem;
     font-weight: 600;
     color: var(--color-text-primary);
-    margin-bottom: 2rem;
     letter-spacing: 0.03em;
   }
   .tl-list {
@@ -51,51 +86,107 @@ if (!days || days.length === 0) return;
     flex-direction: column;
   }
   .tl-item {
-    display: flex;
-    gap: 1.5rem;
+    display: grid;
+    grid-template-columns: 60px 1fr;
+    gap: 0;
   }
   .tl-marker {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 20px;
-    flex-shrink: 0;
+    padding-top: 0.3rem;
   }
   .tl-dot {
-    width: 10px;
-    height: 10px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
-    background: var(--color-brand);
+    border: 1px solid var(--color-brand);
+    background: var(--color-bg-card);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-price);
+    font-size: 0.78rem;
+    color: var(--color-brand);
     flex-shrink: 0;
-    margin-top: 0.4rem;
+    z-index: 1;
   }
   .tl-line {
     width: 1px;
     flex: 1;
-    background: color-mix(in srgb, var(--color-brand) 30%, transparent);
-    min-height: 40px;
+    background: color-mix(in srgb, var(--color-brand) 25%, transparent);
+    min-height: 60px;
+    margin-top: 0.5rem;
+  }
+  .tl-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    align-items: start;
+    padding-bottom: 3rem;
+  }
+  .tl-item.is-reverse .tl-content {
+    direction: rtl;
+  }
+  .tl-item.is-reverse .tl-content > * {
+    direction: ltr;
+  }
+  .tl-img-wrap {
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    background: var(--color-bg-warm);
+  }
+  .tl-img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.6s ease;
+  }
+  .tl-item:hover .tl-img-wrap img {
+    transform: scale(1.04);
   }
   .tl-body {
-    padding-bottom: 2.5rem;
+    padding-top: 0.3rem;
   }
   .tl-day {
-    font-size: 0.65rem;
-    letter-spacing: 0.18em;
+    font-size: 0.62rem;
+    letter-spacing: 0.2em;
     color: var(--color-brand);
     display: block;
-    margin-bottom: 0.25rem;
+    margin-bottom: 0.5rem;
   }
   .tl-day-title {
     font-family: var(--font-heading);
-    font-size: 1rem;
+    font-size: 1.15rem;
     font-weight: 600;
     color: var(--color-text-primary);
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.85rem;
+    line-height: 1.4;
   }
   .tl-day-content {
     font-size: 0.9rem;
     color: var(--color-text-secondary);
-    line-height: 1.75;
+    line-height: 1.85;
     margin: 0;
+  }
+  @media (max-width: 768px) {
+    .tl-item {
+      grid-template-columns: 40px 1fr;
+      gap: 0.75rem;
+    }
+    .tl-dot {
+      width: 32px;
+      height: 32px;
+      font-size: 0.68rem;
+    }
+    .tl-content {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+      padding-bottom: 2.25rem;
+    }
+    .tl-item.is-reverse .tl-content {
+      direction: ltr;
+    }
   }
 </style>

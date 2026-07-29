@@ -4,181 +4,336 @@ import type { CollectionEntry } from "astro:content";
 
 export const prerender = true;
 
-interface CardJourney {
+interface FeaturedJourney {
+  slug: string;
   label: string;
-  title: string;
-  days: string;
-  href: string;
+  destination: string;
+  subtitle: string;
+  days: number;
+  nights: number;
   image: string;
   price: number;
   priceLevel: string;
 }
 
 const all = await getCollection("journeys");
-const featured = all
+const featured: FeaturedJourney[] = all
   .filter((j: CollectionEntry<"journeys">) => j.data.featured)
-  .sort((a: CollectionEntry<"journeys">, b: CollectionEntry<"journeys">) => a.data.price - b.data.price);
+  .sort((a: CollectionEntry<"journeys">, b: CollectionEntry<"journeys">) => b.data.price - a.data.price)
+  .slice(0, 6)
+  .map((j: CollectionEntry<"journeys">) => {
+    const pkg = j.data.packages && j.data.packages.length ? j.data.packages[0] : null;
+    return {
+      slug: j.id.replace(/\.md$/, ""),
+      label: j.data.label,
+      destination: j.data.destination,
+      subtitle: j.data.subtitle ?? "",
+      days: j.data.days,
+      nights: j.data.nights,
+      image: j.data.heroImage ?? j.data.gallery?.[0] ?? "",
+      price: pkg?.price ?? j.data.price,
+      priceLevel: j.data.priceLevel,
+    };
+  });
 
-// 若 featured 不足 6 条，用 price 升序补齐
-if (featured.length < 6) {
-  const others = all
-    .filter((j: CollectionEntry<"journeys">) => !j.data.featured)
-    .sort((a: CollectionEntry<"journeys">, b: CollectionEntry<"journeys">) => a.data.price - b.data.price);
-  for (const j of others) {
-    if (featured.length >= 6) break;
-    featured.push(j);
-  }
-}
-
-const journeys: CardJourney[] = featured.slice(0, 6).map((j: CollectionEntry<"journeys">) => ({
-  label: j.data.label,
-  title: `${j.data.destination} ${j.data.days}天${j.data.nights}晚 ${j.data.subtitle ?? ""}`.trim(),
-  days: `${j.data.days}天${j.data.nights}晚`,
-  href: `/journeys/${j.id.replace(/\.md$/, "")}`,
-  image: j.data.heroImage ?? "",
-  price: j.data.price,
-  priceLevel: j.data.priceLevel,
-}));
+const hero = featured[0];
+const rest = featured.slice(1);
 ---
 
-<section class="journeys">
+<section class="journeys" id="featured">
   <div class="journeys-inner">
-    <h2 class="journeys-heading">精选旅程</h2>
-    <p class="journeys-sub">每一段旅程，皆为私人定制。价格为参考起价，详询旅行顾问。</p>
-    <div class="journeys-grid">
-      {journeys.map((j) => (
-        <a href={j.href} class="journey-card card">
-          <div
-            class="journey-card-img"
-            style={j.image ? `background-image: url(${j.image});` : ""}
-          ></div>
-          <div class="journey-card-body">
-            <span class="journey-card-label">{j.label}</span>
-            <h3 class="journey-card-title">{j.title}</h3>
-            <span class="journey-card-days">{j.days}</span>
-            <div class="journey-card-price">
-              <span class="journey-card-price-tag">{j.priceLevel}</span>
-              <span class="journey-card-price-num">¥{j.price.toLocaleString()}<span class="journey-card-price-suffix">起/人 · 指导价</span></span>
-            </div>
-            <span class="journey-card-action">了解详情 &rarr;</span>
+    <div class="journeys-head">
+      <div>
+        <span class="journeys-eyebrow">FEATURED JOURNEYS</span>
+        <h2 class="journeys-heading">精选旅程</h2>
+      </div>
+      <p class="journeys-sub">每一段旅程，皆为私人定制。价格为参考起价，详询旅行顾问。</p>
+    </div>
+
+    {hero && (
+      <a href={`/journeys/${hero.slug}`} class="journey-hero-card">
+        <div class="jhc-img" style={hero.image ? `background-image: url(${hero.image});` : ""}></div>
+        <div class="jhc-overlay"></div>
+        <div class="jhc-content">
+          <span class="jhc-label">{hero.label}</span>
+          <h3 class="jhc-destination">{hero.destination}</h3>
+          <p class="jhc-subtitle">{hero.subtitle}</p>
+          <div class="jhc-meta">
+            <span class="jhc-price">&yen;{hero.price.toLocaleString()}<span class="jhc-price-note">起/人 · 指导价</span></span>
+            <span class="jhc-days">{hero.days}天{hero.nights}晚</span>
           </div>
-        </a>
-      ))}
+        </div>
+      </a>
+    )}
+
+    {rest.length > 0 && (
+      <div class="journeys-grid">
+        {rest.map((j) => (
+          <a href={`/journeys/${j.slug}`} class="journey-card">
+            <div class="jc-img-wrap">
+              <div class="jc-img" style={j.image ? `background-image: url(${j.image});` : ""}></div>
+              <span class="jc-label">{j.label}</span>
+            </div>
+            <div class="jc-body">
+              <h3 class="jc-destination">{j.destination}</h3>
+              <p class="jc-subtitle">{j.subtitle}</p>
+              <div class="jc-meta">
+                <span class="jc-price">&yen;{j.price.toLocaleString()}<span class="jc-price-note">起/人</span></span>
+                <span class="jc-days">{j.days}天{j.nights}晚</span>
+              </div>
+            </div>
+          </a>
+        ))}
+      </div>
+    )}
+
+    <div class="journeys-cta">
+      <a href="/journeys" class="journeys-cta-link">浏览全部 53 条旅程 &rarr;</a>
     </div>
   </div>
 </section>
 
 <style>
   .journeys {
-    padding: var(--spacing-section) 2rem;
+    padding: 6rem 2rem;
     background: var(--color-bg-page);
   }
   .journeys-inner {
-    max-width: 1200px;
+    max-width: 1280px;
     margin: 0 auto;
+  }
+  .journeys-head {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 2rem;
+    margin-bottom: 3rem;
+    flex-wrap: wrap;
+  }
+  .journeys-eyebrow {
+    display: block;
+    font-size: 0.62rem;
+    letter-spacing: 0.25em;
+    color: var(--color-brand);
+    margin-bottom: 0.6rem;
   }
   .journeys-heading {
     font-family: var(--font-display);
-    font-size: 1.75rem;
+    font-size: clamp(1.75rem, 3.5vw, 2.5rem);
     font-weight: 700;
-    text-align: center;
     color: var(--color-text-primary);
-    margin-bottom: 0.5rem;
     letter-spacing: 0.04em;
   }
   .journeys-sub {
-    text-align: center;
+    font-size: 0.85rem;
     color: var(--color-text-muted);
-    font-size: 0.9rem;
-    margin-bottom: 3rem;
-  }
-  .journeys-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: var(--spacing-card-gap);
-  }
-  .journey-card {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0;
-    min-height: 280px;
-    text-decoration: none;
-    background: var(--color-bg-card);
-    transition: opacity 0.2s;
-  }
-  .journey-card:hover {
-    opacity: 0.7;
-  }
-  .journey-card-img {
-    min-height: 280px;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-color: var(--color-bg-warm);
-  }
-  .journey-card-body {
-    padding: 2rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-  .journey-card-label {
-    font-size: 0.65rem;
-    letter-spacing: 0.18em;
-    color: var(--color-brand);
-    margin-bottom: 0.75rem;
-  }
-  .journey-card-title {
-    font-family: var(--font-display);
-    font-size: 1.1rem;
-    font-weight: 600;
-    color: var(--color-text-primary);
-    line-height: 1.5;
-    margin-bottom: 1rem;
-  }
-  .journey-card-days {
-    font-size: 0.8rem;
-    color: var(--color-text-muted);
-    margin-bottom: 1rem;
-  }
-  .journey-card-price {
-    display: flex;
-    flex-direction: column;
-    gap: 0.2rem;
-    margin-bottom: 1rem;
-  }
-  .journey-card-price-tag {
-    font-size: 0.6rem;
-    letter-spacing: 0.15em;
-    color: var(--color-brand);
-  }
-  .journey-card-price-num {
-    font-family: var(--font-price);
-    font-size: 1.1rem;
-    font-weight: 600;
-    color: var(--color-text-primary);
-  }
-  .journey-card-price-suffix {
-    font-family: var(--font-body);
-    font-size: 0.65rem;
-    font-weight: 400;
-    color: var(--color-text-muted);
-    margin-left: 0.2rem;
-  }
-  .journey-card-action {
-    font-size: 0.8rem;
-    color: var(--color-brand);
+    max-width: 360px;
+    line-height: 1.6;
   }
 
-  @media (max-width: 768px) {
+  /* Hero card — large editorial */
+  .journey-hero-card {
+    display: block;
+    position: relative;
+    height: 520px;
+    margin-bottom: 1.5rem;
+    overflow: hidden;
+    text-decoration: none;
+    background: var(--color-bg-warm);
+  }
+  .jhc-img {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    transition: transform 1.2s ease;
+  }
+  .journey-hero-card:hover .jhc-img {
+    transform: scale(1.05);
+  }
+  .jhc-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.05) 40%, rgba(0,0,0,0.75) 100%);
+  }
+  .jhc-content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 3rem 3rem;
+    z-index: 2;
+  }
+  .jhc-label {
+    display: inline-block;
+    font-size: 0.62rem;
+    letter-spacing: 0.22em;
+    color: var(--color-brand);
+    margin-bottom: 0.85rem;
+    padding: 0.25rem 0.85rem;
+    border: 1px solid color-mix(in srgb, var(--color-brand) 60%, transparent);
+    background: rgba(0,0,0,0.2);
+    backdrop-filter: blur(4px);
+  }
+  .jhc-destination {
+    font-family: var(--font-heading);
+    font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.03em;
+    text-shadow: 0 2px 20px rgba(0,0,0,0.4);
+  }
+  .jhc-subtitle {
+    font-size: 0.95rem;
+    color: rgba(255,255,255,0.8);
+    margin-bottom: 1.25rem;
+    max-width: 560px;
+    line-height: 1.6;
+    text-shadow: 0 1px 10px rgba(0,0,0,0.5);
+  }
+  .jhc-meta {
+    display: flex;
+    align-items: baseline;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+  .jhc-price {
+    font-family: var(--font-price);
+    font-size: 1.35rem;
+    color: #fff;
+    font-weight: 500;
+  }
+  .jhc-price-note {
+    font-family: var(--font-body);
+    font-size: 0.65rem;
+    color: rgba(255,255,255,0.55);
+    margin-left: 0.3rem;
+  }
+  .jhc-days {
+    font-size: 0.78rem;
+    color: rgba(255,255,255,0.6);
+    letter-spacing: 0.05em;
+  }
+
+  /* Grid cards */
+  .journeys-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+  .journey-card {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    background: var(--color-bg-card);
+    overflow: hidden;
+    transition: transform 0.3s ease;
+  }
+  .journey-card:hover {
+    transform: translateY(-4px);
+  }
+  .jc-img-wrap {
+    position: relative;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    background: var(--color-bg-warm);
+  }
+  .jc-img {
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    transition: transform 0.8s ease;
+  }
+  .journey-card:hover .jc-img {
+    transform: scale(1.06);
+  }
+  .jc-label {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    font-size: 0.58rem;
+    letter-spacing: 0.18em;
+    color: #fff;
+    padding: 0.3rem 0.7rem;
+    background: rgba(0,0,0,0.35);
+    backdrop-filter: blur(6px);
+  }
+  .jc-body {
+    padding: 1.35rem 1.5rem 1.5rem;
+  }
+  .jc-destination {
+    font-family: var(--font-heading);
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    margin-bottom: 0.4rem;
+    letter-spacing: 0.02em;
+  }
+  .jc-subtitle {
+    font-size: 0.82rem;
+    color: var(--color-text-muted);
+    line-height: 1.55;
+    margin-bottom: 1rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .jc-meta {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+  .jc-price {
+    font-family: var(--font-price);
+    font-size: 1.05rem;
+    color: var(--color-text-primary);
+    font-weight: 600;
+  }
+  .jc-price-note {
+    font-family: var(--font-body);
+    font-size: 0.6rem;
+    color: var(--color-text-muted);
+    margin-left: 0.15rem;
+    font-weight: 400;
+  }
+  .jc-days {
+    font-size: 0.72rem;
+    color: var(--color-text-muted);
+    letter-spacing: 0.04em;
+  }
+
+  .journeys-cta {
+    margin-top: 3rem;
+    text-align: center;
+  }
+  .journeys-cta-link {
+    display: inline-block;
+    font-size: 0.92rem;
+    color: var(--color-brand);
+    letter-spacing: 0.04em;
+    border-bottom: 1px solid var(--color-brand);
+    padding-bottom: 0.25rem;
+    text-decoration: none;
+  }
+
+  @media (max-width: 968px) {
+    .journeys-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media (max-width: 600px) {
     .journeys-grid {
       grid-template-columns: 1fr;
     }
-    .journey-card {
-      grid-template-columns: 1fr;
+    .journey-hero-card {
+      height: 400px;
     }
-    .journey-card-img {
-      min-height: 200px;
+    .jhc-content {
+      padding: 2rem 1.5rem;
     }
   }
 </style>

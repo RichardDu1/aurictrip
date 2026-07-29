@@ -7,26 +7,47 @@ interface Hotel {
 
 interface Props {
   hotels: Hotel[];
+  gallery?: string[];
 }
 
-const { hotels } = Astro.props;
+const { hotels, gallery = [] } = Astro.props;
 if (!hotels || hotels.length === 0) return;
+
+// 酒店配图：从 gallery 取，优先索引 3、4（酒店外观/空间），不足时回退循环
+const hotelImageIndices = [3, 4, 2, 5, 1, 6];
+const getHotelImage = (i: number): string | undefined => {
+  if (gallery.length === 0) return undefined;
+  const preferred = hotelImageIndices[i % hotelImageIndices.length];
+  const idx = Math.min(preferred, gallery.length) - 1;
+  return gallery[idx] ?? gallery[i % gallery.length];
+};
 ---
 
 <section class="hotels">
-  <h2 class="ht-heading">酒店精选</h2>
-  <p class="ht-sub">每一间酒店都经过实地考察，确保品质与格调</p>
+  <div class="ht-head">
+    <span class="ht-eyebrow">HOTELS</span>
+    <h2 class="ht-heading">具名酒店精选</h2>
+    <p class="ht-sub">每一间都经过实地考察，确保品质与格调——中国客户把酒店当卖点，所以我们具名。</p>
+  </div>
   <div class="ht-grid">
-    {hotels.map((h) => (
-      <div class="ht-card card">
-        <div class="ht-card-img"></div>
-        <div class="ht-card-body">
-          <h3 class="ht-name">{h.name}</h3>
-          <p class="ht-location">{h.location}</p>
-          <p class="ht-desc">{h.description}</p>
-        </div>
-      </div>
-    ))}
+    {hotels.map((h, i) => {
+      const img = getHotelImage(i);
+      return (
+        <article class={`ht-card${img ? " has-img" : ""}`}>
+          {img ? (
+            <div class="ht-card-img" style={`background-image: url(${img});`}></div>
+          ) : (
+            <div class="ht-card-img ht-card-img-fallback"></div>
+          )}
+          <div class="ht-card-body">
+            <span class="ht-index">No.{String(i + 1).padStart(2, "0")}</span>
+            <h3 class="ht-name">{h.name}</h3>
+            <p class="ht-location">{h.location}</p>
+            <p class="ht-desc">{h.description}</p>
+          </div>
+        </article>
+      );
+    })}
   </div>
 </section>
 
@@ -34,55 +55,84 @@ if (!hotels || hotels.length === 0) return;
   .hotels {
     max-width: var(--spacing-content-max);
     margin: 0 auto;
-    padding: 3rem 2rem 0;
+    padding: 4rem 2rem 2rem;
+  }
+  .ht-head {
+    margin-bottom: 2.5rem;
+  }
+  .ht-eyebrow {
+    display: block;
+    font-size: 0.62rem;
+    letter-spacing: 0.25em;
+    color: var(--color-brand);
+    margin-bottom: 0.6rem;
   }
   .ht-heading {
     font-family: var(--font-heading);
-    font-size: 1.25rem;
+    font-size: 1.5rem;
     font-weight: 600;
     color: var(--color-text-primary);
     margin-bottom: 0.5rem;
     letter-spacing: 0.03em;
   }
   .ht-sub {
-    font-size: 0.8rem;
+    font-size: 0.82rem;
     color: var(--color-text-muted);
-    margin-bottom: 1.5rem;
+    line-height: 1.6;
+    max-width: 560px;
   }
   .ht-grid {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 1.5rem;
+    gap: 2rem;
   }
   .ht-card {
     display: grid;
-    grid-template-columns: 200px 1fr;
-    gap: 1.5rem;
+    grid-template-columns: 320px 1fr;
+    gap: 0;
     background: var(--color-bg-card);
+    overflow: hidden;
   }
   .ht-card-img {
-    min-height: 140px;
+    min-height: 260px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  .ht-card-img-fallback {
     background: var(--color-bg-warm);
   }
   .ht-card-body {
-    padding: 1rem 1rem 1rem 0;
+    padding: 2rem 2rem 2rem 2.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .ht-index {
+    font-family: var(--font-price);
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    color: var(--color-text-muted);
+    margin-bottom: 0.6rem;
   }
   .ht-name {
     font-family: var(--font-heading);
-    font-size: 1.05rem;
+    font-size: 1.2rem;
     font-weight: 600;
     color: var(--color-text-primary);
-    margin-bottom: 0.25rem;
+    margin-bottom: 0.3rem;
+    letter-spacing: 0.01em;
   }
   .ht-location {
-    font-size: 0.75rem;
+    font-size: 0.72rem;
     color: var(--color-brand);
-    margin-bottom: 0.5rem;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.9rem;
   }
   .ht-desc {
-    font-size: 0.85rem;
+    font-size: 0.86rem;
     color: var(--color-text-secondary);
-    line-height: 1.7;
+    line-height: 1.8;
     margin: 0;
   }
   @media (max-width: 768px) {
@@ -90,10 +140,10 @@ if (!hotels || hotels.length === 0) return;
       grid-template-columns: 1fr;
     }
     .ht-card-img {
-      min-height: 180px;
+      min-height: 200px;
     }
     .ht-card-body {
-      padding: 0 1.25rem 1.25rem;
+      padding: 1.5rem;
     }
   }
 </style>
