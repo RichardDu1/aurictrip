@@ -14,19 +14,21 @@ import HotelSection from "@components/detail/HotelSection.astro";
 import CostComparison from "@components/detail/CostComparison.astro";
 import BookingNotes from "@components/detail/BookingNotes.astro";
 import FAQ from "@components/detail/FAQ.astro";
+import RelatedJourneys from "@components/detail/RelatedJourneys.astro";
 import TrustAnchors from "@components/detail/TrustAnchors.astro";
 import FloatingCTA from "@components/detail/FloatingCTA.astro";
+import { journeySlug, absoluteUrl, breadcrumbSchema, faqSchema, clip, organizationId } from "@lib/seo";
 
 export async function getStaticPaths() {
   const journeys = await getCollection("journeys");
-  return journeys.map((j: CollectionEntry<"journeys">) => ({ params: { slug: j.id.replace(/\.md$/, "") } }));
+  return journeys.map((j: CollectionEntry<"journeys">) => ({ params: { slug: journeySlug(j.id) } }));
 }
 
 export const prerender = true;
 
 const { slug } = Astro.params;
 const journeys = await getCollection("journeys");
-const journey = journeys.find((j: CollectionEntry<"journeys">) => j.id.replace(/\.md$/, "") === slug);
+const journey = journeys.find((j: CollectionEntry<"journeys">) => journeySlug(j.id) === slug);
 
 if (!journey) {
   return Astro.rewrite("/404");
@@ -65,9 +67,70 @@ const subtitle = data.subtitle || (rawBody.match(/^##\s*(.+)/m)?.[1]?.replace(/^
 const gallery = data.gallery && data.gallery.length > 0 ? data.gallery : (data.heroImage ? [data.heroImage] : []);
 const packages = data.packages ?? [];
 const lowestPrice = packages.length ? Math.min(...packages.map((p: { price: number }) => p.price)) : data.price;
+
+// SEO：每条行程独立的标题与描述，事实全部来自行程 frontmatter
+const pagePath = `/journeys/${slug}`;
+const pageTitle = `${data.destination}${data.days}天${data.nights}晚高端定制旅行 · ${data.label}`;
+const intro = subtitle || (data.highlights ?? []).slice(0, 2).join("；");
+const pageDescription = clip(
+  `${data.destination}${data.days}天${data.nights}晚私人定制行程「${data.label}」，指导价¥${lowestPrice.toLocaleString()}起/人，最佳季节${data.season}。${intro}`,
+  150,
+);
+const offers = packages.length
+  ? packages.map((p: { name: string; price: number; description: string }) => ({
+      "@type": "Offer",
+      name: p.name,
+      description: p.description,
+      price: p.price,
+      priceCurrency: "CNY",
+      url: absoluteUrl(pagePath),
+    }))
+  : [{ "@type": "Offer", price: data.price, priceCurrency: "CNY", url: absoluteUrl(pagePath) }];
+const jsonLd = [
+  {
+    "@context": "https://schema.org",
+    "@type": "TouristTrip",
+    name: `${data.label} · ${data.destination}${data.days}天${data.nights}晚`,
+    description: pageDescription,
+    url: absoluteUrl(pagePath),
+    image: gallery.map((src: string) => absoluteUrl(src)),
+    touristType: data.type,
+    provider: { "@id": organizationId },
+    ...(parsedDays.length
+      ? {
+          itinerary: {
+            "@type": "ItemList",
+            numberOfItems: parsedDays.length,
+            itemListElement: parsedDays.map((d: ParsedDay, i: number) => ({
+              "@type": "ListItem",
+              position: i + 1,
+              name: `${d.day} ${d.title}`,
+            })),
+          },
+        }
+      : {}),
+    offers,
+  },
+  breadcrumbSchema([
+    { name: "首页", path: "/" },
+    { name: "全部旅程", path: "/journeys" },
+    { name: data.destination, path: pagePath },
+  ]),
+  ...(data.faqs?.length ? [faqSchema(data.faqs)] : []),
+];
+
+// 相关行程：同一旅行形态优先，补足到 3 条，避免详情页成为内链孤岛
+const related = journeys
+  .filter((j: CollectionEntry<"journeys">) => journeySlug(j.id) !== slug)
+  .sort(
+    (a: CollectionEntry<"journeys">, b: CollectionEntry<"journeys">) =>
+      Number(b.data.type === data.type) - Number(a.data.type === data.type) ||
+      Math.abs(a.data.price - data.price) - Math.abs(b.data.price - data.price),
+  )
+  .slice(0, 3);
 ---
 
-<BaseLayout title={data.destination} description={`${data.destination} ${data.days}天${data.nights}晚 — ${data.priceLevel}`}>
+<BaseLayout title={pageTitle} description={pageDescription} image={data.heroImage ?? gallery[0]} jsonLd={jsonLd}>
   <Navigation />
   <main>
     {gallery.length > 0 ? (
@@ -107,6 +170,7 @@ const lowestPrice = packages.length ? Math.min(...packages.map((p: { price: numb
       />
       <FAQ faqs={data.faqs ?? []} />
     </section>
+    <RelatedJourneys journeys={related} />
   </main>
   <Footer />
   <FloatingCTA price={lowestPrice} packages={packages} />

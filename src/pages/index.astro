@@ -12,11 +12,17 @@ import CustomizationFlow from "@components/CustomizationFlow.astro";
 import CustomerStories from "@components/CustomerStories.astro";
 import CTA from "@components/CTA.astro";
 import Footer from "@components/Footer.astro";
+import { getCollection } from "astro:content";
+import { organizationSchema, websiteSchema } from "@lib/seo";
+
+const journeyCount = (await getCollection("journeys")).length;
 ---
 
 <BaseLayout
-  title="首页"
-  description="鎏光旅行 AuricTrip — 全球高端定制旅行。私人定制、臻选小团、极地探索，用时间淬炼每一次出发。"
+  title="鎏光旅行 AuricTrip｜伦敦团队的全球高端定制旅行，全程中文服务"
+  fullTitle
+  description={`鎏光旅行 AuricTrip，团队扎根伦敦，为中国旅行者设计全球高端定制旅程：${journeyCount}条行程覆盖非洲野奢、欧洲深度、亚洲文化与南北极远征，具名酒店、费用透明、48小时出方案、全程中文管家。`}
+  jsonLd={[organizationSchema, websiteSchema]}
 >
   <Navigation />
   <main>

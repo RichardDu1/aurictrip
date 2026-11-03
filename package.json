@@ -9,15 +9,16 @@
     "preview": "astro preview",
     "test": "vitest run",
     "test:watch": "vitest",
-    "lint": "prettier --check . && eslint ."
+    "lint": "prettier --check . && eslint .",
+    "audit:seo": "python3 scripts/audit-dist.py dist"
   },
   "dependencies": {
     "astro": "^5.0.0"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.0",
-    "@astrojs/cloudflare": "^12.0.0",
     "@tailwindcss/vite": "^4.0.0",
+    "@types/node": "^22.20.5",
     "prettier": "^3.4.0",
     "prettier-plugin-astro": "^0.14.0",
     "tailwindcss": "^4.0.0",

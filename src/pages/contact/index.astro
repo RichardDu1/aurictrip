@@ -5,7 +5,7 @@ import Footer from "@components/Footer.astro";
 import WeChatShare from "@components/WeChatShare.astro";
 ---
 
-<BaseLayout title="联系我们" description="与鎏光旅行顾问对话，开启你的下一段旅程">
+<BaseLayout title="联系旅行顾问：电话、WhatsApp、微信与邮箱" description="联系鎏光旅行顾问：电话/WhatsApp +44 7396 800888，邮箱 service@aurictrip.com，微信 PanEuroTrip。告诉我们目的地、出行时间与人数，即可开始定制你的专属行程。">
   <Navigation />
   <main>
     <section class="page-hero">
@@ -45,29 +45,29 @@ import WeChatShare from "@components/WeChatShare.astro";
 
           <div class="contact-form-wrapper">
             <h2 class="contact-heading">快速咨询</h2>
-            <form class="contact-form">
+            <form class="contact-form" data-contact-form action="mailto:service@aurictrip.com" method="post" enctype="text/plain">
               <div class="form-group">
                 <label class="form-label" for="name">姓名</label>
-                <input type="text" id="name" class="form-input" placeholder="您的姓名" />
+                <input type="text" id="name" name="姓名" required class="form-input" placeholder="您的姓名" />
               </div>
               <div class="form-group">
                 <label class="form-label" for="email">邮箱</label>
-                <input type="email" id="email" class="form-input" placeholder="your@email.com" />
+                <input type="email" id="email" name="邮箱" required class="form-input" placeholder="your@email.com" />
               </div>
               <div class="form-group">
                 <label class="form-label" for="phone">电话（选填）</label>
-                <input type="tel" id="phone" class="form-input" placeholder="+86 138 0000 0000 或 +44 7396 800888" />
+                <input type="tel" id="phone" name="电话" class="form-input" placeholder="+86 138 0000 0000 或 +44 7396 800888" />
               </div>
               <div class="form-group">
                 <label class="form-label" for="destination">感兴趣的目的地</label>
-                <input type="text" id="destination" class="form-input" placeholder="例如：日本、意大利、南极..." />
+                <input type="text" id="destination" name="目的地" class="form-input" placeholder="例如：日本、意大利、南极..." />
               </div>
               <div class="form-group">
                 <label class="form-label" for="message">旅行需求</label>
-                <textarea id="message" class="form-textarea" rows="4" placeholder="告诉我们出行时间、人数、预算范围、旅行偏好..."></textarea>
+                <textarea id="message" name="旅行需求" class="form-textarea" rows="4" placeholder="告诉我们出行时间、人数、预算范围、旅行偏好..."></textarea>
               </div>
               <button type="submit" class="form-submit">提交咨询 &rarr;</button>
-              <p class="form-note">提交即表示你同意我们通过邮件或电话与你联系。我们不会将你的信息分享给第三方。</p>
+              <p class="form-note">提交后将打开你的邮件应用，咨询内容会发送至 service@aurictrip.com。提交即表示你同意我们通过邮件或电话与你联系。我们不会将你的信息分享给第三方。</p>
             </form>
           </div>
         </div>
@@ -77,6 +77,18 @@ import WeChatShare from "@components/WeChatShare.astro";
   </main>
   <Footer />
 </BaseLayout>
+
+<script>
+  // 暂无表单后端：把填写内容整理成一封邮件，交给访客的邮件应用发送
+  const form = document.querySelector<HTMLFormElement>("[data-contact-form]");
+  form?.addEventListener("submit", (event) => {
+    event.preventDefault();
+    const data = new FormData(form);
+    const lines = [...data.entries()].map(([k, v]) => `${k}：${String(v).trim()}`);
+    const subject = `旅行咨询｜${String(data.get("目的地") || "").trim() || "鎏光旅行"}｜${String(data.get("姓名") || "").trim()}`;
+    window.location.href = `mailto:service@aurictrip.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(lines.join("\n"))}`;
+  });
+</script>
 
 <style>
   .page-hero {
