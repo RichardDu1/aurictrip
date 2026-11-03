@@ -45,30 +45,59 @@ import WeChatShare from "@components/WeChatShare.astro";
 
           <div class="contact-form-wrapper">
             <h2 class="contact-heading">快速咨询</h2>
-            <form class="contact-form" data-contact-form action="mailto:service@aurictrip.com" method="post" enctype="text/plain">
+            <form class="contact-form" data-contact-form novalidate>
               <div class="form-group">
                 <label class="form-label" for="name">姓名</label>
-                <input type="text" id="name" name="姓名" required class="form-input" placeholder="您的姓名" />
+                <input type="text" id="name" name="name" autocomplete="name" class="form-input" placeholder="您的姓名" />
+              </div>
+              <p class="form-hint">以下联系方式至少填写一项</p>
+              <div class="form-group">
+                <label class="form-label" for="phone">电话 / WhatsApp</label>
+                <input type="tel" id="phone" name="phone" autocomplete="tel" class="form-input" placeholder="+86 138 0000 0000 或 +44 7396 800888" />
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="wechat">微信号</label>
+                <input type="text" id="wechat" name="wechat" class="form-input" placeholder="您的微信号" />
               </div>
               <div class="form-group">
                 <label class="form-label" for="email">邮箱</label>
-                <input type="email" id="email" name="邮箱" required class="form-input" placeholder="your@email.com" />
+                <input type="email" id="email" name="email" autocomplete="email" class="form-input" placeholder="your@email.com" />
               </div>
               <div class="form-group">
-                <label class="form-label" for="phone">电话（选填）</label>
-                <input type="tel" id="phone" name="电话" class="form-input" placeholder="+86 138 0000 0000 或 +44 7396 800888" />
+                <label class="form-label" for="contact_method">希望我们如何联系您</label>
+                <select id="contact_method" name="contact_method" class="form-input">
+                  <option value="微信">微信</option>
+                  <option value="电话">电话</option>
+                  <option value="WhatsApp">WhatsApp</option>
+                  <option value="邮件">邮件</option>
+                </select>
               </div>
               <div class="form-group">
-                <label class="form-label" for="destination">感兴趣的目的地</label>
-                <input type="text" id="destination" name="目的地" class="form-input" placeholder="例如：日本、意大利、南极..." />
+                <label class="form-label" for="tour">感兴趣的行程或目的地</label>
+                <input type="text" id="tour" name="tour" class="form-input" placeholder="例如：日本、意大利、南极..." />
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-label" for="start_date">计划出发日期</label>
+                  <input type="date" id="start_date" name="start_date" class="form-input" />
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="end_date">计划返回日期</label>
+                  <input type="date" id="end_date" name="end_date" class="form-input" />
+                </div>
               </div>
               <div class="form-group">
                 <label class="form-label" for="message">旅行需求</label>
-                <textarea id="message" name="旅行需求" class="form-textarea" rows="4" placeholder="告诉我们出行时间、人数、预算范围、旅行偏好..."></textarea>
+                <textarea id="message" name="message" class="form-textarea" rows="4" placeholder="告诉我们出行人数、预算范围、旅行偏好..."></textarea>
               </div>
-              <button type="submit" class="form-submit">提交咨询 &rarr;</button>
-              <p class="form-note">提交后将打开你的邮件应用，咨询内容会发送至 service@aurictrip.com。提交即表示你同意我们通过邮件或电话与你联系。我们不会将你的信息分享给第三方。</p>
+              <button type="submit" class="form-submit" data-submit>提交咨询 &rarr;</button>
+              <p class="form-status" data-form-status role="status" aria-live="polite" hidden></p>
+              <p class="form-note">提交即表示你同意我们通过你留下的联系方式与你联系。我们不会将你的信息分享给第三方。</p>
             </form>
+            <div class="form-result form-result-ok" data-form-success hidden>
+              <h3>咨询已提交</h3>
+              <p>我们已收到你的需求，旅行顾问会通过你留下的联系方式与你联系。</p>
+            </div>
           </div>
         </div>
         <WeChatShare />
@@ -79,14 +108,74 @@ import WeChatShare from "@components/WeChatShare.astro";
 </BaseLayout>
 
 <script>
-  // 暂无表单后端：把填写内容整理成一封邮件，交给访客的邮件应用发送
+  // 提交到 Highland Travel 集团表单系统；只有 response.ok 才显示成功，失败时给出备用联系方式
+  const FORM_ENDPOINT = "https://form.highland-travel.com";
+  const FALLBACK = "提交失败，请直接通过电话/WhatsApp +44 7396 800888、微信 PanEuroTrip 或邮箱 service@aurictrip.com 联系我们。";
+  const CONTACT_FIELDS = ["phone", "wechat", "email"];
+
   const form = document.querySelector<HTMLFormElement>("[data-contact-form]");
-  form?.addEventListener("submit", (event) => {
+  const submitBtn = form?.querySelector<HTMLButtonElement>("[data-submit]");
+  const status = form?.querySelector<HTMLElement>("[data-form-status]");
+  const success = document.querySelector<HTMLElement>("[data-form-success]");
+
+  // 从详情页"与顾问对话"带过来的行程名
+  const tourParam = new URLSearchParams(window.location.search).get("tour");
+  const tourInput = form?.querySelector<HTMLInputElement>("#tour");
+  if (tourParam && tourInput && !tourInput.value) tourInput.value = tourParam;
+
+  function showStatus(text: string) {
+    if (!status) return;
+    status.textContent = text;
+    status.hidden = false;
+  }
+
+  form?.addEventListener("submit", async (event) => {
     event.preventDefault();
-    const data = new FormData(form);
-    const lines = [...data.entries()].map(([k, v]) => `${k}：${String(v).trim()}`);
-    const subject = `旅行咨询｜${String(data.get("目的地") || "").trim() || "鎏光旅行"}｜${String(data.get("姓名") || "").trim()}`;
-    window.location.href = `mailto:service@aurictrip.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(lines.join("\n"))}`;
+    const raw = Object.fromEntries(
+      [...new FormData(form).entries()].map(([k, v]) => [k, String(v).trim()]),
+    ) as Record<string, string>;
+    if (!CONTACT_FIELDS.some((k) => raw[k])) {
+      showStatus("请至少填写电话、微信或邮箱中的一项，方便我们联系你。");
+      return;
+    }
+    const payload = {
+      name: raw.name,
+      phone: raw.phone,
+      wechat: raw.wechat,
+      email: raw.email,
+      address: "",
+      start_date: raw.start_date,
+      end_date: raw.end_date,
+      tour: raw.tour || document.title,
+      contact_method: raw.contact_method,
+      message: [raw.message, `来源页面：${window.location.href}`].filter(Boolean).join("\n"),
+    };
+
+    const originalText = submitBtn?.innerHTML ?? "";
+    if (submitBtn) {
+      submitBtn.disabled = true;
+      submitBtn.textContent = "正在提交…";
+    }
+    if (status) status.hidden = true;
+    try {
+      const response = await fetch(FORM_ENDPOINT, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+      if (!response.ok) throw new Error(`HTTP ${response.status}`);
+      form.hidden = true;
+      if (success) success.hidden = false;
+      const w = window as unknown as { gtag?: (...args: unknown[]) => void };
+      w.gtag?.("event", "generate_lead", { form: "contact", tour: payload.tour });
+    } catch {
+      showStatus(FALLBACK);
+    } finally {
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = originalText;
+      }
+    }
   });
 </script>
 
@@ -210,6 +299,43 @@ import WeChatShare from "@components/WeChatShare.astro";
   .form-submit:hover {
     background: var(--color-brand);
     color: #fff;
+  }
+  .form-hint {
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+    margin: -0.25rem 0 0.75rem;
+  }
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+  @media (max-width: 480px) {
+    .form-row {
+      grid-template-columns: 1fr;
+      gap: 0;
+    }
+  }
+  .form-status {
+    margin-top: 1rem;
+    font-size: 0.85rem;
+    line-height: 1.6;
+    color: #a3392f;
+  }
+  .form-result {
+    padding: 1.5rem;
+    border: 1px solid color-mix(in srgb, var(--color-brand) 40%, transparent);
+    background: var(--color-bg-card);
+  }
+  .form-result h3 {
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+  }
+  .form-result p {
+    font-size: 0.9rem;
+    color: var(--color-text-secondary);
+    line-height: 1.7;
   }
   .form-note {
     font-size: 0.7rem;

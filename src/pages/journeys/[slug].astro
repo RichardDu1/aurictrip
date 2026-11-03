@@ -173,7 +173,7 @@ const related = journeys
     <RelatedJourneys journeys={related} />
   </main>
   <Footer />
-  <FloatingCTA price={lowestPrice} packages={packages} />
+  <FloatingCTA price={lowestPrice} packages={packages} contactUrl={`/contact?tour=${encodeURIComponent(`${data.destination}｜${data.label}`)}`} />
 </BaseLayout>
 
 <style>
