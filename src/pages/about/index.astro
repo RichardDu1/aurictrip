@@ -1,10 +1,11 @@
 ---
+import { organizationSchema } from "@lib/seo";
 import BaseLayout from "@layouts/BaseLayout.astro";
 import Navigation from "@components/Navigation.astro";
 import Footer from "@components/Footer.astro";
 ---
 
-<BaseLayout title="关于我们" description="了解鎏光旅行 — 用时间淬炼的旅行">
+<BaseLayout title="关于鎏光旅行：扎根伦敦的高端定制旅行团队" description="了解鎏光旅行 AuricTrip：一家扎根伦敦、面向中国旅行者的全球高端定制旅行品牌——我们的理念、服务方式与联系方式。" jsonLd={organizationSchema}>
   <Navigation />
   <main>
     <section class="page-hero">

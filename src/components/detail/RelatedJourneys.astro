@@ -1,0 +1,65 @@
+---
+import type { CollectionEntry } from "astro:content";
+import JourneyListCard from "@components/JourneyListCard.astro";
+
+interface Props {
+  journeys: CollectionEntry<"journeys">[];
+}
+
+const { journeys } = Astro.props;
+---
+
+{
+  journeys.length > 0 && (
+    <section class="related" aria-labelledby="related-heading">
+      <div class="related-inner">
+        <h2 id="related-heading" class="related-heading">你可能也会喜欢</h2>
+        <div class="related-grid">
+          {journeys.map((j: CollectionEntry<"journeys">) => (
+            <JourneyListCard journey={j} headingLevel="h3" />
+          ))}
+        </div>
+        <a href="/journeys" class="related-all">浏览全部旅程 &rarr;</a>
+      </div>
+    </section>
+  )
+}
+
+<style>
+  .related {
+    padding: 4rem 2rem 6rem;
+    background: var(--color-bg-warm);
+  }
+  .related-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .related-heading {
+    font-family: var(--font-heading);
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+  .related-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+  .related-all {
+    display: block;
+    text-align: center;
+    margin-top: 2rem;
+    font-size: 0.85rem;
+    color: var(--color-brand);
+    text-decoration: none;
+  }
+  @media (max-width: 900px) {
+    .related-grid {
+      grid-template-columns: 1fr;
+      max-width: 480px;
+      margin: 0 auto;
+    }
+  }
+</style>

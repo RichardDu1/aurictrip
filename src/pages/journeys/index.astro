@@ -4,6 +4,8 @@ import type { CollectionEntry } from "astro:content";
 import BaseLayout from "@layouts/BaseLayout.astro";
 import Navigation from "@components/Navigation.astro";
 import Footer from "@components/Footer.astro";
+import JourneyListCard from "@components/JourneyListCard.astro";
+import { journeySlug, itemListSchema, breadcrumbSchema } from "@lib/seo";
 
 export const prerender = true;
 
@@ -15,9 +17,27 @@ const sorted = journeys
     if (!a.data.featured && b.data.featured) return 1;
     return a.data.price - b.data.price;
   });
+
+const jsonLd = [
+  itemListSchema(
+    "鎏光旅行全部旅程",
+    sorted.map((j: CollectionEntry<"journeys">) => ({
+      name: `${j.data.destination} · ${j.data.label}`,
+      path: `/journeys/${journeySlug(j.id)}`,
+    })),
+  ),
+  breadcrumbSchema([
+    { name: "首页", path: "/" },
+    { name: "全部旅程", path: "/journeys" },
+  ]),
+];
 ---
 
-<BaseLayout title="全部旅程" description="浏览鎏光旅行精心打磨的全球高端定制旅程">
+<BaseLayout
+  title={`全部${sorted.length}条高端定制旅程：目的地、天数与指导价`}
+  description={`鎏光旅行全部${sorted.length}条全球高端定制旅程一览：覆盖非洲野奢、欧洲深度、亚洲文化与南极北极远征，逐条列出天数、最佳季节与人民币指导价，可按需私人定制。`}
+  jsonLd={jsonLd}
+>
   <Navigation />
   <main>
     <section class="page-hero">
@@ -31,18 +51,7 @@ const sorted = journeys
       <div class="listing-inner">
         <div class="listing-grid">
           {sorted.map((j: CollectionEntry<"journeys">) => (
-            <a href={`/journeys/${j.id}`} class="listing-card card">
-              <div class="listing-card-img"></div>
-              <div class="listing-card-body">
-                <span class="listing-card-tag">{j.data.priceLevel}</span>
-                <h2 class="listing-card-title">{j.data.destination}</h2>
-                <p class="listing-card-meta">{j.data.days}天{j.data.nights}晚 · {j.data.season}</p>
-                <p class="listing-card-price">
-                  ¥{j.data.price.toLocaleString()}<span class="listing-card-price-suffix">起/人 · 指导价</span>
-                </p>
-                <span class="listing-card-action">了解详情 &rarr;</span>
-              </div>
-            </a>
+            <JourneyListCard journey={j} />
           ))}
         </div>
       </div>
@@ -86,60 +95,10 @@ const sorted = journeys
     grid-template-columns: repeat(3, 1fr);
     gap: 2rem;
   }
-  .listing-card {
-    display: flex;
-    flex-direction: column;
-    text-decoration: none;
-    background: var(--color-bg-card);
-    transition: opacity 0.2s;
-  }
-  .listing-card:hover {
-    opacity: 0.7;
-  }
-  .listing-card-img {
-    height: 200px;
-    background: var(--color-bg-warm);
-  }
-  .listing-card-body {
-    padding: 1.5rem;
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-  }
-  .listing-card-tag {
-    font-size: 0.6rem;
-    letter-spacing: 0.18em;
-    color: var(--color-brand);
-    margin-bottom: 0.5rem;
-  }
-  .listing-card-title {
-    font-family: var(--font-heading);
-    font-size: 1.1rem;
-    font-weight: 600;
-    color: var(--color-text-primary);
-    margin-bottom: 0.5rem;
-  }
-  .listing-card-meta {
-    font-size: 0.75rem;
-    color: var(--color-text-muted);
-    margin-bottom: 0.75rem;
-  }
-  .listing-card-price {
-    font-family: var(--font-price);
-    font-size: 1.05rem;
-    color: var(--color-text-secondary);
-    margin-bottom: 0.15rem;
-  }
-  .listing-card-price-suffix {
-    font-family: var(--font-body);
-    font-size: 0.65rem;
-    color: var(--color-text-muted);
-  }
-  .listing-card-action {
-    font-size: 0.8rem;
-    color: var(--color-brand);
-    margin-top: auto;
-    padding-top: 1rem;
+  @media (max-width: 1024px) {
+    .listing-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
   }
   @media (max-width: 768px) {
     .listing-grid {

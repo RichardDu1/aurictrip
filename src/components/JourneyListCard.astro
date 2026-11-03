@@ -1,0 +1,101 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { journeySlug } from "@lib/seo";
+
+interface Props {
+  journey: CollectionEntry<"journeys">;
+  headingLevel?: "h2" | "h3";
+}
+
+const { journey, headingLevel = "h2" } = Astro.props;
+const { data } = journey;
+const Heading = headingLevel;
+const image = data.heroImage ?? data.gallery?.[0];
+---
+
+<a href={`/journeys/${journeySlug(journey.id)}`} class="jl-card card">
+  <div class="jl-card-img">
+    {image && <img src={image} alt={`${data.destination} · ${data.label}`} loading="lazy" decoding="async" width="1200" height="800" />}
+  </div>
+  <div class="jl-card-body">
+    <span class="jl-card-tag">{data.priceLevel} · {data.type}</span>
+    <Heading class="jl-card-title">{data.destination}</Heading>
+    <p class="jl-card-label">{data.label}</p>
+    <p class="jl-card-meta">{data.days}天{data.nights}晚 · {data.season}</p>
+    <p class="jl-card-price">
+      ¥{data.price.toLocaleString()}<span class="jl-card-price-suffix">起/人 · 指导价</span>
+    </p>
+    <span class="jl-card-action">了解详情 &rarr;</span>
+  </div>
+</a>
+
+<style>
+  .jl-card {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    background: var(--color-bg-card);
+    transition: opacity 0.2s;
+  }
+  .jl-card:hover {
+    opacity: 0.8;
+  }
+  .jl-card-img {
+    aspect-ratio: 3 / 2;
+    background: var(--color-bg-warm);
+    overflow: hidden;
+  }
+  .jl-card-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .jl-card-body {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+  .jl-card-tag {
+    font-size: 0.65rem;
+    letter-spacing: 0.18em;
+    color: var(--color-brand);
+    margin-bottom: 0.5rem;
+  }
+  .jl-card-title {
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    margin-bottom: 0.25rem;
+  }
+  .jl-card-label {
+    font-size: 0.8rem;
+    color: var(--color-text-secondary);
+    margin-bottom: 0.5rem;
+  }
+  .jl-card-meta {
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+    margin-bottom: 0.75rem;
+    line-height: 1.5;
+  }
+  .jl-card-price {
+    font-family: var(--font-price);
+    font-size: 1.05rem;
+    color: var(--color-text-secondary);
+    margin-bottom: 0.15rem;
+  }
+  .jl-card-price-suffix {
+    font-family: var(--font-body);
+    font-size: 0.65rem;
+    color: var(--color-text-muted);
+  }
+  .jl-card-action {
+    font-size: 0.8rem;
+    color: var(--color-brand);
+    margin-top: auto;
+    padding-top: 1rem;
+  }
+</style>

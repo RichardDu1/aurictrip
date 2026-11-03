@@ -1,11 +1,34 @@
 ---
 import "@styles/global.css";
+import { SITE_NAME, absoluteUrl, canonicalPath, DEFAULT_OG_IMAGE } from "@lib/seo";
 
 interface Props {
   title: string;
-  description?: string;
+  description: string;
+  /** 为 true 时 title 原样输出，不追加站点名后缀 */
+  fullTitle?: boolean;
+  /** 分享图（站内路径或绝对 URL） */
+  image?: string;
+  ogType?: "website" | "article";
+  /** 页面级结构化数据，可传单个对象或数组 */
+  jsonLd?: Record<string, unknown> | Record<string, unknown>[];
+  noindex?: boolean;
 }
-const { title, description } = Astro.props;
+const { title, description, fullTitle = false, image = DEFAULT_OG_IMAGE, ogType = "website", jsonLd, noindex = false } =
+  Astro.props;
+
+const pageTitle = fullTitle ? title : `${title} | ${SITE_NAME}`;
+const canonical = absoluteUrl(canonicalPath(Astro.url.pathname));
+const ogImage = absoluteUrl(image);
+const jsonLdBlocks = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
+
+// 统计与站长验证：在 Cloudflare Pages 环境变量中配置，未配置时不输出任何代码
+const ga4Id = import.meta.env.PUBLIC_GA4_ID;
+const gscVerification = import.meta.env.PUBLIC_GSC_VERIFICATION;
+const baiduVerification = import.meta.env.PUBLIC_BAIDU_VERIFICATION;
+const cfBeaconToken = import.meta.env.PUBLIC_CF_BEACON_TOKEN;
+const fontsHref =
+  "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Inter:wght@400;500;600&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@400;600;700&family=Playfair+Display:wght@400;600;700&display=swap";
 ---
 
 <!doctype html>
@@ -13,14 +36,58 @@ const { title, description } = Astro.props;
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content={description || "鎏光旅行 AuricTrip — 面向中国人的全球高端旅行定制"} />
-    <title>{title} | 鎏光旅行 AuricTrip</title>
+    <title>{pageTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    {noindex && <meta name="robots" content="noindex, follow" />}
+    <meta property="og:site_name" content={SITE_NAME} />
+    <meta property="og:locale" content="zh_CN" />
+    <meta property="og:type" content={ogType} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
+    {gscVerification && <meta name="google-site-verification" content={gscVerification} />}
+    {baiduVerification && <meta name="baidu-site-verification" content={baiduVerification} />}
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Inter:wght@400;500;600&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@400;600;700&family=Playfair+Display:wght@400;600;700&display=swap"
-      rel="stylesheet"
-    />
+    {/* 字体异步加载：fonts.googleapis.com 在中国大陆不可达，同步加载会阻塞整页渲染 */}
+    <script is:inline define:vars={{ fontsHref }}>
+      var fontLink = document.createElement("link");
+      fontLink.rel = "stylesheet";
+      fontLink.href = fontsHref;
+      document.head.appendChild(fontLink);
+    </script>
+    <noscript><link rel="stylesheet" href={fontsHref} /></noscript>
+    {jsonLdBlocks.map((block) => <script is:inline type="application/ld+json" set:html={JSON.stringify(block)} />)}
+    {
+      ga4Id && (
+        <>
+          <script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${ga4Id}`} />
+          <script is:inline define:vars={{ ga4Id }}>
+            window.dataLayer = window.dataLayer || [];
+            function gtag() {
+              dataLayer.push(arguments);
+            }
+            gtag("js", new Date());
+            gtag("config", ga4Id);
+          </script>
+        </>
+      )
+    }
+    {
+      cfBeaconToken && (
+        <script
+          is:inline
+          defer
+          src="https://static.cloudflareinsights.com/beacon.min.js"
+          data-cf-beacon={JSON.stringify({ token: cfBeaconToken })}
+        />
+      )
+    }
   </head>
   <body>
     <slot />
