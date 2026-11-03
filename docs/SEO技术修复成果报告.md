@@ -122,3 +122,8 @@
 
 - 375px 手机宽度表单无横向溢出，日期字段改为单列。
 - 重新构建：0 errors / 0 warnings；`audit-dist.py` 64 页全部通过。
+
+### 预览站复查（https://7f5fa566.aurictrip.pages.dev）
+- `/contact` 已包含表单接口地址与全部字段，旧的 `mailto` 兜底已移除；详情页"与顾问对话"链接带 `?tour=肯尼亚｜旷野呼唤`。
+- sitemap 中 64 个 URL 全部直接 200；不存在地址 404；带斜杠地址 308 到无斜杠版本。
+- 对 form.highland-travel.com 只发了 CORS 预检（`OPTIONS`，不含数据）：返回 204，`Access-Control-Allow-Origin: *`，浏览器可以跨域提交。
